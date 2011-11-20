@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>VV</key>
+	<array>
+		<string>1 VV</string>
+		<string>2 VV</string>
+		<string>3 VV</string>
+		<string>3 VV + BH</string>
+		<string>4 VV</string>
+		<string>4 VV + BH</string>
+		<string>5 VV</string>
+		<string>5 VV + BH</string>
+		<string>6 VV</string>
+		<string>6 VV + BH</string>
+		<string>7 VV</string>
+		<string>7 VV + BH</string>
+		<string>8 VV</string>
+		<string>8 VV + BH</string>
+		<string>9 VV</string>
+		<string>9 VV + BH</string>
+		<string>10 VV</string>
+		<string>10 VV + BH</string>
+	</array>
+	<key>GGZ-B</key>
+	<array>
+		<string>1 GGZB</string>
+		<string>1 GGZB + DB</string>
+		<string>2 GGZB</string>
+		<string>2 GGZB + DB</string>
+		<string>3 GGZB</string>
+		<string>3 GGZB + DB</string>
+		<string>4 GGZB</string>
+		<string>4 GGZB + DB</string>
+		<string>5 GGZB</string>
+		<string>5 GGZB + DB</string>
+		<string>6 GGZB</string>
+		<string>6 GGZB + DB</string>
+		<string>7 GGZB</string>
+		<string>7 GGZB + DB</string>
+	</array>
+	<key>GGZ-C</key>
+	<array>
+		<string>1 GGZC</string>
+		<string>1 GGZC + DB</string>
+		<string>2 GGZC</string>
+		<string>2 GGZC + DB</string>
+		<string>3 GGZC</string>
+		<string>3 GGZC + DB</string>
+		<string>4 GGZC</string>
+		<string>4 GGZC + DB</string>
+		<string>5 GGZC</string>
+		<string>5 GGZC + DB</string>
+		<string>6 GGZC</string>
+		<string>6 GGZC + DB</string>
+	</array>
+	<key>VG</key>
+	<array>
+		<string>1 VG</string>
+		<string>1 VG + DB</string>
+		<string>2 VG</string>
+		<string>2 VG + DB</string>
+		<string>3 VG</string>
+		<string>3 VG + DB</string>
+		<string>3 VG + BH</string>
+		<string>3 VG + DB + BH</string>
+		<string>4 VG</string>
+		<string>4 VG + DB</string>
+		<string>4 VG + BH</string>
+		<string>4 VG + DB + BH</string>
+		<string>5 VG</string>
+		<string>5 VG + DB</string>
+		<string>5 VG + BH</string>
+		<string>5 VG + DB + BH</string>
+		<string>6 VG</string>
+		<string>6 VG + DB</string>
+		<string>6 VG + BH</string>
+		<string>6 VG + DB + BH</string>
+		<string>7 VG</string>
+		<string>7 VG + DB</string>
+		<string>8 VG</string>
+		<string>8 VG + DB</string>
+		<string>8 VG + BH</string>
+		<string>8 VG + DB + BH</string>
+	</array>
+	<key>LVG</key>
+	<array>
+		<string>1 LVG</string>
+		<string>2 LVG</string>
+		<string>3 LVG</string>
+		<string>4 LVG</string>
+		<string>5 LVG</string>
+	</array>
+	<key>SGLVG</key>
+	<array>
+		<string>1 SGLVG</string>
+	</array>
+	<key>LG</key>
+	<array>
+		<string>1 LG</string>
+		<string>1 LG + DB</string>
+		<string>2 LG</string>
+		<string>2 LG + DB</string>
+		<string>3 LG</string>
+		<string>3 LG + DB</string>
+		<string>3 LG + BH</string>
+		<string>3 LG + DB + BH</string>
+		<string>4 LG</string>
+		<string>4 LG + DB</string>
+		<string>4 LG + BH</string>
+		<string>4 LG + DB + BH</string>
+		<string>5 LG</string>
+		<string>5 LG + DB</string>
+		<string>5 LG + BH</string>
+		<string>5 LG + DB + BH</string>
+		<string>6 LG</string>
+		<string>6 LG + DB</string>
+		<string>6 LG + BH</string>
+		<string>6 LG + DB + BH</string>
+		<string>7 LG</string>
+		<string>7 LG + DB</string>
+		<string>7 LG + BH</string>
+		<string>7 LG + DB + BH</string>
+	</array>
+	<key>ZG-aud</key>
+	<array>
+		<string>1 ZG-aud</string>
+		<string>1 ZG-aud + DB</string>
+		<string>1 ZG-aud + BH</string>
+		<string>1 ZG-aud + DB + BH</string>
+		<string>2 ZG-aud</string>
+		<string>2 ZG-aud + DB</string>
+		<string>2 ZG-aud + BH</string>
+		<string>2 ZG-aud + DB + BH</string>
+		<string>3 ZG-aud</string>
+		<string>3 ZG-aud + DB</string>
+		<string>3 ZG-aud + BH</string>
+		<string>3 ZG-aud + DB + BH</string>
+		<string>4 ZG-aud</string>
+		<string>4 ZG-aud + DB</string>
+		<string>4 ZG-aud + BH</string>
+		<string>4 ZG-aud + DB + BH</string>
+	</array>
+	<key>ZG-vis</key>
+	<array>
+		<string>1 ZG-vis</string>
+		<string>1 ZG-vis + DB</string>
+		<string>2 ZG-vis</string>
+		<string>2 ZG-vis + DB</string>
+		<string>3 ZG-vis</string>
+		<string>3 ZG-vis + DB</string>
+		<string>3 ZG-vis + BH</string>
+		<string>3 ZG-vis + DB + BH</string>
+		<string>4 ZG-vis</string>
+		<string>4 ZG-vis + DB</string>
+		<string>4 ZG-vis + BH</string>
+		<string>4 ZG-vis + DB + BH</string>
+		<string>5 ZG-vis</string>
+		<string>5 ZG-vis + DB</string>
+		<string>5 ZG-vis + BH</string>
+		<string>5 ZG-vis + DB + BH</string>
+	</array>
+</dict>
+</plist>
