@@ -3,11 +3,10 @@
 //  CareCap
 //
 //  Created by Tba-Sh-Apple on 8/30/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 The Beagle Armada. All rights reserved.
 //
 
 #import "CareCapAppDelegate.h"
-#import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 
 @implementation CareCapAppDelegate
@@ -138,43 +137,43 @@
 
 
 // Optional UITabBarControllerDelegate method.
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{   
-    // Get views. controllerIndex is passed in as the controller we want to go to.
-    UIView * fromView = tabBarController.selectedViewController.view;
-    UIView * toView;
-    
-    if(tabBarController.selectedIndex == 0)
-    {
-        toView = [[tabBarController.viewControllers objectAtIndex:1] view];
-        
-        // Transition using a page curl.
-        [UIView transitionFromView:fromView 
-                            toView:toView 
-                          duration:0.5 
-                           options:UIViewAnimationOptionTransitionCurlUp
-                        completion:^(BOOL finished) {
-                            if (finished) {
-                                tabBarController.selectedIndex = 1;
-                            }
-                        }];
-    }
-    
-    if(tabBarController.selectedIndex == 1)
-    {
-        toView = [[tabBarController.viewControllers objectAtIndex:0] view];
-        // Transition using a page curl.
-        [UIView transitionFromView:fromView 
-                            toView:toView 
-                          duration:0.5 
-                           options:UIViewAnimationOptionTransitionCurlDown
-                        completion:^(BOOL finished) {
-                            if (finished) {
-                                tabBarController.selectedIndex = 0;
-                            }
-                        }];
-    }
-}
+//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+//{   
+//    // Get views. controllerIndex is passed in as the controller we want to go to.
+//    UIView * fromView = tabBarController.selectedViewController.view;
+//    UIView * toView;
+//    
+//    if(tabBarController.selectedIndex == 0)
+//    {
+//        toView = [[tabBarController.viewControllers objectAtIndex:1] view];
+//        
+//        // Transition using a page curl.
+//        [UIView transitionFromView:fromView 
+//                            toView:toView 
+//                          duration:0.5 
+//                           options:UIViewAnimationOptionTransitionCurlUp
+//                        completion:^(BOOL finished) {
+//                            if (finished) {
+//                                tabBarController.selectedIndex = 1;
+//                            }
+//                        }];
+//    }
+//    
+//    if(tabBarController.selectedIndex == 1)
+//    {
+//        toView = [[tabBarController.viewControllers objectAtIndex:0] view];
+//        // Transition using a page curl.
+//        [UIView transitionFromView:fromView 
+//                            toView:toView 
+//                          duration:0.5 
+//                           options:UIViewAnimationOptionTransitionCurlDown
+//                        completion:^(BOOL finished) {
+//                            if (finished) {
+//                                tabBarController.selectedIndex = 0;
+//                            }
+//                        }];
+//    }
+//}
 
 /*
  // Optional UITabBarControllerDelegate method.

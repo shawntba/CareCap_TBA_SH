@@ -21,7 +21,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        // return [listOfNews count] > 0 ? [listOfNews count] : 10;
     }
     return self;
 }
@@ -54,7 +53,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     //Initialize the array.
-    //listOfItems = [[NSMutableArray alloc] init];
     listOfNews = [[NSMutableArray alloc] init];
     
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
@@ -63,6 +61,23 @@
     
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
         NSURL *url = [NSURL URLWithString:@"http://nfs.azrlive.nl/api/news/News/count/11"];
+        
+        // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
+        // Wi-Fi requests are not affected
+        // This method is only available on iOS
+        [ASIHTTPRequest setShouldThrottleBandwidthForWWAN:YES];
+        
+        // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
+        // This method is only available on iOS
+        [ASIHTTPRequest throttleBandwidthForWWANUsingLimit:14800];
+        
+        // Will prevent requests from using more than the predefined limit for mobile applications.
+        // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
+        [ASIHTTPRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+        
+        // Log how many bytes have been received or sent per second (average from the last 5 seconds)
+        NSLog(@"%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
+        
 //        NSURL *url = [NSURL URLWithString:@"http://192.168.166.16:6060/api/news/News/count/11"];
         ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
         [request addRequestHeader:@"Content-Type" value:@"application/json"];
@@ -169,6 +184,7 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return  YES;
 }
 
 #pragma mark - Table view data source
@@ -183,7 +199,7 @@
 {
     // Return the number of rows in the section.
     return [listOfNews count] > 0 ? [listOfNews count] : 6;
-//    return [listOfNews count];
+    //return [listOfNews count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

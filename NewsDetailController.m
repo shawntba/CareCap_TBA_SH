@@ -90,6 +90,7 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    //return YES;
 }
 
 #pragma mark - WebView lifecycle

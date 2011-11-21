@@ -123,8 +123,6 @@
     return YES;
 }
 
-#pragma mark - Table
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.listContent count];
@@ -194,8 +192,8 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    //return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+//    return YES;
 }
 
 @end
