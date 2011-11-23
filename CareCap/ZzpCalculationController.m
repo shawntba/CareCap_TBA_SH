@@ -82,9 +82,16 @@
     
     result = result/36;
     
+    NSInteger showResult = ceil(result);
+    
+    NSLog(@"%d", showResult);
+    
     [dict release];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%d FTE benodigd volgens NZa normen",(int)result] delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%d FTE benodigd volgens NZa normen",(int)result] delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%d FTE benodigd volgens NZa normen",showResult] delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    
     [alert show];
     [alert release];
 }
@@ -139,10 +146,16 @@
     
     NSString *function = [listContent objectAtIndex:indexPath.row];
     
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 120, 20)];
-    [label setFont:[UIFont systemFontOfSize:16]];
-    [label setText:function];
-    [cell.contentView addSubview:label];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 150, 20)];
+//    [label setFont:[UIFont systemFontOfSize:16]];
+//    [label setText:function];
+//    [cell.contentView addSubview:label];
+    
+    [cell.textLabel setNumberOfLines:0];
+    [cell.textLabel setNeedsDisplayInRect:CGRectMake(10, 10, 150, 20)];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
+    
+    cell.textLabel.text = function;
     
     UITextField *textField = [textFields objectAtIndex:indexPath.row];
     [cell.contentView addSubview:textField];
@@ -151,7 +164,7 @@
     
     [self.listContent objectAtIndex:indexPath.row];
     
-    [label release];
+//    [label release];
     
     return cell;
 }

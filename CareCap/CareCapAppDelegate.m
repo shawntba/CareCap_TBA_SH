@@ -8,6 +8,8 @@
 
 #import "CareCapAppDelegate.h"
 #import "ASIFormDataRequest.h"
+#import "News.h"
+#import "SBJsonParser.h"
 
 @implementation CareCapAppDelegate
 
@@ -35,9 +37,23 @@
     //    [self.window makeKeyAndVisible];
     [self.window makeKeyAndVisible];
 	[_window addSubview:_tabBarController.view];
+
     
-    //    [UIApplication sharedApplication].applicationIconBadgeNumber = 10;
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:10];
+//    self.tabBarController.tabBarItem
+    
+    NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
+    
+    //[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    //[(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
+    
+    if([UIApplication sharedApplication].applicationIconBadgeNumber == 0)
+    {
+        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
+    }
+    else
+    {
+        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+    }
     
     //    [self alertNotice:@"" withMSG:@"Initiating Remote Noticationss Are Active" cancleButtonTitle:@"Ok" otherButtonTitle:@""];
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound)];
@@ -51,15 +67,22 @@
     NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
     deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-//    NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", deviceString];
-    NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", deviceString];
+    NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", deviceString];
+//    NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", deviceString];
     NSURL *url = [NSURL URLWithString:urlString];
+    
+    // Store the data
+    NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];
+    [cachedDeviceToken setObject:deviceString forKey:@"cachedDeviceToken"];
+    [cachedDeviceToken synchronize];
+    
+    NSLog(@"Data saved");
     
     NSLog(@"url=%@",urlString);
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
-    [request addRequestHeader:@"Content-Type" value:@"text/xml"];
+    [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
     
     [request setDelegate:self];
     [request setDidFinishSelector:@selector(sucessRegDevice:)];
@@ -70,6 +93,50 @@
 
 - (void) sucessRegDevice:(ASIHTTPRequest *) request
 {
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    NSLog(@"%@",responseString);
+    // Use when fetching binary data
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    
+    //    NSMutableDictionary *jsonDictionary = [parser objectWithString:responseString error:nil];
+    //    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:[jsonDictionary valueForKey:@"Title"]];
+    //
+    //    self.listOfItems = items;
+    //    [items release];
+    
+    //    NSLog(@"Response %d ===> %@", request.responseStatusCode, listOfItems);
+    
+    NSMutableArray *jsonArray = [parser objectWithString:responseString];
+    NSMutableArray *cachedNews;
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+        cachedNews = [[NSMutableArray alloc] init];
+    }else{
+        cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+    }
+    
+    for(NSMutableDictionary *dict in jsonArray){
+        News *news = [News new];
+        news.ID = [NSNumber numberWithInt:[[dict objectForKey:@"ID"] intValue]];
+        news.Title = [dict objectForKey:@"Title"];
+        news.Content = [dict objectForKey:@"NewsContent"];
+        news.IsRead = [NSNumber numberWithBool:[[dict objectForKey:@"IsRead"] boolValue]];
+        
+        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        news.PublishDate = [formater dateFromString:[dict objectForKey:@"PublishTime"]];
+        [formater release];
+        
+        [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:news]];
+        
+        [news autorelease];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:cachedNews forKey:@"cachedNews"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [cachedNews release];
+    [parser release];
+    
     NSLog(@"RESPONSE %d ==> %@", request.responseStatusCode, request.responseString);
     return;
 }

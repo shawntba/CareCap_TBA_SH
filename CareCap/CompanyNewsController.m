@@ -27,7 +27,6 @@
 
 - (void)dealloc
 {
-    //[listOfItems release];
     [listOfNews release];
     [super dealloc];
 }
@@ -55,34 +54,38 @@
     //Initialize the array.
     listOfNews = [[NSMutableArray alloc] init];
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-    }
+//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+//    }
     
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-        NSURL *url = [NSURL URLWithString:@"http://nfs.azrlive.nl/api/news/News/count/11"];
+//        NSURL *url = [NSURL URLWithString:@"http://nfs.azrlive.nl/api/news/News/count/11"];
         
         // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
         // Wi-Fi requests are not affected
         // This method is only available on iOS
-        [ASIHTTPRequest setShouldThrottleBandwidthForWWAN:YES];
+//        [ASIHTTPRequest setShouldThrottleBandwidthForWWAN:YES];
         
         // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
         // This method is only available on iOS
-        [ASIHTTPRequest throttleBandwidthForWWANUsingLimit:14800];
+//        [ASIHTTPRequest throttleBandwidthForWWANUsingLimit:14800];
         
         // Will prevent requests from using more than the predefined limit for mobile applications.
         // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
-        [ASIHTTPRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+//        [ASIHTTPRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
         
         // Log how many bytes have been received or sent per second (average from the last 5 seconds)
-        NSLog(@"%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
+//        NSLog(@"%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
         
-//        NSURL *url = [NSURL URLWithString:@"http://192.168.166.16:6060/api/news/News/count/11"];
-        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
-        [request addRequestHeader:@"Content-Type" value:@"application/json"];
-        [request setDelegate:self];
-        [request startSynchronous];
+        // Get the stored data before the view loads
+//        NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];        
+//        NSString *currentDeviceToken = [cachedDeviceToken stringForKey:@"cachedDeviceToken"];
+        
+//        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/NewsByDevice/%@", currentDeviceToken]];
+//        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+//        [request addRequestHeader:@"Content-Type" value:@"application/json"];
+//        [request setDelegate:self];
+//        [request startSynchronous];
     }else{
         NSMutableArray *cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
         for(NSData *data in cachedNews){
@@ -238,7 +241,7 @@
         cell.imageView.image = [UIImage imageNamed:@"ReadIndicator.png"];
     }
     
-    cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }
@@ -312,6 +315,17 @@
         [news setIsRead:[NSNumber numberWithInt:1]];
         [cell.imageView setImage:[UIImage imageNamed:@"ReadIndicator.png"]];
         [self.tableView reloadData];
+        
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber - 1;
+        
+        if([UIApplication sharedApplication].applicationIconBadgeNumber > 0)
+        {
+            self.tabBarController.selectedViewController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+        }
+        else
+        {
+            self.tabBarController.selectedViewController.tabBarItem.badgeValue = nil;
+        }
     }
     
     //[newStatus autorelease];
