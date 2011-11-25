@@ -37,33 +37,26 @@
     //    [self.window makeKeyAndVisible];
     [self.window makeKeyAndVisible];
 	[_window addSubview:_tabBarController.view];
-
     
-//    self.tabBarController.tabBarItem
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound)];
     
     NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
     
-    //[UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    //[(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
-    
-    if([UIApplication sharedApplication].applicationIconBadgeNumber == 0)
-    {
-        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
-    }
-    else
-    {
-        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
-    }
-    
-    //    [self alertNotice:@"" withMSG:@"Initiating Remote Noticationss Are Active" cancleButtonTitle:@"Ok" otherButtonTitle:@""];
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound)];
+//    if([UIApplication sharedApplication].applicationIconBadgeNumber > 0)
+//    {
+//        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+//    }
+//    else
+//    {
+//        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
+//    }
     
     return YES;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"devToken=%@",deviceToken);
-    //[self alertNotice:@"" withMSG:[NSString stringWithFormat:@"devToken=%@",deviceToken] cancleButtonTitle:@"Ok" otherButtonTitle:@""];
+    
     NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
     deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
     
@@ -71,7 +64,7 @@
 //    NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", deviceString];
     NSURL *url = [NSURL URLWithString:urlString];
     
-    // Store the data
+    // Store the device Token
     NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];
     [cachedDeviceToken setObject:deviceString forKey:@"cachedDeviceToken"];
     [cachedDeviceToken synchronize];
@@ -79,12 +72,28 @@
     NSLog(@"Data saved");
     
     NSLog(@"url=%@",urlString);
+    // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
+    // Wi-Fi requests are not affected
+    // This method is only available on iOS
+    [ASIFormDataRequest setShouldThrottleBandwidthForWWAN:YES];
+    
+    // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
+    // This method is only available on iOS
+    [ASIFormDataRequest throttleBandwidthForWWANUsingLimit:14800];
+    
+    // Will prevent requests from using more than the predefined limit for mobile applications.
+    // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
+    [ASIFormDataRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+    
+    // Log how many bytes have been received or sent per second (average from the last 5 seconds)
+    NSLog(@"%lu",[ASIFormDataRequest averageBandwidthUsedPerSecond]);
     
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
     
     [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
     
     [request setDelegate:self];
+    [request setTimeOutSeconds:10];
     [request setDidFinishSelector:@selector(sucessRegDevice:)];
     [request setDidFailSelector:@selector(failedRegDevice:)];
     
@@ -99,16 +108,13 @@
     // Use when fetching binary data
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     
-    //    NSMutableDictionary *jsonDictionary = [parser objectWithString:responseString error:nil];
-    //    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:[jsonDictionary valueForKey:@"Title"]];
-    //
-    //    self.listOfItems = items;
-    //    [items release];
-    
-    //    NSLog(@"Response %d ===> %@", request.responseStatusCode, listOfItems);
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+    }
     
     NSMutableArray *jsonArray = [parser objectWithString:responseString];
     NSMutableArray *cachedNews;
+    
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
         cachedNews = [[NSMutableArray alloc] init];
     }else{
@@ -134,10 +140,24 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:cachedNews forKey:@"cachedNews"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"RESPONSE %d ==> %@", request.responseStatusCode, request.responseString);
+    
+    NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
+    
+    if([UIApplication sharedApplication].applicationIconBadgeNumber > 0 && [cachedNews count] > 0)
+    {
+        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+    }
+    else
+    {
+        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    }
+    
     [cachedNews release];
     [parser release];
     
-    NSLog(@"RESPONSE %d ==> %@", request.responseStatusCode, request.responseString);
     return;
 }
 
@@ -152,7 +172,6 @@
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
     NSLog(@"Error in registration. Error: %@", err);
-    //[self alertNotice:@"" withMSG:[NSString stringWithFormat:@"Error in registration. Error: %@", err] cancleButtonTitle:@"Ok" otherButtonTitle:@""];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -201,46 +220,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }
-
-
-// Optional UITabBarControllerDelegate method.
-//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-//{   
-//    // Get views. controllerIndex is passed in as the controller we want to go to.
-//    UIView * fromView = tabBarController.selectedViewController.view;
-//    UIView * toView;
-//    
-//    if(tabBarController.selectedIndex == 0)
-//    {
-//        toView = [[tabBarController.viewControllers objectAtIndex:1] view];
-//        
-//        // Transition using a page curl.
-//        [UIView transitionFromView:fromView 
-//                            toView:toView 
-//                          duration:0.5 
-//                           options:UIViewAnimationOptionTransitionCurlUp
-//                        completion:^(BOOL finished) {
-//                            if (finished) {
-//                                tabBarController.selectedIndex = 1;
-//                            }
-//                        }];
-//    }
-//    
-//    if(tabBarController.selectedIndex == 1)
-//    {
-//        toView = [[tabBarController.viewControllers objectAtIndex:0] view];
-//        // Transition using a page curl.
-//        [UIView transitionFromView:fromView 
-//                            toView:toView 
-//                          duration:0.5 
-//                           options:UIViewAnimationOptionTransitionCurlDown
-//                        completion:^(BOOL finished) {
-//                            if (finished) {
-//                                tabBarController.selectedIndex = 0;
-//                            }
-//                        }];
-//    }
-//}
 
 /*
  // Optional UITabBarControllerDelegate method.

@@ -104,7 +104,6 @@
     ZzpCalculationController *controller = [[ZzpCalculationController alloc] initWithNibName:@"ZzpCalculationController" bundle:nil withZZP:zzp];
     
     [self.navigationController pushViewController:controller animated:YES];
-    //[UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:controller.view cache:YES];
     [controller release];
 }
 #pragma mark - View lifecycle
