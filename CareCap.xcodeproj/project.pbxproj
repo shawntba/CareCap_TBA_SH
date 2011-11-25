@@ -10,6 +10,8 @@
 		9463FE6C147A3B2A00D2488F /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9463FE6B147A3B2A00D2488F /* icon@2x.png */; };
 		946B5579147526BA008F2384 /* NewsBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 946B5578147526BA008F2384 /* NewsBarIcon.png */; };
 		946B557B1475297A008F2384 /* CalBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 946B557A1475297A008F2384 /* CalBarIcon.png */; };
+		9471D586147F94E300F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
+		9471D588147F94F900F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
 		94779385145FF10700FA4F20 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 94779384145FF10700FA4F20 /* Reachability.m */; };
 		9477939A145FF12E00FA4F20 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 94779387145FF12E00FA4F20 /* ASIAuthenticationDialog.m */; };
 		9477939B145FF12E00FA4F20 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9477938A145FF12E00FA4F20 /* ASIDataCompressor.m */; };
@@ -83,6 +85,11 @@
 		9463FE6B147A3B2A00D2488F /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		946B5578147526BA008F2384 /* NewsBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewsBarIcon.png; sourceTree = "<group>"; };
 		946B557A1475297A008F2384 /* CalBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalBarIcon.png; sourceTree = "<group>"; };
+		9471D575147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCapTests/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		9471D577147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/MainWindow.xib"; sourceTree = "<absolute>"; };
+		9471D578147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		9471D585147F94E300F1DDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9471D587147F94F900F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		94779383145FF10700FA4F20 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		94779384145FF10700FA4F20 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		94779386145FF12E00FA4F20 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -363,6 +370,7 @@
 				9480A6F9140CDAAB00873A71 /* Entitlements.entitlements */,
 				94D5FF82140CC534001152D8 /* CareCap-Info.plist */,
 				94D5FF83140CC534001152D8 /* InfoPlist.strings */,
+				9471D584147F94E300F1DDBD /* Localizable.strings */,
 				94D5FF86140CC534001152D8 /* main.m */,
 				94D5FF88140CC534001152D8 /* CareCap-Prefix.pch */,
 			);
@@ -473,6 +481,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				nl,
 			);
 			mainGroup = 94D5FF6B140CC534001152D8;
 			productRefGroup = 94D5FF77140CC534001152D8 /* Products */;
@@ -507,6 +516,8 @@
 				946B5579147526BA008F2384 /* NewsBarIcon.png in Resources */,
 				946B557B1475297A008F2384 /* CalBarIcon.png in Resources */,
 				9463FE6C147A3B2A00D2488F /* icon@2x.png in Resources */,
+				9471D586147F94E300F1DDBD /* Localizable.strings in Resources */,
+				9471D588147F94F900F1DDBD /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,10 +603,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		9471D584147F94E300F1DDBD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9471D585147F94E300F1DDBD /* en */,
+				9471D587147F94F900F1DDBD /* nl */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		94D5FF83140CC534001152D8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				94D5FF84140CC534001152D8 /* en */,
+				9471D578147F83F500F1DDBD /* nl */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -604,6 +625,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				94D5FF8D140CC534001152D8 /* en */,
+				9471D577147F83F500F1DDBD /* nl */,
 			);
 			name = MainWindow.xib;
 			path = CareCap;
@@ -613,6 +635,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				94D5FFAC140CC534001152D8 /* en */,
+				9471D575147F83F500F1DDBD /* nl */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

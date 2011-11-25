@@ -59,7 +59,7 @@
     [loadingIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
     [loadingIndicator setHidesWhenStopped:YES];
     
-    [self setTitle:@"News Detail"];
+    [self setTitle:NSLocalizedString(@"News_Detail", nil)];
     
     UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 93)];
     

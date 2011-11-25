@@ -69,7 +69,9 @@
         [cachedNews release];
     }
     
-    [self setTitle:@"News"];
+    NSLog(@"%@", NSLocalizedString(@"News_Title", nil));
+    
+    [self setTitle:NSLocalizedString(@"News_Title", nil)];
 }
 
 - (void)viewDidUnload
