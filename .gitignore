@@ -1,8 +1,4 @@
 
-CareCap.xcodeproj/project.xcworkspace/xcuserdata/tba-sh-apple.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate
 
-CareCap.xcodeproj/xcuserdata/tba-sh-apple.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
-
-CareCap.xcodeproj/project.xcworkspace/xcuserdata/tba-sh-apple.xcuserdatad/UserInterfaceState.xcuserstate
-
-CareCap.xcodeproj/project.xcworkspace/xcuserdata/tba-sh-apple.xcuserdatad/UserInterfaceState.xcuserstate
+*.xcbkptlist
