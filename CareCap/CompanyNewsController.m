@@ -258,7 +258,8 @@
         }
     }
     
-    //[newStatus autorelease];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     NewsDetailController *controller = [[NewsDetailController alloc] initWithNibName:@"NewsDetailController" bundle:nil withNews:news];
     
     [self.navigationController pushViewController:controller animated:YES];

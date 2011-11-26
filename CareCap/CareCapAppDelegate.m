@@ -72,32 +72,49 @@
     NSLog(@"Data saved");
     
     NSLog(@"url=%@",urlString);
-    // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
-    // Wi-Fi requests are not affected
-    // This method is only available on iOS
-    [ASIFormDataRequest setShouldThrottleBandwidthForWWAN:YES];
     
-    // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
-    // This method is only available on iOS
-    [ASIFormDataRequest throttleBandwidthForWWANUsingLimit:14800];
+//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+//    }
     
-    // Will prevent requests from using more than the predefined limit for mobile applications.
-    // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
-    [ASIFormDataRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
-    
-    // Log how many bytes have been received or sent per second (average from the last 5 seconds)
-    NSLog(@"%lu",[ASIFormDataRequest averageBandwidthUsedPerSecond]);
-    
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    
-    [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
-    
-    [request setDelegate:self];
-    [request setTimeOutSeconds:10];
-    [request setDidFinishSelector:@selector(sucessRegDevice:)];
-    [request setDidFailSelector:@selector(failedRegDevice:)];
-    
-    [request startAsynchronous];
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
+        // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
+        // Wi-Fi requests are not affected
+        // This method is only available on iOS
+        [ASIFormDataRequest setShouldThrottleBandwidthForWWAN:YES];
+        
+        // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
+        // This method is only available on iOS
+        [ASIFormDataRequest throttleBandwidthForWWANUsingLimit:14800];
+        
+        // Will prevent requests from using more than the predefined limit for mobile applications.
+        // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
+        [ASIFormDataRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+        
+        // Log how many bytes have been received or sent per second (average from the last 5 seconds)
+        NSLog(@"%lu",[ASIFormDataRequest averageBandwidthUsedPerSecond]);
+        
+        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+        
+        [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
+        
+        [request setDelegate:self];
+        [request setTimeOutSeconds:10];
+        [request setDidFinishSelector:@selector(sucessRegDevice:)];
+        [request setDidFailSelector:@selector(failedRegDevice:)];
+        
+        [request startAsynchronous];
+    }
+//    else{
+//        NSMutableArray *cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+//        for(NSData *data in cachedNews){
+//            News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//            [listOfNews addObject:news];
+//        }
+//        [cachedNews release];
+//    }
 }
 
 - (void) sucessRegDevice:(ASIHTTPRequest *) request
@@ -108,18 +125,22 @@
     // Use when fetching binary data
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-    }
+//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+//    }
     
     NSMutableArray *jsonArray = [parser objectWithString:responseString];
     NSMutableArray *cachedNews;
     
-    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-        cachedNews = [[NSMutableArray alloc] init];
-    }else{
-        cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
-    }
+    cachedNews = [[NSMutableArray alloc] init];
+    
+//    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+//        cachedNews = [[NSMutableArray alloc] init];
+//    }else{
+//        cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+//    }
+    
+    int unreadCount = 0;
     
     for(NSMutableDictionary *dict in jsonArray){
         News *news = [News new];
@@ -127,6 +148,11 @@
         news.Title = [dict objectForKey:@"Title"];
         news.Content = [dict objectForKey:@"NewsContent"];
         news.IsRead = [NSNumber numberWithBool:[[dict objectForKey:@"IsRead"] boolValue]];
+        
+        if ([news.IsRead isEqualToNumber:[NSNumber numberWithInt:0]])
+        {
+            unreadCount++;
+        }
         
         NSDateFormatter *formater = [[NSDateFormatter alloc] init];
         [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -145,9 +171,10 @@
     
     NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
     
-    if([UIApplication sharedApplication].applicationIconBadgeNumber > 0 && [cachedNews count] > 0)
+    if(unreadCount > 0)
     {
-        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", unreadCount];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
     }
     else
     {
@@ -157,6 +184,8 @@
     
     [cachedNews release];
     [parser release];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     
     return;
 }
