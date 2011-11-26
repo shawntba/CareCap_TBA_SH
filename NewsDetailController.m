@@ -71,8 +71,7 @@
     [self.view addSubview:webview];
     
     [webview release];
-    
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 - (void)viewDidUnload
