@@ -54,12 +54,38 @@
     //Initialize the array.
     listOfNews = [[NSMutableArray alloc] init];
     
-//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-//    }
+    //    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+    //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+    //    }
     
     if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-//        NSURL *url = [NSURL URLWithString:@"http://nfs.azrlive.nl/api/news/News/count/11"];
+        //        NSURL *url = [NSURL URLWithString:@"http://nfs.azrlive.nl/api/news/News/count/11"];
+        
+        // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
+        // Wi-Fi requests are not affected
+        // This method is only available on iOS
+        //        [ASIHTTPRequest setShouldThrottleBandwidthForWWAN:YES];
+        
+        // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
+        // This method is only available on iOS
+        //        [ASIHTTPRequest throttleBandwidthForWWANUsingLimit:14800];
+        
+        // Will prevent requests from using more than the predefined limit for mobile applications.
+        // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
+        //        [ASIHTTPRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+        
+        // Log how many bytes have been received or sent per second (average from the last 5 seconds)
+        //        NSLog(@"%lu",[ASIHTTPRequest averageBandwidthUsedPerSecond]);
+        
+        // Get the stored data before the view loads
+        //        NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];        
+        //        NSString *currentDeviceToken = [cachedDeviceToken stringForKey:@"cachedDeviceToken"];
+        
+        //        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/NewsByDevice/%@", currentDeviceToken]];
+        //        ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+        //        [request addRequestHeader:@"Content-Type" value:@"application/json"];
+        //        [request setDelegate:self];
+        //        [request startSynchronous];
     }else{
         NSMutableArray *cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
         for(NSData *data in cachedNews){
@@ -69,9 +95,65 @@
         [cachedNews release];
     }
     
-    NSLog(@"%@", NSLocalizedString(@"News_Title", nil));
+    [self setTitle:@"News"];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSString *responseString = [request responseString];
+    NSLog(@"%@",responseString);
+    // Use when fetching binary data
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
     
-    [self setTitle:NSLocalizedString(@"News_Title", nil)];
+    //    NSMutableDictionary *jsonDictionary = [parser objectWithString:responseString error:nil];
+    //    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:[jsonDictionary valueForKey:@"Title"]];
+    //
+    //    self.listOfItems = items;
+    //    [items release];
+    
+    //    NSLog(@"Response %d ===> %@", request.responseStatusCode, listOfItems);
+    
+    NSMutableArray *jsonArray = [parser objectWithString:responseString];
+    NSMutableArray *cachedNews;
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+        cachedNews = [[NSMutableArray alloc] init];
+    }else{
+        cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+    }
+    
+    for(NSMutableDictionary *dict in jsonArray){
+        News *news = [News new];
+        news.ID = [NSNumber numberWithInt:[[dict objectForKey:@"ID"] intValue]];
+        news.Title = [dict objectForKey:@"Title"];
+        news.Content = [dict objectForKey:@"NewsContent"];
+        news.IsRead = [NSNumber numberWithBool:[[dict objectForKey:@"IsRead"] boolValue]];
+        
+        NSDateFormatter *formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        news.PublishDate = [formater dateFromString:[dict objectForKey:@"PublishTime"]];
+        [formater release];
+        
+        [listOfNews addObject:news];
+        [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:news]];
+        
+        [news autorelease];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:cachedNews forKey:@"cachedNews"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [cachedNews release];
+    [self.tableView reloadData];
+    [parser release];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSError *error = [request error];
+    
+    if (error) {
+        NSLog(@"Response %d ===> %@", request.responseStatusCode, request.responseString);
+    }
 }
 
 - (void)viewDidUnload
@@ -119,22 +201,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [listOfNews count] > 0 ? [listOfNews count] : 0;
+    return [listOfNews count] > 0 ? [listOfNews count] : 1;
     //return [listOfNews count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([listOfNews count] == 0) {
-        return 0;
-    }
-    
-    NSString *cellValue =  [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
-    
-    NSLog(@"Initial height of row;");
+    NSString *cellValue = [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
     
     CGSize size = [cellValue sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 400) lineBreakMode:UILineBreakModeWordWrap];
-    
     return size.height+20;
 }
 
@@ -148,14 +223,9 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    if ([listOfNews count] == 0) {
-        return cell;
-    }
     // Configure the cell...
     NSString *cellValue = [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
     NSNumber *newStatus = [((News *)[listOfNews objectAtIndex:indexPath.row]) IsRead];
-    
-    NSLog(@"Initial content");
     
     CGSize size = [cellValue sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 400) lineBreakMode:UILineBreakModeWordWrap];
     
@@ -258,8 +328,7 @@
         }
     }
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
+    //[newStatus autorelease];
     NewsDetailController *controller = [[NewsDetailController alloc] initWithNibName:@"NewsDetailController" bundle:nil withNews:news];
     
     [self.navigationController pushViewController:controller animated:YES];
