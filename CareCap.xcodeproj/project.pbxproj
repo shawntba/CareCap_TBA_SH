@@ -40,7 +40,6 @@
 		944BF8501484C80300B3009E /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 944BF8431484C80300B3009E /* SBJsonUTF8Stream.m */; };
 		944BF8511484C80300B3009E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 944BF8451484C80300B3009E /* SBJsonWriter.m */; };
 		944BF8541484C81800B3009E /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 944BF8531484C81800B3009E /* News.m */; };
-		944BF8561484D0F400B3009E /* CompanyNewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 944BF8551484D0F400B3009E /* CompanyNewsController.xib */; };
 		944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 944BF8571484D10000B3009E /* NewsDetailController.xib */; };
 		9471D586147F94E300F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
 		9471D588147F94F900F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
@@ -49,6 +48,8 @@
 		947793A7145FF1BF00FA4F20 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */; };
 		947793A9145FF1CF00FA4F20 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A8145FF1CF00FA4F20 /* libz.1.2.5.dylib */; };
 		9480A6FA140CDAAB00873A71 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9480A6F9140CDAAB00873A71 /* Entitlements.entitlements */; };
+		9485B5C31484DAE800CF1469 /* CompanyNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9485B5C11484DAE800CF1469 /* CompanyNewsController.m */; };
+		9485B5C41484DAE800CF1469 /* CompanyNewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9485B5C21484DAE800CF1469 /* CompanyNewsController.xib */; };
 		94D5FF7B140CC534001152D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7A140CC534001152D8 /* UIKit.framework */; };
 		94D5FF7D140CC534001152D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7C140CC534001152D8 /* Foundation.framework */; };
 		94D5FF7F140CC534001152D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7E140CC534001152D8 /* CoreGraphics.framework */; };
@@ -68,7 +69,6 @@
 		94D5FFC2140CC5D4001152D8 /* ZzpSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */; };
 		94D5FFC3140CC5D4001152D8 /* ZzpSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */; };
 		94D5FFD1140CC7B1001152D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */; };
-		E50A97D7143C4DEB00DC3CFA /* CompanyNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = E50A97D5143C4DEB00DC3CFA /* CompanyNewsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,7 +143,6 @@
 		944BF8451484C80300B3009E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		944BF8521484C81800B3009E /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = Modle/News.h; sourceTree = "<group>"; };
 		944BF8531484C81800B3009E /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = News.m; path = Modle/News.m; sourceTree = "<group>"; };
-		944BF8551484D0F400B3009E /* CompanyNewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CompanyNewsController.xib; path = CareCap/CompanyNewsController.xib; sourceTree = "<group>"; };
 		944BF8571484D10000B3009E /* NewsDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsDetailController.xib; path = CareCap/NewsDetailController.xib; sourceTree = "<group>"; };
 		9471D575147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCapTests/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		9471D577147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/MainWindow.xib"; sourceTree = "<absolute>"; };
@@ -155,6 +154,9 @@
 		947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		947793A8145FF1CF00FA4F20 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		9480A6F9140CDAAB00873A71 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Entitlements.entitlements; path = ../Entitlements.entitlements; sourceTree = "<group>"; };
+		9485B5C01484DAE800CF1469 /* CompanyNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyNewsController.h; sourceTree = "<group>"; };
+		9485B5C11484DAE800CF1469 /* CompanyNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyNewsController.m; sourceTree = "<group>"; };
+		9485B5C21484DAE800CF1469 /* CompanyNewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CompanyNewsController.xib; path = CareCap/CompanyNewsController.xib; sourceTree = "<group>"; };
 		94D5FF76140CC534001152D8 /* CareCap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CareCap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D5FF7A140CC534001152D8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		94D5FF7C140CC534001152D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -179,8 +181,6 @@
 		94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZzpSelectorController.m; sourceTree = "<group>"; };
 		94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZzpSelectorController.xib; path = CareCap/ZzpSelectorController.xib; sourceTree = "<group>"; };
 		94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E50A97D4143C4DEB00DC3CFA /* CompanyNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyNewsController.h; sourceTree = "<group>"; };
-		E50A97D5143C4DEB00DC3CFA /* CompanyNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyNewsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,8 +349,8 @@
 				94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */,
 				94D5FF89140CC534001152D8 /* CareCapAppDelegate.h */,
 				94D5FF8A140CC534001152D8 /* CareCapAppDelegate.m */,
-				E50A97D4143C4DEB00DC3CFA /* CompanyNewsController.h */,
-				E50A97D5143C4DEB00DC3CFA /* CompanyNewsController.m */,
+				9485B5C01484DAE800CF1469 /* CompanyNewsController.h */,
+				9485B5C11484DAE800CF1469 /* CompanyNewsController.m */,
 				944BF7F11484C72A00B3009E /* NewsDetailController.h */,
 				944BF7F21484C72A00B3009E /* NewsDetailController.m */,
 			);
@@ -398,7 +398,7 @@
 				94D5FF8C140CC534001152D8 /* MainWindow.xib */,
 				94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */,
 				94D5FFBC140CC5D4001152D8 /* ZzpCalculationController.xib */,
-				944BF8551484D0F400B3009E /* CompanyNewsController.xib */,
+				9485B5C21484DAE800CF1469 /* CompanyNewsController.xib */,
 				944BF8571484D10000B3009E /* NewsDetailController.xib */,
 				944BF7F71484C76300B3009E /* ZZPList.plist */,
 				944BF7F81484C76300B3009E /* ZZPPackage.plist */,
@@ -510,8 +510,8 @@
 				944BF8061484C7AE00B3009E /* NewsBarIcon.png in Resources */,
 				944BF8081484C7B600B3009E /* ReadIndicator.png in Resources */,
 				944BF80A1484C7BD00B3009E /* UnreadIndicator.png in Resources */,
-				944BF8561484D0F400B3009E /* CompanyNewsController.xib in Resources */,
 				944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */,
+				9485B5C41484DAE800CF1469 /* CompanyNewsController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +551,6 @@
 				94D5FF8B140CC534001152D8 /* CareCapAppDelegate.m in Sources */,
 				94D5FFC0140CC5D4001152D8 /* ZzpCalculationController.m in Sources */,
 				94D5FFC2140CC5D4001152D8 /* ZzpSelectorController.m in Sources */,
-				E50A97D7143C4DEB00DC3CFA /* CompanyNewsController.m in Sources */,
 				944BF7F31484C72A00B3009E /* NewsDetailController.m in Sources */,
 				944BF8231484C7E900B3009E /* ASIAuthenticationDialog.m in Sources */,
 				944BF8241484C7E900B3009E /* ASIDataCompressor.m in Sources */,
@@ -575,6 +574,7 @@
 				944BF8501484C80300B3009E /* SBJsonUTF8Stream.m in Sources */,
 				944BF8511484C80300B3009E /* SBJsonWriter.m in Sources */,
 				944BF8541484C81800B3009E /* News.m in Sources */,
+				9485B5C31484DAE800CF1469 /* CompanyNewsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
