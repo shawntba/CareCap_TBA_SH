@@ -207,14 +207,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [listOfNews count] > 0 ? [listOfNews count] : 1;
+    return [listOfNews count] > 0 ? [listOfNews count] : 0;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellValue = [listOfNews count] > 0 ? [((News *)[listOfNews objectAtIndex:indexPath.row]) Title] : @"";
+    NSString *cellValue = [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
     
     CGSize size = [cellValue sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 400) lineBreakMode:UILineBreakModeWordWrap];
+    
     return size.height+20;
 }
 
@@ -227,29 +228,25 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-    
-    if([listOfNews count] > 0)
-    {
         // Configure the cell...
-        NSString *cellValue = [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
-        NSNumber *newStatus = [((News *)[listOfNews objectAtIndex:indexPath.row]) IsRead];
-        
-        CGSize size = [cellValue sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 400) lineBreakMode:UILineBreakModeWordWrap];
-        
-        [cell.textLabel setNumberOfLines:0];
-        [cell.textLabel setNeedsDisplayInRect:CGRectMake(30, 10, size.width, size.height)];
-        [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
-        
-        cell.textLabel.text = cellValue;
-        
-        if ([newStatus isEqualToNumber:[NSNumber numberWithInt:0]]) {
-            cell.imageView.image = [UIImage imageNamed:@"UnreadIndicator.png"];
-        }else {
-            cell.imageView.image = [UIImage imageNamed:@"ReadIndicator.png"];
-        }
-        
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    NSString *cellValue = [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
+    NSNumber *newStatus = [((News *)[listOfNews objectAtIndex:indexPath.row]) IsRead];
+    
+    CGSize size = [cellValue sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 400) lineBreakMode:UILineBreakModeWordWrap];
+    
+    [cell.textLabel setNumberOfLines:0];
+    [cell.textLabel setNeedsDisplayInRect:CGRectMake(30, 10, size.width, size.height)];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
+    
+    cell.textLabel.text = cellValue;
+    
+    if ([newStatus isEqualToNumber:[NSNumber numberWithInt:0]]) {
+        cell.imageView.image = [UIImage imageNamed:@"UnreadIndicator.png"];
+    }else {
+        cell.imageView.image = [UIImage imageNamed:@"ReadIndicator.png"];
     }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
 }

@@ -77,7 +77,9 @@
 //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
 //    }
     
-    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+    NSMutableArray *cachedAppNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+    
+    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [cachedAppNews count] == 0){
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         
         // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
@@ -107,14 +109,8 @@
         
         [request startAsynchronous];
     }
-//    else{
-//        NSMutableArray *cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
-//        for(NSData *data in cachedNews){
-//            News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//            [listOfNews addObject:news];
-//        }
-//        [cachedNews release];
-//    }
+    
+    [cachedAppNews release];
 }
 
 - (void) sucessRegDevice:(ASIHTTPRequest *) request
