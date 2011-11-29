@@ -98,7 +98,7 @@
         [cachedNews release];
     }
     
-    [self setTitle:@"News"];
+    [self setTitle:NSLocalizedString(@"News_Title", nil)];
 }
 
 //- (void)requestFinished:(ASIHTTPRequest *)request

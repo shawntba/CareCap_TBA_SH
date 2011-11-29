@@ -86,7 +86,7 @@
     
     [dict release];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%d FTE benodigd volgens NZa normen",showResult] delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%d FTE benodigd volgens NZa normen",showResult] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
     [alert show];
     [alert release];
@@ -165,7 +165,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UIBarButtonItem *btnCalculate = [[UIBarButtonItem alloc] initWithTitle:@"Calculate" style:UIBarButtonItemStyleBordered target:self action:@selector(calculate)];
+    UIBarButtonItem *btnCalculate = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Calculate_Button", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(calculate)];
     [self.navigationItem setRightBarButtonItem:btnCalculate];
     [btnCalculate release];
     
