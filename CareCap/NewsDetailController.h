@@ -15,7 +15,7 @@
 }
 
 @property (nonatomic, retain) News *news;
-@property (nonatomic, retain) UIActivityIndicatorView *loadingIndicator;
+//@property (nonatomic, retain) UIActivityIndicatorView *loadingIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withNews:(News *)anews;
 

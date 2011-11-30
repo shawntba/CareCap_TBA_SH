@@ -1,6 +1,7 @@
-
 *.xcuserstate
 
-*.xcbkptlist
+*.xcbkptlist;
 
-*.DS_Store
+*.DS_Store;
+
+*.ipa

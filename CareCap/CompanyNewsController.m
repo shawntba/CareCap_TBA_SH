@@ -316,7 +316,6 @@
     if ([newStatus isEqualToNumber:[NSNumber numberWithInt:0]]) {
         [news setIsRead:[NSNumber numberWithInt:1]];
         [cell.imageView setImage:[UIImage imageNamed:@"ReadIndicator.png"]];
-        [self.tableView reloadData];
         
         [UIApplication sharedApplication].applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber - 1;
         
@@ -330,11 +329,47 @@
         }
     }
     
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+    }
+    
+    NSMutableArray *cachedNews = [[NSMutableArray alloc] init];
+    
+    for(News *storedNews in listOfNews){
+        News *restoreNews = [News new];
+        
+        if([storedNews.ID isEqualToNumber:news.ID])
+        {
+            restoreNews.ID = news.ID;
+            restoreNews.Title = news.Title;
+            restoreNews.Content = news.Content;
+            restoreNews.IsRead = news.IsRead;
+            restoreNews.PublishDate = news.PublishDate;
+        } else {
+            restoreNews.ID = storedNews.ID;
+            restoreNews.Title = storedNews.Title;
+            restoreNews.Content = storedNews.Content;
+            restoreNews.IsRead = storedNews.IsRead;
+            restoreNews.PublishDate = storedNews.PublishDate; 
+        }
+        
+        [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:restoreNews]];
+        
+        [restoreNews release];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:cachedNews forKey:@"cachedNews"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [cachedNews release];
+    [self.tableView reloadData];
+    
     //[newStatus autorelease];
     NewsDetailController *controller = [[NewsDetailController alloc] initWithNibName:@"NewsDetailController" bundle:nil withNews:news];
     
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
+//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 @end

@@ -15,6 +15,7 @@
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+@synthesize unreadCountString;
 
 -(void)alertNotice:(NSString *)title withMSG:(NSString *)msg cancleButtonTitle:(NSString *)cancleTitle otherButtonTitle:(NSString *)otherTitle{
     UIAlertView *alert;
@@ -42,14 +43,14 @@
     
     NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
     
-//    if([UIApplication sharedApplication].applicationIconBadgeNumber > 0)
-//    {
-//        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
-//    }
-//    else
-//    {
-//        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
-//    }
+    if([UIApplication sharedApplication].applicationIconBadgeNumber > 0)
+    {
+        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+    }
+    else
+    {
+        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
+    }
     
     return YES;
 }
@@ -73,9 +74,9 @@
     
     NSLog(@"url=%@",urlString);
     
-//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-//    }
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [UIApplication sharedApplication].applicationIconBadgeNumber > [unreadCountString intValue]){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+    }
     
     NSMutableArray *cachedAppNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
     
@@ -121,26 +122,16 @@
     // Use when fetching binary data
     SBJsonParser *parser = [[SBJsonParser alloc] init];
     
-//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-//    }
-    
     NSMutableArray *jsonArray = [parser objectWithString:responseString];
     NSMutableArray *cachedNews;
     
     cachedNews = [[NSMutableArray alloc] init];
     
-//    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-//        cachedNews = [[NSMutableArray alloc] init];
-//    }else{
-//        cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
-//    }
-    
     int unreadCount = 0;
     
     for(NSMutableDictionary *dict in jsonArray){
         News *news = [News new];
-        news.ID = [NSNumber numberWithInt:[[dict objectForKey:@"ID"] intValue]];
+        news.ID = [NSNumber numberWithInt:[[dict objectForKey:@"Id"] intValue]];
         news.Title = [dict objectForKey:@"Title"];
         news.Content = [dict objectForKey:@"NewsContent"];
         news.IsRead = [NSNumber numberWithBool:[[dict objectForKey:@"IsRead"] boolValue]];
@@ -171,11 +162,13 @@
     {
         [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", unreadCount];
         [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
+        unreadCountString = [NSString stringWithFormat:@"%d", unreadCount];
     }
     else
     {
         [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        unreadCountString = [NSString stringWithFormat:@"%d", 0];
     }
     
     [cachedNews release];
@@ -242,6 +235,8 @@
 {
     [_window release];
     [_tabBarController release];
+    [unreadCountString release];
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];
 }

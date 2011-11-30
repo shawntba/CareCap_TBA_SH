@@ -11,14 +11,14 @@
 @implementation NewsDetailController
 
 @synthesize news;
-@synthesize loadingIndicator;
+//@synthesize loadingIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        loadingIndicator = nil;
+//        loadingIndicator = nil;
     }
     return self;
 }
@@ -37,7 +37,7 @@
 {
     [super dealloc];
     
-    [loadingIndicator release];
+//    [loadingIndicator release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,9 +55,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(145, 190, 20,20)];
-    [loadingIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
-    [loadingIndicator setHidesWhenStopped:YES];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//    loadingIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(145, 190, 20,20)];
+//    [loadingIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleGray];
+//    [loadingIndicator setHidesWhenStopped:YES];
     
     [self setTitle:NSLocalizedString(@"News_Detail", nil)];
     
@@ -66,12 +67,12 @@
     NSLog(@"<html><head><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"></head><body>%@</body></html>",self.news.Content);
     
     [webview loadHTMLString:[NSString stringWithFormat:@"<html><head><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"></head><body>%@</body></html>",self.news.Content] baseURL:nil];
-    [webview addSubview:loadingIndicator];
+//    [webview addSubview:loadingIndicator];
     
     [self.view addSubview:webview];
     
     [webview release];
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)viewDidUnload
@@ -90,14 +91,14 @@
 
 #pragma mark - WebView lifecycle
 
--(void)webViewDidStartLoad:(UIWebView *)webView
-{
-    [loadingIndicator startAnimating];
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [loadingIndicator stopAnimating];
-}
+//-(void)webViewDidStartLoad:(UIWebView *)webView
+//{
+//    [loadingIndicator startAnimating];
+//}
+//
+//-(void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+//    [loadingIndicator stopAnimating];
+//}
 
 @end
