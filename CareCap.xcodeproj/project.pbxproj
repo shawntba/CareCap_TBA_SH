@@ -69,6 +69,11 @@
 		94D5FFC2140CC5D4001152D8 /* ZzpSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */; };
 		94D5FFC3140CC5D4001152D8 /* ZzpSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */; };
 		94D5FFD1140CC7B1001152D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */; };
+		E5BCDE31148B98AF0053FBD0 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BCDE30148B98AF0053FBD0 /* DataBase.m */; };
+		E5BCDE33148B98E60053FBD0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BCDE32148B98E60053FBD0 /* libsqlite3.dylib */; };
+		E5BCDE35148B9A010053FBD0 /* PlausibleDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BCDE34148B9A010053FBD0 /* PlausibleDatabase.framework */; };
+		E5BCDE38148BA2830053FBD0 /* NewsonDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BCDE37148BA2830053FBD0 /* NewsonDevice.m */; };
+		E5BCDE3A148BAB500053FBD0 /* storedNews.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E5BCDE39148BAB500053FBD0 /* storedNews.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,6 +186,13 @@
 		94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZzpSelectorController.m; sourceTree = "<group>"; };
 		94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZzpSelectorController.xib; path = CareCap/ZzpSelectorController.xib; sourceTree = "<group>"; };
 		94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E5BCDE2F148B98AF0053FBD0 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataBase.h; path = DataBase/DataBase.h; sourceTree = "<group>"; };
+		E5BCDE30148B98AF0053FBD0 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataBase.m; path = DataBase/DataBase.m; sourceTree = "<group>"; };
+		E5BCDE32148B98E60053FBD0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E5BCDE34148B9A010053FBD0 /* PlausibleDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlausibleDatabase.framework; sourceTree = "<group>"; };
+		E5BCDE36148BA2830053FBD0 /* NewsonDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsonDevice.h; path = DataBase/NewsonDevice.h; sourceTree = "<group>"; };
+		E5BCDE37148BA2830053FBD0 /* NewsonDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsonDevice.m; path = DataBase/NewsonDevice.m; sourceTree = "<group>"; };
+		E5BCDE39148BAB500053FBD0 /* storedNews.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = storedNews.sqlite; path = Resources/storedNews.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +200,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5BCDE35148B9A010053FBD0 /* PlausibleDatabase.framework in Frameworks */,
+				E5BCDE33148B98E60053FBD0 /* libsqlite3.dylib in Frameworks */,
 				947793A9145FF1CF00FA4F20 /* libz.1.2.5.dylib in Frameworks */,
 				947793A7145FF1BF00FA4F20 /* MobileCoreServices.framework in Frameworks */,
 				947793A5145FF1B400FA4F20 /* SystemConfiguration.framework in Frameworks */,
@@ -305,6 +319,7 @@
 		94D5FF6B140CC534001152D8 = {
 			isa = PBXGroup;
 			children = (
+				E5BCDE2D148B98650053FBD0 /* Database */,
 				948F1D2E1463FD20003FB7DB /* Modle */,
 				E5070F78143B567200C8C078 /* Resources */,
 				94D5FF80140CC534001152D8 /* Classes */,
@@ -328,6 +343,8 @@
 			isa = PBXGroup;
 			children = (
 				947793A8145FF1CF00FA4F20 /* libz.1.2.5.dylib */,
+				E5BCDE32148B98E60053FBD0 /* libsqlite3.dylib */,
+				E5BCDE34148B9A010053FBD0 /* PlausibleDatabase.framework */,
 				947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */,
 				947793A4145FF1B400FA4F20 /* SystemConfiguration.framework */,
 				947793A2145FF16D00FA4F20 /* CFNetwork.framework */,
@@ -394,6 +411,7 @@
 		E5070F78143B567200C8C078 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E5BCDE39148BAB500053FBD0 /* storedNews.sqlite */,
 				9477937E145FF0C500FA4F20 /* OtherResources */,
 				94D5FF8C140CC534001152D8 /* MainWindow.xib */,
 				94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */,
@@ -420,6 +438,17 @@
 				944BF7FD1484C79600B3009E /* appback.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		E5BCDE2D148B98650053FBD0 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				E5BCDE2F148B98AF0053FBD0 /* DataBase.h */,
+				E5BCDE30148B98AF0053FBD0 /* DataBase.m */,
+				E5BCDE36148BA2830053FBD0 /* NewsonDevice.h */,
+				E5BCDE37148BA2830053FBD0 /* NewsonDevice.m */,
+			);
+			name = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,6 +541,7 @@
 				944BF80A1484C7BD00B3009E /* UnreadIndicator.png in Resources */,
 				944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */,
 				9485B5C41484DAE800CF1469 /* CompanyNewsController.xib in Resources */,
+				E5BCDE3A148BAB500053FBD0 /* storedNews.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -575,6 +605,8 @@
 				944BF8511484C80300B3009E /* SBJsonWriter.m in Sources */,
 				944BF8541484C81800B3009E /* News.m in Sources */,
 				9485B5C31484DAE800CF1469 /* CompanyNewsController.m in Sources */,
+				E5BCDE31148B98AF0053FBD0 /* DataBase.m in Sources */,
+				E5BCDE38148BA2830053FBD0 /* NewsonDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +704,10 @@
 		9480A6FF140CDE8C00873A71 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -763,6 +799,10 @@
 		94D5FFB5140CC534001152D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -777,6 +817,10 @@
 		94D5FFB6140CC534001152D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;

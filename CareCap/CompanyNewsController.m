@@ -10,6 +10,7 @@
 #import "NewsDetailController.h"
 #import "SBJSON.h"
 #import "News.h"
+#import "NewsonDevice.h"
 
 @implementation CompanyNewsController
 
@@ -173,6 +174,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+//    
+//    NSArray *newsonDevice = [[NSArray alloc] init];
+//    
+//    listOfNews = [NewsonDevice findAll];
+//    NSLog(@"%@", listOfNews);
+//    
+//    [newsonDevice release];
 }
 
 - (void)viewDidAppear:(BOOL)animated
