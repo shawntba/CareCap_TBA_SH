@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 
 @interface CareCapAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
 {
     NSString *unreadCountString;
+    
+    Reachability* hostReach;
+    Reachability* internetReach;
+    Reachability* wifiReach;
+    
+    BOOL appConnectionRequired;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

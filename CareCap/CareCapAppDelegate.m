@@ -10,6 +10,7 @@
 #import "ASIFormDataRequest.h"
 #import "News.h"
 #import "SBJsonParser.h"
+#import "Reachability.h"
 
 @implementation CareCapAppDelegate
 
@@ -31,6 +32,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
+    // method "reachabilityChanged" will be called. 
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+    
+    //Change the host name here to change the server your monitoring
+//	hostReach = [[Reachability reachabilityWithHostName: @"nfs.azrlive.nl"] retain];
+//	[hostReach startNotifier];
+//	[self updateInterfaceWithReachability: hostReach];
+	
+    internetReach = [[Reachability reachabilityForInternetConnection] retain];
+	[internetReach startNotifier];
+	[self updateInterfaceWithReachability: internetReach];
+    
+//    wifiReach = [[Reachability reachabilityForLocalWiFi] retain];
+//	[wifiReach startNotifier];
+//	[self updateInterfaceWithReachability: wifiReach];
+    
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
     //    self.window.rootViewController = self.tabBarController;
@@ -43,75 +61,171 @@
     
     NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
     
-    if([UIApplication sharedApplication].applicationIconBadgeNumber > 0)
+    if(appConnectionRequired)
     {
-        [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+        if([UIApplication sharedApplication].applicationIconBadgeNumber > 0)
+        {
+            [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = [NSString stringWithFormat:@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber];
+        }
+        else
+        {
+            [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
+        }
     }
     else
     {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
+        
     }
     
     return YES;
 }
 
+- (void) configureNotice: (Reachability*) curReach
+{
+    NetworkStatus netStatus = [curReach currentReachabilityStatus];
+    appConnectionRequired = [curReach connectionRequired];
+    NSString* statusString= @"";
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            statusString = @"Network Access Not Available";
+            //Minor interface detail- connectionRequired may return yes, even when the host is unreachable.  We cover that up here...
+            appConnectionRequired = NO;  
+            break;
+        }
+            
+        case ReachableViaWWAN:
+        {
+            statusString = @"Reachable WWAN";
+            appConnectionRequired = YES;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            statusString= @"Reachable WiFi";
+            appConnectionRequired = YES;
+            break;
+        }
+    }
+    if(appConnectionRequired)
+    {
+        statusString= [NSString stringWithFormat: @"%@, Connection Required", statusString];
+    }
+    else
+    {
+        [self alertNotice:@"" withMSG:statusString cancleButtonTitle:@"OK" otherButtonTitle:@""];
+    }
+}
+
+- (void) updateInterfaceWithReachability: (Reachability*) curReach
+{
+    if(curReach == hostReach)
+	{
+		//[self configureTextField: remoteHostStatusField imageView: remoteHostIcon reachability: curReach];
+        [self configureNotice: curReach];
+        NetworkStatus netStatus = [curReach currentReachabilityStatus];
+        appConnectionRequired = [curReach connectionRequired];
+        
+        if(netStatus == ReachableViaWWAN)
+        {
+            NSString* baseLabel=  @"";
+            if(appConnectionRequired)
+            {
+                baseLabel=  @"Cellular data network is available.\n  Internet traffic will be routed through it after a connection is established.";
+            }
+            else
+            {
+                baseLabel=  @"Cellular data network is active.\n  Internet traffic will be routed through it.";
+            }
+            
+            [self alertNotice:@"" withMSG:baseLabel cancleButtonTitle:@"OK" otherButtonTitle:@""];
+        }
+    }
+	if(curReach == internetReach)
+	{	
+        [self configureNotice: curReach];
+	}
+	if(curReach == wifiReach)
+	{
+        [self configureNotice: curReach];
+	}
+	
+}
+
+//Called by Reachability whenever status changes.
+- (void) reachabilityChanged: (NSNotification* )note
+{
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	[self updateInterfaceWithReachability: curReach];
+}
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSLog(@"devToken=%@",deviceToken);
     
-    NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
-    deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if(appConnectionRequired)
+    {
+        NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
+        deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", deviceString];
+        //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", deviceString];
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        // Store the device Token
+        NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];
+        [cachedDeviceToken setObject:deviceString forKey:@"cachedDeviceToken"];
+        [cachedDeviceToken synchronize];
+        
+        NSLog(@"Data saved");
+        
+        NSLog(@"url=%@",urlString);
+        
+    //    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [UIApplication sharedApplication].applicationIconBadgeNumber > [unreadCountString intValue]){
+    //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+    //    }
+        if([UIApplication sharedApplication].applicationIconBadgeNumber >= [unreadCountString intValue]){
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+        }
+        
+        NSMutableArray *cachedAppNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
     
-    NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", deviceString];
-//    NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", deviceString];
-    NSURL *url = [NSURL URLWithString:urlString];
+        if((![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [cachedAppNews count] == 0)){
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+           
+            // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
+            // Wi-Fi requests are not affected
+            // This method is only available on iOS
+            [ASIFormDataRequest setShouldThrottleBandwidthForWWAN:YES];
+            
+            // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
+            // This method is only available on iOS
+            [ASIFormDataRequest throttleBandwidthForWWANUsingLimit:14800];
+           
+            // Will prevent requests from using more than the predefined limit for mobile applications.
+            // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
+            [ASIFormDataRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+           
+            // Log how many bytes have been received or sent per second (average from the last 5 seconds)
+            NSLog(@"%lu",[ASIFormDataRequest averageBandwidthUsedPerSecond]);
+           
+            ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+           
+            [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
+           
+            [request setDelegate:self];
+            [request setTimeOutSeconds:10];
+            [request setDidFinishSelector:@selector(sucessRegDevice:)];
+            [request setDidFailSelector:@selector(failedRegDevice:)];
+       
+            [request startAsynchronous];
+        }
     
-    // Store the device Token
-    NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];
-    [cachedDeviceToken setObject:deviceString forKey:@"cachedDeviceToken"];
-    [cachedDeviceToken synchronize];
-    
-    NSLog(@"Data saved");
-    
-    NSLog(@"url=%@",urlString);
-    
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [UIApplication sharedApplication].applicationIconBadgeNumber > [unreadCountString intValue]){
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+        [cachedAppNews release];
     }
-    
-    NSMutableArray *cachedAppNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
-    
-    if(![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [cachedAppNews count] == 0){
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        
-        // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
-        // Wi-Fi requests are not affected
-        // This method is only available on iOS
-        [ASIFormDataRequest setShouldThrottleBandwidthForWWAN:YES];
-        
-        // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
-        // This method is only available on iOS
-        [ASIFormDataRequest throttleBandwidthForWWANUsingLimit:14800];
-        
-        // Will prevent requests from using more than the predefined limit for mobile applications.
-        // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
-        [ASIFormDataRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
-        
-        // Log how many bytes have been received or sent per second (average from the last 5 seconds)
-        NSLog(@"%lu",[ASIFormDataRequest averageBandwidthUsedPerSecond]);
-        
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        
-        [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
-        
-        [request setDelegate:self];
-        [request setTimeOutSeconds:10];
-        [request setDidFinishSelector:@selector(sucessRegDevice:)];
-        [request setDidFailSelector:@selector(failedRegDevice:)];
-        
-        [request startAsynchronous];
-    }
-    
-    [cachedAppNews release];
 }
 
 - (void) sucessRegDevice:(ASIHTTPRequest *) request

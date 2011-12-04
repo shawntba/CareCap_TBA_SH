@@ -15,7 +15,9 @@
     IBOutlet UIPickerView *picker;
     NSArray *data;
 }
--(IBAction) next;
+
+- (IBAction) next;
+
 @property (nonatomic, retain) UIButton *selectorBtn;
 @property (nonatomic, retain) UIView *pickerView;
 @property (nonatomic, retain) UIPickerView *picker;

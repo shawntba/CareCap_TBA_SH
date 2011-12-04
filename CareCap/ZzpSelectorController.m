@@ -3,7 +3,7 @@
 //  CareCap
 //
 //  Created by J on 11-7-29.
-//  Copyright 2011年 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import <QuartzCore/QuartzCore.h>
@@ -106,6 +106,7 @@
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
 }
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
