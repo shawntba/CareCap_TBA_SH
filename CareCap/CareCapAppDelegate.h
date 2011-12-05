@@ -24,4 +24,8 @@
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) NSString *unreadCountString;
 
+- (void) updateInterfaceWithReachability: (Reachability*)curReach;
+- (void) intialNewsandDevice: (NSURL *)url;
+- (void) getNewsList: (NSURL *)url;
+
 @end

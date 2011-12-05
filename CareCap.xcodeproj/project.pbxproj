@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94343C6A148CC58E0011BF02 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C69148CC58E0011BF02 /* Default.png */; };
+		94343C6C148CC59C0011BF02 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C6B148CC59C0011BF02 /* Default@2x.png */; };
 		944BF7F31484C72A00B3009E /* NewsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944BF7F21484C72A00B3009E /* NewsDetailController.m */; };
 		944BF7F91484C76300B3009E /* ZZPList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 944BF7F71484C76300B3009E /* ZZPList.plist */; };
 		944BF7FA1484C76300B3009E /* ZZPPackage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 944BF7F81484C76300B3009E /* ZZPPackage.plist */; };
@@ -82,6 +84,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		94343C69148CC58E0011BF02 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		94343C6B148CC59C0011BF02 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		944BF7F11484C72A00B3009E /* NewsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailController.h; sourceTree = "<group>"; };
 		944BF7F21484C72A00B3009E /* NewsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailController.m; sourceTree = "<group>"; };
 		944BF7F71484C76300B3009E /* ZZPList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ZZPList.plist; path = Resources/ZZPList.plist; sourceTree = "<group>"; };
@@ -411,6 +415,8 @@
 		E5070F79143B568500C8C078 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				94343C6B148CC59C0011BF02 /* Default@2x.png */,
+				94343C69148CC58E0011BF02 /* Default.png */,
 				944BF7FF1484C7A300B3009E /* CalBarIcon.png */,
 				944BF8011484C7AE00B3009E /* icon.png */,
 				944BF8021484C7AE00B3009E /* icon@2x.png */,
@@ -512,6 +518,8 @@
 				944BF80A1484C7BD00B3009E /* UnreadIndicator.png in Resources */,
 				944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */,
 				9485B5C41484DAE800CF1469 /* CompanyNewsController.xib in Resources */,
+				94343C6A148CC58E0011BF02 /* Default.png in Resources */,
+				94343C6C148CC59C0011BF02 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
