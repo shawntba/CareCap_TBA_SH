@@ -11,6 +11,7 @@
 #import "News.h"
 #import "SBJsonParser.h"
 #import "Reachability.h"
+#import "NewsonDevice.h"
 
 @implementation CareCapAppDelegate
 
@@ -56,6 +57,18 @@
     //    [self.window makeKeyAndVisible];
     [self.window makeKeyAndVisible];
 	[_window addSubview:_tabBarController.view];
+    
+    if([UIApplication sharedApplication].applicationIconBadgeNumber >= [unreadCountString intValue]){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+    }
+        
+    NSURL *url = [NSURL URLWithString:@"http://nfs.azrlive.nl/api/news/News/count/11/"];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request addRequestHeader:@"Content-Type" value:@"application/json"];
+    [request setDelegate:self];
+    [request setDidFinishSelector:@selector(sucessRegDevice:)];
+    [request setDidFailSelector:@selector(failedRegDevice:)];
+    [request startSynchronous];
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound)];
     
@@ -187,14 +200,14 @@
     //    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [UIApplication sharedApplication].applicationIconBadgeNumber > [unreadCountString intValue]){
     //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
     //    }
-        if([UIApplication sharedApplication].applicationIconBadgeNumber >= [unreadCountString intValue]){
-            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-        }
-        
-        NSMutableArray *cachedAppNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
-    
-        if((![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [cachedAppNews count] == 0)){
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+//        if([UIApplication sharedApplication].applicationIconBadgeNumber >= [unreadCountString intValue]){
+//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+//        }
+//        
+//        NSMutableArray *cachedAppNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+//    
+//        if((![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [cachedAppNews count] == 0)){
+//            [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
            
             // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
             // Wi-Fi requests are not affected
@@ -222,9 +235,9 @@
             [request setDidFailSelector:@selector(failedRegDevice:)];
        
             [request startAsynchronous];
-        }
+//        }
     
-        [cachedAppNews release];
+//        [cachedAppNews release];
     }
 }
 
@@ -259,6 +272,13 @@
         [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         news.PublishDate = [formater dateFromString:[dict objectForKey:@"PublishTime"]];
         [formater release];
+        
+        NSLog(@"%@", [dict objectForKey:@"Id"]);
+        NSLog(@"%@", [dict objectForKey:@"IsRead"]);
+        [NSString stringWithFormat:@"%d", [NSNumber numberWithInt:[[dict objectForKey:@"Id"] intValue]]];
+        [NSString stringWithFormat:@"%d", [NSNumber numberWithBool:[[dict objectForKey:@"IsRead"] boolValue]]];
+        
+        [NewsonDevice createWithID:[NSString stringWithFormat:@"%@", [dict objectForKey:@"Id"]] Title:[dict objectForKey:@"Title"] Content:[dict objectForKey:@"NewsContent"] IsRead:[NSString stringWithFormat:@"%@", [dict objectForKey:@"IsRead"]] PublishDate:[dict objectForKey:@"PublishTime"] AccessURL:@""];
         
         [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:news]];
         

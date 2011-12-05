@@ -76,13 +76,45 @@
 + (int) createWithID:(NSString *)ID Title:(NSString *)title Content:(NSString *)content IsRead:(NSString *)isRead PublishDate:(NSString *)publishDate AccessURL:(NSString *)accessURL{
     PLSqliteDatabase *dataBase = [DataBase setup];
     
+//    NSString *query = [NSString stringWithFormat:@"INSERT INTO News (ID, Title, Content, IsRead, PublishDate, AccessURL) VALUES ('%@','%@','%@','%@','%@','%@')", ID, title, content, isRead, publishDate, accessURL];
+    
+//    title = [title stringByReplacingOccurrencesOfString:@"'" withString:@"\'"];
+//    
+//    content = @"";
+//    
+//    NSLog(@"%@", content);
+//    
+//    BOOL bResult = [dataBase executeUpdate:@"INSERT INTO News (ID, Title, Content, IsRead, PublishDate, AccessURL) VALUES (?,?,?,?,?,?)",
+//                    ID,
+//                    title,
+//                    content,
+//                    isRead,
+//                    publishDate,
+//                    accessURL];
+    
     BOOL bResult = [dataBase executeUpdate:@"INSERT INTO News (ID, Title, Content, IsRead, PublishDate, AccessURL) VALUES (?,?,?,?,?,?)",
-                    ID,
-                    title,
-                    content,
-                    isRead,
-                    publishDate,
-                    accessURL];
+                    @"1",
+                    @"1",
+                    @"1",
+                    @"1",
+                    @"1",
+                    @"1"];
+//    BOOL bResult = [dataBase executeUpdate:query];
+//    BOOL bResult = YES;
+//    
+//    id<PLPreparedStatement> stmt = [dataBase prepareStatement: @"INSERT INTO News (ID, Title, Content, IsRead, PublishDate, AccessURL) VALUES (?,?,?,?,?,?)"];
+//    
+//    title = [title stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+//    content = [content stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+//    // Bind the parameters
+//    [stmt bindParameters: [NSArray arrayWithObjects: @"1", @"1", @"1", @"1", @"1", @"1", nil]];
+//    // Execute the INSERT
+//    if ([stmt executeUpdate] == NO){
+//        NSLog(@"INSERT failed");
+//        bResult = NO;
+//    } else {
+//        NSLog(@"INSERT successed");
+//    }
     
     return bResult;
 }

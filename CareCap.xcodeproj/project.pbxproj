@@ -53,10 +53,8 @@
 		94D5FF7B140CC534001152D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7A140CC534001152D8 /* UIKit.framework */; };
 		94D5FF7D140CC534001152D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7C140CC534001152D8 /* Foundation.framework */; };
 		94D5FF7F140CC534001152D8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7E140CC534001152D8 /* CoreGraphics.framework */; };
-		94D5FF85140CC534001152D8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94D5FF83140CC534001152D8 /* InfoPlist.strings */; };
 		94D5FF87140CC534001152D8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5FF86140CC534001152D8 /* main.m */; };
 		94D5FF8B140CC534001152D8 /* CareCapAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5FF8A140CC534001152D8 /* CareCapAppDelegate.m */; };
-		94D5FF8E140CC534001152D8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D5FF8C140CC534001152D8 /* MainWindow.xib */; };
 		94D5FFA2140CC534001152D8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FFA1140CC534001152D8 /* SenTestingKit.framework */; };
 		94D5FFA3140CC534001152D8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7A140CC534001152D8 /* UIKit.framework */; };
 		94D5FFA4140CC534001152D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FF7C140CC534001152D8 /* Foundation.framework */; };
@@ -69,11 +67,12 @@
 		94D5FFC2140CC5D4001152D8 /* ZzpSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */; };
 		94D5FFC3140CC5D4001152D8 /* ZzpSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */; };
 		94D5FFD1140CC7B1001152D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */; };
+		E592287E148BBC6300ADBF4A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = E592287C148BBC6300ADBF4A /* MainWindow.xib */; };
+		E5922882148BBCA400ADBF4A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E5922880148BBCA400ADBF4A /* InfoPlist.strings */; };
 		E5BCDE31148B98AF0053FBD0 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BCDE30148B98AF0053FBD0 /* DataBase.m */; };
 		E5BCDE33148B98E60053FBD0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BCDE32148B98E60053FBD0 /* libsqlite3.dylib */; };
 		E5BCDE35148B9A010053FBD0 /* PlausibleDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5BCDE34148B9A010053FBD0 /* PlausibleDatabase.framework */; };
 		E5BCDE38148BA2830053FBD0 /* NewsonDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = E5BCDE37148BA2830053FBD0 /* NewsonDevice.m */; };
-		E5BCDE3A148BAB500053FBD0 /* storedNews.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E5BCDE39148BAB500053FBD0 /* storedNews.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,8 +149,6 @@
 		944BF8531484C81800B3009E /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = News.m; path = Modle/News.m; sourceTree = "<group>"; };
 		944BF8571484D10000B3009E /* NewsDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsDetailController.xib; path = CareCap/NewsDetailController.xib; sourceTree = "<group>"; };
 		9471D575147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCapTests/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
-		9471D577147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/MainWindow.xib"; sourceTree = "<absolute>"; };
-		9471D578147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		9471D585147F94E300F1DDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9471D587147F94F900F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		947793A2145FF16D00FA4F20 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -167,12 +164,10 @@
 		94D5FF7C140CC534001152D8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		94D5FF7E140CC534001152D8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		94D5FF82140CC534001152D8 /* CareCap-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareCap-Info.plist"; sourceTree = "<group>"; };
-		94D5FF84140CC534001152D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		94D5FF86140CC534001152D8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94D5FF88140CC534001152D8 /* CareCap-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CareCap-Prefix.pch"; sourceTree = "<group>"; };
 		94D5FF89140CC534001152D8 /* CareCapAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CareCapAppDelegate.h; sourceTree = "<group>"; };
 		94D5FF8A140CC534001152D8 /* CareCapAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CareCapAppDelegate.m; sourceTree = "<group>"; };
-		94D5FF8D140CC534001152D8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		94D5FFA0140CC534001152D8 /* CareCapTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CareCapTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94D5FFA1140CC534001152D8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		94D5FFAA140CC534001152D8 /* CareCapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CareCapTests-Info.plist"; sourceTree = "<group>"; };
@@ -186,13 +181,16 @@
 		94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZzpSelectorController.m; sourceTree = "<group>"; };
 		94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZzpSelectorController.xib; path = CareCap/ZzpSelectorController.xib; sourceTree = "<group>"; };
 		94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E592287D148BBC6300ADBF4A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = CareCap/en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		E592287F148BBC7800ADBF4A /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = CareCap/nl.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		E5922881148BBCA400ADBF4A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = CareCap/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E5922883148BBCB700ADBF4A /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = CareCap/nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E5BCDE2F148B98AF0053FBD0 /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataBase.h; path = DataBase/DataBase.h; sourceTree = "<group>"; };
 		E5BCDE30148B98AF0053FBD0 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataBase.m; path = DataBase/DataBase.m; sourceTree = "<group>"; };
 		E5BCDE32148B98E60053FBD0 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E5BCDE34148B9A010053FBD0 /* PlausibleDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PlausibleDatabase.framework; sourceTree = "<group>"; };
 		E5BCDE36148BA2830053FBD0 /* NewsonDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsonDevice.h; path = DataBase/NewsonDevice.h; sourceTree = "<group>"; };
 		E5BCDE37148BA2830053FBD0 /* NewsonDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsonDevice.m; path = DataBase/NewsonDevice.m; sourceTree = "<group>"; };
-		E5BCDE39148BAB500053FBD0 /* storedNews.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = storedNews.sqlite; path = Resources/storedNews.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -380,7 +378,7 @@
 			children = (
 				9480A6F9140CDAAB00873A71 /* Entitlements.entitlements */,
 				94D5FF82140CC534001152D8 /* CareCap-Info.plist */,
-				94D5FF83140CC534001152D8 /* InfoPlist.strings */,
+				E5922880148BBCA400ADBF4A /* InfoPlist.strings */,
 				9471D584147F94E300F1DDBD /* Localizable.strings */,
 				94D5FF86140CC534001152D8 /* main.m */,
 				94D5FF88140CC534001152D8 /* CareCap-Prefix.pch */,
@@ -411,9 +409,9 @@
 		E5070F78143B567200C8C078 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E5BCDE39148BAB500053FBD0 /* storedNews.sqlite */,
+				E5070F79143B568500C8C078 /* Images */,
 				9477937E145FF0C500FA4F20 /* OtherResources */,
-				94D5FF8C140CC534001152D8 /* MainWindow.xib */,
+				E592287C148BBC6300ADBF4A /* MainWindow.xib */,
 				94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */,
 				94D5FFBC140CC5D4001152D8 /* ZzpCalculationController.xib */,
 				9485B5C21484DAE800CF1469 /* CompanyNewsController.xib */,
@@ -421,7 +419,6 @@
 				944BF7F71484C76300B3009E /* ZZPList.plist */,
 				944BF7F81484C76300B3009E /* ZZPPackage.plist */,
 				944BF7FB1484C76B00B3009E /* FunctionRule.plist */,
-				E5070F79143B568500C8C078 /* Images */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -522,8 +519,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94D5FF85140CC534001152D8 /* InfoPlist.strings in Resources */,
-				94D5FF8E140CC534001152D8 /* MainWindow.xib in Resources */,
+				E5922882148BBCA400ADBF4A /* InfoPlist.strings in Resources */,
+				E592287E148BBC6300ADBF4A /* MainWindow.xib in Resources */,
 				94D5FFC1140CC5D4001152D8 /* ZzpCalculationController.xib in Resources */,
 				94D5FFC3140CC5D4001152D8 /* ZzpSelectorController.xib in Resources */,
 				9480A6FA140CDAAB00873A71 /* Entitlements.entitlements in Resources */,
@@ -541,7 +538,6 @@
 				944BF80A1484C7BD00B3009E /* UnreadIndicator.png in Resources */,
 				944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */,
 				9485B5C41484DAE800CF1469 /* CompanyNewsController.xib in Resources */,
-				E5BCDE3A148BAB500053FBD0 /* storedNews.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,25 +634,6 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		94D5FF83140CC534001152D8 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				94D5FF84140CC534001152D8 /* en */,
-				9471D578147F83F500F1DDBD /* nl */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		94D5FF8C140CC534001152D8 /* MainWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				94D5FF8D140CC534001152D8 /* en */,
-				9471D577147F83F500F1DDBD /* nl */,
-			);
-			name = MainWindow.xib;
-			path = CareCap;
-			sourceTree = "<group>";
-		};
 		94D5FFAB140CC534001152D8 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -664,6 +641,25 @@
 				9471D575147F83F500F1DDBD /* nl */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E592287C148BBC6300ADBF4A /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E592287D148BBC6300ADBF4A /* en */,
+				E592287F148BBC7800ADBF4A /* nl */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		E5922880148BBCA400ADBF4A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E5922881148BBCA400ADBF4A /* en */,
+				E5922883148BBCB700ADBF4A /* nl */,
+			);
+			name = InfoPlist.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
