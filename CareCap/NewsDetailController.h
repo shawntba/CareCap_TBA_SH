@@ -3,7 +3,7 @@
 //  CareCap
 //
 //  Created by Ray Shawn on 10/6/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 __The Beagle Armada__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -15,7 +15,6 @@
 }
 
 @property (nonatomic, retain) News *news;
-//@property (nonatomic, retain) UIActivityIndicatorView *loadingIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withNews:(News *)anews;
 

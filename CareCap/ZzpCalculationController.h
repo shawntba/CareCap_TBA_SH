@@ -3,7 +3,7 @@
 //  CareCap
 //
 //  Created by J on 11-7-29.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 __The Beagle Armada__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

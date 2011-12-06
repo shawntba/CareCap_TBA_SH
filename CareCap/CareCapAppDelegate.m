@@ -38,23 +38,12 @@
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
     
     //Change the host name here to change the server your monitoring
-//	hostReach = [[Reachability reachabilityWithHostName: @"nfs.azrlive.nl"] retain];
-//	[hostReach startNotifier];
-//	[self updateInterfaceWithReachability: hostReach];
-	
     internetReach = [[Reachability reachabilityForInternetConnection] retain];
 	[internetReach startNotifier];
 	[self updateInterfaceWithReachability: internetReach];
     
-//    wifiReach = [[Reachability reachabilityForLocalWiFi] retain];
-//	[wifiReach startNotifier];
-//	[self updateInterfaceWithReachability: wifiReach];
-    
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
-    //    self.window.rootViewController = self.tabBarController;
-    
-    //    [self.window makeKeyAndVisible];
     [self.window makeKeyAndVisible];
 	[_window addSubview:_tabBarController.view];
     
@@ -125,7 +114,6 @@
 {
     if(curReach == hostReach)
 	{
-		//[self configureTextField: remoteHostStatusField imageView: remoteHostIcon reachability: curReach];
         [self configureNotice: curReach];
         NetworkStatus netStatus = [curReach currentReachabilityStatus];
         appConnectionRequired = [curReach connectionRequired];
@@ -215,13 +203,6 @@
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     
-    //[request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
-    
-    //[request setDelegate:self];
-    //[request setTimeOutSeconds:10];
-    //[request setDidFinishSelector:@selector(sucessRegDevice:)];
-    //[request setDidFailSelector:@selector(failedRegDevice:)];
-    
     [request addRequestHeader:@"Content-Type" value:@"application/json"];
     [request setDelegate:self];
     
@@ -280,46 +261,32 @@
 }
 
 - (void) intialNewsandDevice: (NSURL *)url {
-    //    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [UIApplication sharedApplication].applicationIconBadgeNumber > [unreadCountString intValue]){
-    //        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-    //    }
-//    if([UIApplication sharedApplication].applicationIconBadgeNumber >= [unreadCountString intValue]){
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-//    }
-//    
-//    NSMutableArray *cachedAppNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
-//    
-//    if((![[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"] || [cachedAppNews count] == 0)){
-        
-        // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
-        // Wi-Fi requests are not affected
-        // This method is only available on iOS
-        [ASIFormDataRequest setShouldThrottleBandwidthForWWAN:YES];
-        
-        // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
-        // This method is only available on iOS
-        [ASIFormDataRequest throttleBandwidthForWWANUsingLimit:14800];
-        
-        // Will prevent requests from using more than the predefined limit for mobile applications.
-        // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
-        [ASIFormDataRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
-        
-        // Log how many bytes have been received or sent per second (average from the last 5 seconds)
-        NSLog(@"%lu",[ASIFormDataRequest averageBandwidthUsedPerSecond]);
-        
-        ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-        
-        [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
-        
-        [request setDelegate:self];
-        [request setTimeOutSeconds:10];
-        [request setDidFinishSelector:@selector(sucessRegDevice:)];
-        [request setDidFailSelector:@selector(failedRegDevice:)];
-        
-        [request startAsynchronous];
-//    }
-//    
-//    [cachedAppNews release];
+    // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
+    // Wi-Fi requests are not affected
+    // This method is only available on iOS
+    [ASIFormDataRequest setShouldThrottleBandwidthForWWAN:YES];
+    
+    // Will throttle bandwidth based on a user-defined limit when when WWAN (not Wi-Fi) is active
+    // This method is only available on iOS
+    [ASIFormDataRequest throttleBandwidthForWWANUsingLimit:14800];
+    
+    // Will prevent requests from using more than the predefined limit for mobile applications.
+    // Will limit ALL requests, regardless of whether Wi-Fi is in use or not - USE WITH CAUTION
+    [ASIFormDataRequest setMaxBandwidthPerSecond:ASIWWANBandwidthThrottleAmount];
+    
+    // Log how many bytes have been received or sent per second (average from the last 5 seconds)
+    NSLog(@"%lu",[ASIFormDataRequest averageBandwidthUsedPerSecond]);
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+    
+    [request addRequestHeader:@"Content-Type" value:@"application/json; charset=utf-8"];
+    
+    [request setDelegate:self];
+    [request setTimeOutSeconds:10];
+    [request setDidFinishSelector:@selector(sucessRegDevice:)];
+    [request setDidFailSelector:@selector(failedRegDevice:)];
+    
+    [request startAsynchronous];
 }
 
 - (void) sucessRegDevice:(ASIHTTPRequest *) request
