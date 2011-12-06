@@ -3,7 +3,7 @@
 //  CareCap
 //
 //  Created by Tba-Sh-Apple on 11/29/11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2011 __The Beagle Armada__. All rights reserved.
 //
 
 #import "CompanyNewsController.h"
