@@ -18,6 +18,7 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize unreadCountString;
+//@synthesize listOfNews;
 
 -(void)alertNotice:(NSString *)title withMSG:(NSString *)msg cancleButtonTitle:(NSString *)cancleTitle otherButtonTitle:(NSString *)otherTitle{
     UIAlertView *alert;
@@ -42,14 +43,13 @@
 	[internetReach startNotifier];
 	[self updateInterfaceWithReachability: internetReach];
     
-    // Override point for customization after application launch.
-    // Add the tab bar controller's current view as a subview of the window
-    [self.window makeKeyAndVisible];
-	[_window addSubview:_tabBarController.view];
-    
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound)];
     
     NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
+    
+//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]) {
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+//    }
     
     if(appConnectionRequired)
     {
@@ -68,6 +68,14 @@
         [(UIViewController *)[_tabBarController.viewControllers objectAtIndex:1] tabBarItem].badgeValue = nil;
         
     }
+    
+//    [NSThread sleepForTimeInterval:2.0f];
+    //sleep(10);
+    
+    // Override point for customization after application launch.
+    // Add the tab bar controller's current view as a subview of the window
+	[_window addSubview:_tabBarController.view];
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -160,12 +168,9 @@
         NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
         deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
         
-//        if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]) {
-//            [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-//        }
-        
-//        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
-        NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+        //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+        //NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
         
         NSLog(@"url=%@",urlString);
         
@@ -237,8 +242,9 @@
     if (serverNewsCount != currentNewsCount || currentNewsCount == 0) {
         NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];        
         NSString *currentDeviceToken = [cachedDeviceToken stringForKey:@"cachedDeviceToken"];
-//        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", currentDeviceToken];
-        NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", currentDeviceToken];
+        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", currentDeviceToken];
+        //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", currentDeviceToken];
+        //NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/Device/%@", currentDeviceToken];
         
         NSLog(@"url=%@",urlString);
         
@@ -246,6 +252,8 @@
         
         [self intialNewsandDevice:url];
     }
+    
+    [parser release];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
@@ -301,6 +309,7 @@
     NSMutableArray *cachedNews;
     
     cachedNews = [[NSMutableArray alloc] init];
+//    listOfNews = [[NSMutableArray alloc] init];
     
     int unreadCount = 0;
     
@@ -323,6 +332,7 @@
         [formater release];
         
         [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:news]];
+//        [listOfNews addObject:news];
         
         [news autorelease];
     }
@@ -410,6 +420,7 @@
     [_window release];
     [_tabBarController release];
     [unreadCountString release];
+//    [listOfNews release];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [super dealloc];

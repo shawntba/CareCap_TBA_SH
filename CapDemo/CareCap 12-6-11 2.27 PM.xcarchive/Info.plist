@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/CareCap.app</string>
+		<key>CFBundleIdentifier</key>
+		<string>com.TBA.CareCap</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0</string>
+		<key>IconPaths</key>
+		<array>
+			<string>Applications/CareCap.app/icon.png</string>
+			<string>Applications/CareCap.app/icon@2x.png</string>
+			<string>Applications/CareCap.app/icon.png</string>
+			<string>Applications/CareCap.app/icon@2x.png</string>
+		</array>
+	</dict>
+	<key>ArchiveVersion</key>
+	<real>1</real>
+	<key>CreationDate</key>
+	<date>2011-12-06T06:27:41Z</date>
+	<key>Name</key>
+	<string>CareCap</string>
+	<key>SchemeName</key>
+	<string>CareCap</string>
+</dict>
+</plist>

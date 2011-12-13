@@ -13,12 +13,18 @@
 @implementation CompanyNewsController
 
 @synthesize listOfNews;
+@synthesize queue;
+@synthesize minuteTimer;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+//        NSLog(@"Load data while Intial!");
+//        NSLog(@"%d", [listOfNews count]);
+//        [listOfNews removeAllObjects];
+//        [self loadData];
     }
     return self;
 }
@@ -33,8 +39,20 @@
 
 - (void)dealloc
 {
+    queue = nil;
+    [minuteTimer invalidate];
     [listOfNews release];
     [super dealloc];
+}
+#pragma mark -
+#pragma mark Timer set accessor methods
+
+- (void)setMinuteTimer:(NSTimer *)newTimer {
+	
+	if (minuteTimer != newTimer) {
+		[minuteTimer invalidate];
+		minuteTimer = newTimer;
+	}
 }
 
 #pragma mark - View lifecycle
@@ -50,6 +68,69 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self setTitle:NSLocalizedString(@"News_Title", nil)];
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+//    NSLog(@"Load Data while View Did load;");
+//    NSLog(@"%d", [listOfNews count]); 
+//    [listOfNews removeAllObjects];
+//    [self loadData];
+}
+
+- (void) loadData {
+    queue = [[NSOperationQueue alloc] init];
+	
+	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self 
+																			selector:@selector(loadDataWithOperation) 
+																			  object:nil];
+	[queue addOperation:operation];
+    
+    [operation release];
+    //[self selector:@selector(loadWithOperation)];
+}
+
+- (void) loadDataWithOperation {
+	//Initialize the array.
+    listOfNews = [[NSMutableArray alloc] init];
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
+        NSMutableArray *cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+        
+        NSLog(@"%d", [cachedNews count]);
+        NSLog(@"%d", [listOfNews count]);
+        
+        if([cachedNews count] > 0 && [cachedNews count] >= [listOfNews count])
+        {
+//            [listOfNews removeAllObjects];
+            NSLog(@"Temp list Count: %d", [listOfNews count]);
+//            for(NSData *data in cachedNews){
+//                News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+//                
+//                NSPredicate *idPredicate = [NSPredicate predicateWithFormat:@"ID == %d", news.ID];
+//                
+//                NSArray *test = [listOfNews filteredArrayUsingPredicate:idPredicate];
+//                
+//                NSLog (@"%@", [test valueForKey:@"ID"]);
+//                
+//                if ([listOfNews filteredArrayUsingPredicate:idPredicate])
+//                {
+//                    [listOfNews addObject:news];
+//                }
+//            }
+            
+            for(NSData *data in cachedNews){
+                News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+                [listOfNews addObject:news];
+            }
+        }
+        
+        NSLog(@"Cached Count: %d", [cachedNews count]);
+        NSLog(@"List Count: %d", [listOfNews count]);
+        
+        [cachedNews release];
+    }
+	
+	[self.tableView reloadData];
 }
 
 - (void)viewDidUnload
@@ -63,20 +144,37 @@
 {
     [super viewWillAppear:animated];
     
-    //Initialize the array.
-    listOfNews = [[NSMutableArray alloc] init];
+//    if([listOfNews count] == 0)
+//    {
+//        [self loadData];
+//    }
     
-    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]){
-        NSMutableArray *cachedNews = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]];
+    /*
+	 Set up two timers, one that fires every minute, the other every fifteen minutes.
+     
+	 1/ The time displayed for each time zone must be updated every minute on the minute.
+	 2/ Time zone data is cached. Some time zones are based on 15 minute differences from GMT, so update the cache every 15 minutes, on the "quarter".
+     */
+	
+	NSTimer *timer;
+    NSDate *date = [NSDate date];
+    
+    /*
+	 Set up a timer to update the table view every minute on the minute so that it shows the current time.
+	 */
+	timer = [[NSTimer alloc] initWithFireDate:date interval:2 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
+	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+	self.minuteTimer = timer;
+	[timer release];
+}
+
+- (void) updateTime:(NSTimer *)timer {
+    if([listOfNews count] == 0)
+    {
+        [self loadData];
+        self.minuteTimer = nil;
         
-        if([cachedNews count] > 0)
-        {
-            for(NSData *data in cachedNews){
-                News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-                [listOfNews addObject:news];
-            }
-        }
-        [cachedNews release];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
 }
 
@@ -88,6 +186,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    self.minuteTimer = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -112,12 +211,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [listOfNews count] > 0 ? [listOfNews count] : 0;
+    NSLog(@"Table row count: %d", [listOfNews count]);
+    
+    return [listOfNews count] > 0 ? [listOfNews count] : 1;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellValue = [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
+    NSString *cellValue = [listOfNews count] > 0 ? [((News *)[listOfNews objectAtIndex:indexPath.row]) Title] : NSLocalizedString(@"Load_Lable", nil);
     
     CGSize size = [cellValue sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 400) lineBreakMode:UILineBreakModeWordWrap];
     
@@ -133,9 +234,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
-        // Configure the cell...
-    NSString *cellValue = [((News *)[listOfNews objectAtIndex:indexPath.row]) Title];
-    NSNumber *newStatus = [((News *)[listOfNews objectAtIndex:indexPath.row]) IsRead];
+    
+    // Configure the cell...
+    NSString *cellValue = [listOfNews count] > 0 ? [((News *)[listOfNews objectAtIndex:indexPath.row]) Title] : NSLocalizedString(@"Load_Lable", nil);
     
     CGSize size = [cellValue sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(270, 400) lineBreakMode:UILineBreakModeWordWrap];
     
@@ -143,15 +244,29 @@
     [cell.textLabel setNeedsDisplayInRect:CGRectMake(30, 10, size.width, size.height)];
     [cell.textLabel setFont:[UIFont systemFontOfSize:16]];
     
-    cell.textLabel.text = cellValue;
-    
-    if ([newStatus isEqualToNumber:[NSNumber numberWithInt:0]]) {
-        cell.imageView.image = [UIImage imageNamed:@"UnreadIndicator.png"];
-    }else {
-        cell.imageView.image = [UIImage imageNamed:@"ReadIndicator.png"];
+    if([listOfNews count] == 0)
+    {
+        [cell.textLabel setTextColor:[UIColor grayColor]];
+    }
+    else
+    {
+        [cell.textLabel setTextColor:[UIColor blackColor]];
     }
     
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.text = cellValue;
+    
+    if([listOfNews count] > 0)
+    {
+        NSNumber *newStatus = [((News *)[listOfNews objectAtIndex:indexPath.row]) IsRead];
+        
+        if ([newStatus isEqualToNumber:[NSNumber numberWithInt:0]]) {
+            cell.imageView.image = [UIImage imageNamed:@"UnreadIndicator.png"];
+        }else {
+            cell.imageView.image = [UIImage imageNamed:@"ReadIndicator.png"];
+        }
+        
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
     
     return cell;
 }
