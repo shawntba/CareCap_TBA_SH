@@ -18,8 +18,10 @@
 		<string>7 VV + BH</string>
 		<string>8 VV</string>
 		<string>8 VV + BH</string>
-		<string>9 VV</string>
-		<string>9 VV + BH</string>
+		<string>9a VV</string>
+		<string>9a VV + BH</string>
+		<string>9b VV</string>
+		<string>9b VV + BH</string>
 		<string>10 VV</string>
 		<string>10 VV + BH</string>
 	</array>
@@ -79,6 +81,8 @@
 		<string>6 VG + DB + BH</string>
 		<string>7 VG</string>
 		<string>7 VG + DB</string>
+		<string>7 VG + BH</string>
+		<string>7 VG + DB + BH</string>
 		<string>8 VG</string>
 		<string>8 VG + DB</string>
 		<string>8 VG + BH</string>

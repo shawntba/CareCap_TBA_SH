@@ -168,9 +168,9 @@
         NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
         deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
         
-        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+        //NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
         //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
-        //NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+        NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
         
         NSLog(@"url=%@",urlString);
         
@@ -242,9 +242,9 @@
     if (serverNewsCount != currentNewsCount || currentNewsCount == 0) {
         NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];        
         NSString *currentDeviceToken = [cachedDeviceToken stringForKey:@"cachedDeviceToken"];
-        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", currentDeviceToken];
+        //NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", currentDeviceToken];
         //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", currentDeviceToken];
-        //NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/Device/%@", currentDeviceToken];
+        NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/Device/%@", currentDeviceToken];
         
         NSLog(@"url=%@",urlString);
         

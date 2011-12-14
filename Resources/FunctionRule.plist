@@ -7,7 +7,7 @@
 	<key>2 VV</key>
 	<real>6.66</real>
 	<key>3 VV</key>
-	<real>9.05</real>
+	<real>9.050000000000001</real>
 	<key>3 VV + BH</key>
 	<real>10.36</real>
 	<key>4 VV</key>
@@ -30,16 +30,20 @@
 	<real>25.14</real>
 	<key>8 VV + BH</key>
 	<real>27.02</real>
-	<key>9 VV</key>
+	<key>9a VV</key>
 	<real>16.22</real>
-	<key>9 VV + BH</key>
-	<real>20.10</real>
+	<key>9a VV + BH</key>
+	<real>20.1</real>
+	<key>9b VV</key>
+	<string>16.22</string>
+	<key>9b VV + BH</key>
+	<string>20.1</string>
 	<key>10 VV</key>
-	<real>27.80</real>
+	<real>27.8</real>
 	<key>10 VV + BH</key>
 	<real>29.68</real>
 	<key>1 GGZB</key>
-	<real>5.70</real>
+	<real>5.7</real>
 	<key>1 GGZB + DB</key>
 	<real>8.73</real>
 	<key>2 GGZB</key>
@@ -61,7 +65,7 @@
 	<key>6 GGZB</key>
 	<real>21.79</real>
 	<key>6 GGZB + DB</key>
-	<real>25.20</real>
+	<real>25.2</real>
 	<key>7 GGZB</key>
 	<real>30.62</real>
 	<key>7 GGZB + DB</key>
@@ -83,7 +87,7 @@
 	<key>4 GGZC + DB</key>
 	<real>16.69</real>
 	<key>5 GGZC</key>
-	<real>14.90</real>
+	<real>14.9</real>
 	<key>5 GGZC + DB</key>
 	<real>18.23</real>
 	<key>6 GGZC</key>
@@ -93,7 +97,7 @@
 	<key>1 VG</key>
 	<real>5.93</real>
 	<key>1 VG + DB</key>
-	<real>11.10</real>
+	<real>11.1</real>
 	<key>2 VG</key>
 	<real>8.59</real>
 	<key>2 VG + DB</key>
@@ -103,13 +107,13 @@
 	<key>3 VG + DB</key>
 	<real>16.05</real>
 	<key>3 VG + BH</key>
-	<real>11.60</real>
+	<real>11.6</real>
 	<key>3 VG + DB + BH</key>
 	<real>16.77</real>
 	<key>4 VG</key>
 	<real>13.03</real>
 	<key>4 VG + DB</key>
-	<real>18.20</real>
+	<real>18.2</real>
 	<key>4 VG + BH</key>
 	<real>13.88</real>
 	<key>4 VG + DB + BH</key>
@@ -131,9 +135,13 @@
 	<key>6 VG + DB + BH</key>
 	<real>23.42</real>
 	<key>7 VG</key>
-	<real>22.83</real>
+	<real>21.13</real>
 	<key>7 VG + DB</key>
-	<real>33.74</real>
+	<real>32.04</real>
+	<key>7 VG + BH</key>
+	<string>22.83</string>
+	<key>7 VG + DB + BH</key>
+	<string>33.74</string>
 	<key>8 VG</key>
 	<real>21.02</real>
 	<key>8 VG + DB</key>
@@ -155,17 +163,17 @@
 	<key>1 SGLVG</key>
 	<real>39.43</real>
 	<key>1 LG</key>
-	<real>9.64</real>
+	<real>9.640000000000001</real>
 	<key>1 LG + DB</key>
 	<real>15.46</real>
 	<key>2 LG</key>
-	<real>14.30</real>
+	<real>14.3</real>
 	<key>2 LG + DB</key>
-	<real>19.60</real>
+	<real>19.6</real>
 	<key>3 LG</key>
 	<real>12.08</real>
 	<key>3 LG + DB</key>
-	<real>17.90</real>
+	<real>17.9</real>
 	<key>3 LG + BH</key>
 	<real>13.97</real>
 	<key>3 LG + DB + BH</key>
@@ -185,7 +193,7 @@
 	<key>5 LG + BH</key>
 	<real>20.68</real>
 	<key>5 LG + DB + BH</key>
-	<real>26.50</real>
+	<real>26.5</real>
 	<key>6 LG</key>
 	<real>20.57</real>
 	<key>6 LG + DB</key>
