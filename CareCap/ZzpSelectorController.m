@@ -10,6 +10,7 @@
 
 #import "ZzpSelectorController.h"
 #import "ZzpCalculationController.h"
+#import "HelpController.h"
 
 @implementation ZzpSelectorController
 
@@ -124,6 +125,38 @@
     [selectorBtn addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
     
     [self setTitle:@"Selector"];
+    
+    UIBarButtonItem *flipButton = [[UIBarButtonItem alloc] 
+                                   initWithTitle:@"Help"                                            
+                                   style:UIBarButtonItemStyleBordered 
+                                   target:self 
+                                   action:@selector(flipView)];
+    self.navigationItem.rightBarButtonItem = flipButton;
+    [flipButton release];
+}
+
+-(IBAction) flipView
+{
+//    HelperSheet* sheet = [[HelperSheet alloc] initWithHeight:484.0f WithSheetTitle:@"Helper"];
+//	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0,50, 320, 50)];
+//    
+//	label.text = @"Helper Content";
+//	label.backgroundColor = [UIColor clearColor];
+//	label.textAlignment = UITextAlignmentCenter;
+//    
+//	[sheet.view addSubview:label];
+//	[sheet showInView:self.view];
+//    
+//    //[label release];
+//	[sheet release];
+    
+//    HelperController *controller = [[ZzpCalculationController alloc] initWithNibName:@"ZzpCalculationController" bundle:nil withZZP:zzp];
+    
+    HelpController *controller = [[HelpController alloc] initWithNibName:@"HelpController" bundle:nil];
+    
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+    [controller release];
 }
 
 - (void)viewDidUnload

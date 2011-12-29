@@ -17,6 +17,7 @@
 }
 
 - (IBAction) next;
+- (IBAction) flipView;
 
 @property (nonatomic, retain) UIButton *selectorBtn;
 @property (nonatomic, retain) UIView *pickerView;
