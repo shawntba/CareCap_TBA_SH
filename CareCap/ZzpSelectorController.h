@@ -13,6 +13,7 @@
     IBOutlet UIButton *selectorBtn;
     IBOutlet UIView *pickerView;
     IBOutlet UIPickerView *picker;
+    IBOutlet UIBarButtonItem *nextBtn;
     NSArray *data;
 }
 
@@ -22,4 +23,6 @@
 @property (nonatomic, retain) UIButton *selectorBtn;
 @property (nonatomic, retain) UIView *pickerView;
 @property (nonatomic, retain) UIPickerView *picker;
+@property (nonatomic, retain) UIBarButtonItem *nextBtn;
+
 @end

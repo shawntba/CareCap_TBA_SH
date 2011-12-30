@@ -47,6 +47,9 @@
 		944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 944BF8571484D10000B3009E /* NewsDetailController.xib */; };
 		9471D586147F94E300F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
 		9471D588147F94F900F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
+		9473A8EE14AC7E6500204008 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8EB14AC7E6500204008 /* 02.png */; };
+		9473A8EF14AC7E6500204008 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8EC14AC7E6500204008 /* 03.png */; };
+		9473A8F014AC7E6500204008 /* 04.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8ED14AC7E6500204008 /* 04.png */; };
 		947793A3145FF16E00FA4F20 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A2145FF16D00FA4F20 /* CFNetwork.framework */; };
 		947793A5145FF1B400FA4F20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A4145FF1B400FA4F20 /* SystemConfiguration.framework */; };
 		947793A7145FF1BF00FA4F20 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */; };
@@ -162,6 +165,9 @@
 		9471D578147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		9471D585147F94E300F1DDBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9471D587147F94F900F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9473A8EB14AC7E6500204008 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 02.png; path = Resources/02.png; sourceTree = "<group>"; };
+		9473A8EC14AC7E6500204008 /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 03.png; path = Resources/03.png; sourceTree = "<group>"; };
+		9473A8ED14AC7E6500204008 /* 04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 04.png; path = Resources/04.png; sourceTree = "<group>"; };
 		947793A2145FF16D00FA4F20 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		947793A4145FF1B400FA4F20 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -438,6 +444,9 @@
 		E5070F79143B568500C8C078 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9473A8EB14AC7E6500204008 /* 02.png */,
+				9473A8EC14AC7E6500204008 /* 03.png */,
+				9473A8ED14AC7E6500204008 /* 04.png */,
 				9490F46014AC437B005C7529 /* 01.png */,
 				94343C6B148CC59C0011BF02 /* Default@2x.png */,
 				94343C69148CC58E0011BF02 /* Default.png */,
@@ -547,6 +556,9 @@
 				9490F45E14AC2628005C7529 /* HelpImageController.xib in Resources */,
 				9490F46114AC437B005C7529 /* 01.png in Resources */,
 				9400B31414AC61CD00D9592D /* HelpController.xib in Resources */,
+				9473A8EE14AC7E6500204008 /* 02.png in Resources */,
+				9473A8EF14AC7E6500204008 /* 03.png in Resources */,
+				9473A8F014AC7E6500204008 /* 04.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

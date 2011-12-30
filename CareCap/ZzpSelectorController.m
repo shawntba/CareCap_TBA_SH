@@ -14,9 +14,7 @@
 
 @implementation ZzpSelectorController
 
-@synthesize selectorBtn;
-@synthesize picker;
-@synthesize pickerView;
+@synthesize selectorBtn, picker, pickerView, nextBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +31,7 @@
     [pickerView release];
     [picker release];
     [data release];
+    [nextBtn release];
     [super dealloc];
 }
 
@@ -125,6 +124,7 @@
     [selectorBtn addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
     
     [self setTitle:@"Selector"];
+    [nextBtn setTitle:NSLocalizedString(@"Next_Button", nil)];
     
     UIBarButtonItem *flipButton = [[UIBarButtonItem alloc] 
                                    initWithTitle:@"Help"                                            
@@ -161,6 +161,8 @@
 
 - (void)viewDidUnload
 {
+    [nextBtn release];
+    nextBtn = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

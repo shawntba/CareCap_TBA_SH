@@ -67,6 +67,8 @@ static NSUInteger kNumberOfPages = 4;
     // load the page on either side to avoid flashes when the user starts scrolling
     [self loadScrollViewWithPage:0];
     [self loadScrollViewWithPage:1];
+    
+    [self setTitle:@"User Manual"];
 }
 
 - (void)viewDidUnload
