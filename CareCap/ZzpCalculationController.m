@@ -2,7 +2,7 @@
 //  ZzpCalculationController.m
 //  CareCap
 //
-//  Created by J on 11-7-29.
+//  Created by Gary.Gan on 11-7-29.
 //  Copyright 2011 __The Beagle Armada__. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 @synthesize textFields;
 
 @synthesize listContent;
+@synthesize resultDictionary;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withZZP:(NSString *) azzp
 {
@@ -50,11 +51,12 @@
     [zzp release];
     [textFields release];
     [listContent release];
+    [resultDictionary release];
     
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
+- (void) didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -62,19 +64,48 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void) calculate
+- (void) calculate
 {
     NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"FunctionRule" ofType:@"plist"];
     NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:dataPath]];
     
+    NSString *hoursDataPath = [[NSBundle mainBundle] pathForResource:@"FunctionHours" ofType:@"plist"];
+    NSDictionary *hoursDict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:hoursDataPath]];
+    
+    NSString *aliasDataPath = [[NSBundle mainBundle] pathForResource:@"FunctionAlias" ofType:@"plist"];
+    NSDictionary *aliasDict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:aliasDataPath]];
+    
+    NSMutableArray *initialResultsArray = [[NSMutableArray alloc] initWithCapacity:[aliasDict count]];
+    
+    for (int i = 0; i < [aliasDict count]; i++) {
+        [initialResultsArray addObject:[NSNumber numberWithFloat:0.00]];
+    }
+    
+    resultDictionary = [[NSMutableDictionary alloc] initWithObjects:initialResultsArray forKeys:[aliasDict allKeys]];
+    
     float result = 0.0;
     int count = [listContent count];
     
-    for(int i=0;i<count;i++){
+    for(int i=0; i<count; i++){
         UITextField *textField = [textFields objectAtIndex:i];
         
-        if([textField isKindOfClass:[UITextField class]]){
+        if([textField isKindOfClass:[UITextField class]] && [textField.text floatValue] != 0){
             result += [textField.text floatValue] * [[dict objectForKey:[listContent objectAtIndex:i]] floatValue];
+            
+            NSDictionary *rulesDict = [hoursDict objectForKey:[listContent objectAtIndex:i]];
+            
+            for (NSString *key in rulesDict) {
+                id tmpRule = [rulesDict objectForKey:key];
+                NSString *ruleAlias = [aliasDict objectForKey:key];
+                
+                float tmpResultPerRule = ([tmpRule floatValue] * [textField.text floatValue])/36;
+                
+                float sumResultsPerRule = [[resultDictionary valueForKey:key] floatValue] + tmpResultPerRule;
+                
+                [resultDictionary setValue:[NSNumber numberWithFloat:sumResultsPerRule] forKey:key];
+                
+                NSLog(@"%@: %.1f", ruleAlias, tmpResultPerRule);
+            }
         }
     }
     
@@ -84,12 +115,39 @@
     
     NSLog(@"%d", showResult);
     
-    [dict release];
+    float totalResult = 0.0;
+    NSString *showTotalResult = @"";
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"%d FTE benodigd volgens NZa normen",showResult] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    for (NSString *key in resultDictionary) {
+        id resultPerRule = [resultDictionary objectForKey:key];
+        NSString *aliasPerRule = [aliasDict objectForKey:key];
+        
+        NSLog(@"%@: %.1f", aliasPerRule, [resultPerRule floatValue]);
+        
+        NSString *tmpresultPerRule = [NSString stringWithFormat:@"%.1f", [resultPerRule floatValue]];
+        
+        if([tmpresultPerRule floatValue] > 0.0)
+        {
+            showTotalResult = [showTotalResult stringByAppendingString:[NSString stringWithFormat:@"%.1f %@\n", [resultPerRule floatValue], aliasPerRule]];
+
+            totalResult = totalResult + [tmpresultPerRule floatValue];
+        }
+    }
+    
+    NSLog(@"Total: %f", totalResult);
+    
+    showTotalResult = [[NSString stringWithFormat:@"%.1f FTE benodigd volgens NZa normen:\n\n", totalResult] stringByAppendingString:showTotalResult];
+    
+    [dict release];
+    [hoursDict release];
+    [aliasDict release];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:showTotalResult delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
     [alert show];
     [alert release];
+    
+    ((UILabel*)[[alert subviews] objectAtIndex:1]).textAlignment = UITextAlignmentLeft;
 }
 
 -(IBAction) backgroundClick
@@ -109,7 +167,7 @@
     return YES;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
+-(void) textFieldDidBeginEditing:(UITextField *)textField
 {
     int index = [textFields indexOfObject:textField];
     [tbl scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];

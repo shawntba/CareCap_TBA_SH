@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>OB</key>
+	<string>Ondersteunende Begeleiding</string>
+	<key>PV</key>
+	<string>Persoonlijke Verzorging</string>
+	<key>VP</key>
+	<string>Verpleging</string>
+	<key>AB</key>
+	<string>Activerende Begeleiding</string>
+	<key>DB</key>
+	<string>Dagbesteding</string>
+	<key>BH</key>
+	<string>Behandeling</string>
+</dict>
+</plist>

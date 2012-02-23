@@ -2,8 +2,8 @@
 //  ZzpSelectorController.h
 //  CareCap
 //
-//  Created by J on 11-7-29.
-//  Copyright 2011年 __The Beagle Armada__. All rights reserved.
+//  Created by Gary.Gan on 11-7-29.
+//  Copyright 2011 __The Beagle Armada__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -242,6 +242,7 @@
     if (serverNewsCount != currentNewsCount || currentNewsCount == 0) {
         NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];        
         NSString *currentDeviceToken = [cachedDeviceToken stringForKey:@"cachedDeviceToken"];
+        
         //NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", currentDeviceToken];
         //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", currentDeviceToken];
         NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/Device/%@", currentDeviceToken];

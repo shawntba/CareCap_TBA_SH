@@ -2,7 +2,7 @@
 //  ZzpSelectorController.m
 //  CareCap
 //
-//  Created by J on 11-7-29.
+//  Created by Gary.Gan on 11-7-29.
 //  Copyright 2011 __The Beagle Armada__. All rights reserved.
 //
 
