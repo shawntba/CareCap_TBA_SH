@@ -8,7 +8,6 @@
 
 #import "ZzpCalculationController.h"
 
-
 @implementation ZzpCalculationController
 @synthesize zzp;
 @synthesize tbl;
@@ -64,17 +63,9 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-- (void) calculate
+// Calculate the FTE per specific functions in ZZP packages
+-(void) calculatePerRule:(NSDictionary *) aliasDict ruleDictionary:(NSDictionary *)dict hoursDictionary:(NSDictionary *)hoursDict
 {
-    NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"FunctionRule" ofType:@"plist"];
-    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:dataPath]];
-    
-    NSString *hoursDataPath = [[NSBundle mainBundle] pathForResource:@"FunctionHours" ofType:@"plist"];
-    NSDictionary *hoursDict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:hoursDataPath]];
-    
-    NSString *aliasDataPath = [[NSBundle mainBundle] pathForResource:@"FunctionAlias" ofType:@"plist"];
-    NSDictionary *aliasDict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:aliasDataPath]];
-    
     NSMutableArray *initialResultsArray = [[NSMutableArray alloc] initWithCapacity:[aliasDict count]];
     
     for (int i = 0; i < [aliasDict count]; i++) {
@@ -85,14 +76,19 @@
     
     float result = 0.0;
     int count = [listContent count];
-    
+
     for(int i=0; i<count; i++){
         UITextField *textField = [textFields objectAtIndex:i];
         
         if([textField isKindOfClass:[UITextField class]] && [textField.text floatValue] != 0){
             result += [textField.text floatValue] * [[dict objectForKey:[listContent objectAtIndex:i]] floatValue];
             
-            NSDictionary *rulesDict = [hoursDict objectForKey:[listContent objectAtIndex:i]];
+            id tmpKey = [listContent objectAtIndex:i];
+            
+            NSLog(@"%@", [NSString stringWithFormat:@"%@", tmpKey]);
+            
+            //NSDictionary *rulesDict = [hoursDict objectForKey:[listContent objectAtIndex:i]];
+            NSDictionary *rulesDict = [hoursDict objectForKey:tmpKey];
             
             for (NSString *key in rulesDict) {
                 id tmpRule = [rulesDict objectForKey:key];
@@ -104,7 +100,7 @@
                 
                 [resultDictionary setValue:[NSNumber numberWithFloat:sumResultsPerRule] forKey:key];
                 
-                NSLog(@"%@: %.1f", ruleAlias, tmpResultPerRule);
+                NSLog(@"%@ real: %f", ruleAlias, tmpResultPerRule);
             }
         }
     }
@@ -113,41 +109,72 @@
     
     NSInteger showResult = ceil(result);
     
-    NSLog(@"%d", showResult);
-    
-    float totalResult = 0.0;
-    NSString *showTotalResult = @"";
+    NSLog(@"Formated calculate as NSInteger: %d", showResult);
+}
+
+// Sum the specific functions' FTE results and format it
+- (void)calculateTotal:(float *)realTotalResult showTotalResult:(NSString **)showTotalResult aliasDictionary:(NSDictionary *)aliasDict
+{
+    *showTotalResult = @"";
     
     for (NSString *key in resultDictionary) {
         id resultPerRule = [resultDictionary objectForKey:key];
         NSString *aliasPerRule = [aliasDict objectForKey:key];
         
-        NSLog(@"%@: %.1f", aliasPerRule, [resultPerRule floatValue]);
+        NSLog(@"%@ formated: %.1f", aliasPerRule, [resultPerRule floatValue]);
         
-        NSString *tmpresultPerRule = [NSString stringWithFormat:@"%.1f", [resultPerRule floatValue]];
+        //NSString *tmpresultPerRule = [NSString stringWithFormat:@"%.01f", [resultPerRule floatValue]];
+        NSString *tmpresultPerRule = [NSString stringWithFormat:@"%.1f", ceil([resultPerRule floatValue]*100.0)/100.0];
+        
+        NSLog(@"%@", tmpresultPerRule);
         
         if([tmpresultPerRule floatValue] > 0.0)
         {
-            showTotalResult = [showTotalResult stringByAppendingString:[NSString stringWithFormat:@"%.1f %@\n", [resultPerRule floatValue], aliasPerRule]];
-
-            totalResult = totalResult + [tmpresultPerRule floatValue];
+            *showTotalResult = [*showTotalResult stringByAppendingString:[NSString stringWithFormat:@"%@ %@\n", tmpresultPerRule, aliasPerRule]];
+            
+            //*realTotalResult = *realTotalResult + [tmpresultPerRule floatValue];
+            *realTotalResult = *realTotalResult + [tmpresultPerRule floatValue];
         }
     }
+}
+
+// Popup the formatted results as left align
+-(void) popupAlter:(NSString *)popMsg
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:popMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
-    NSLog(@"Total: %f", totalResult);
+    [alert show];
+    [alert release];
+    
+    ((UILabel*)[[alert subviews] objectAtIndex:1]).textAlignment = UITextAlignmentLeft;
+}
+
+- (void) calculate
+{
+    NSString *dataPath = [[NSBundle mainBundle] pathForResource:@"FunctionRule" ofType:@"plist"];
+    NSDictionary *dict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:dataPath]];
+    
+    NSString *hoursDataPath = [[NSBundle mainBundle] pathForResource:@"FunctionHours" ofType:@"plist"];
+    NSDictionary *hoursDict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:hoursDataPath]];
+    
+    NSString *aliasDataPath = [[NSBundle mainBundle] pathForResource:@"FunctionAlias" ofType:@"plist"];
+    NSDictionary *aliasDict = [[NSDictionary alloc] initWithDictionary:[NSDictionary dictionaryWithContentsOfFile:aliasDataPath]];
+    
+    [self calculatePerRule:aliasDict ruleDictionary:dict hoursDictionary:hoursDict];
+    
+    float totalResult = 0.0;
+    NSString *showTotalResult;
+    [self calculateTotal:&totalResult showTotalResult:&showTotalResult aliasDictionary:aliasDict];
+    
+    NSLog(@"Total real: %f", totalResult);
     
     showTotalResult = [[NSString stringWithFormat:@"%.1f FTE benodigd volgens NZa normen:\n\n", totalResult] stringByAppendingString:showTotalResult];
     
     [dict release];
     [hoursDict release];
     [aliasDict release];
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:showTotalResult delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-    
-    [alert show];
-    [alert release];
-    
-    ((UILabel*)[[alert subviews] objectAtIndex:1]).textAlignment = UITextAlignmentLeft;
+        
+    [self popupAlter:showTotalResult];
 }
 
 -(IBAction) backgroundClick

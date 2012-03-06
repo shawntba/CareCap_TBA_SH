@@ -730,16 +730,16 @@
 		9480A6FF140CDE8C00873A71 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8F48B849-DD42-4A78-96B9-03D2BECED528";
-				"PROVISIONING_PROFILE[sdk=*]" = "8F48B849-DD42-4A78-96B9-03D2BECED528";
+				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -825,16 +825,16 @@
 		94D5FFB5140CC534001152D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8F48B849-DD42-4A78-96B9-03D2BECED528";
-				"PROVISIONING_PROFILE[sdk=*]" = "8F48B849-DD42-4A78-96B9-03D2BECED528";
+				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -843,16 +843,16 @@
 		94D5FFB6140CC534001152D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Beagle Armada BV";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8F48B849-DD42-4A78-96B9-03D2BECED528";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8F48B849-DD42-4A78-96B9-03D2BECED528";
+				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

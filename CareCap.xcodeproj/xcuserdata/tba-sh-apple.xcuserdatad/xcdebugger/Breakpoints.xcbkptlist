@@ -163,11 +163,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "CareCap/ZzpCalculationController.m"
-         timestampString = "351594013.366458"
+         timestampString = "352101911.343159"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78"
+         startingLineNumber = "169"
+         endingLineNumber = "169"
          landmarkName = "-calculate"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,12 +177,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "CareCap/ZzpCalculationController.m"
-         timestampString = "351595026.305079"
+         timestampString = "351664666.614425"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "112"
-         endingLineNumber = "112"
-         landmarkName = "-calculate"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "-calculatePerRule:ruleDictionary:hoursDictionary:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -191,12 +191,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "CareCap/ZzpCalculationController.m"
-         timestampString = "351599708.037036"
+         timestampString = "351665751.609784"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
-         landmarkName = "-calculate"
+         startingLineNumber = "86"
+         endingLineNumber = "86"
+         landmarkName = "-calculatePerRule:ruleDictionary:hoursDictionary:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -205,12 +205,26 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "CareCap/ZzpCalculationController.m"
-         timestampString = "351599708.037036"
+         timestampString = "352279724.549988"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "131"
-         endingLineNumber = "131"
-         landmarkName = "-calculate"
+         startingLineNumber = "124"
+         endingLineNumber = "124"
+         landmarkName = "-calculateTotal:showTotalResult:aliasDictionary:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "CareCap/HelpController.m"
+         timestampString = "352613497.288373"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
