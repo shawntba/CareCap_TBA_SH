@@ -46,7 +46,6 @@
 		944BF8541484C81800B3009E /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 944BF8531484C81800B3009E /* News.m */; };
 		944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 944BF8571484D10000B3009E /* NewsDetailController.xib */; };
 		9471D586147F94E300F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
-		9471D588147F94F900F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
 		9473A8EE14AC7E6500204008 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8EB14AC7E6500204008 /* 02.png */; };
 		9473A8EF14AC7E6500204008 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8EC14AC7E6500204008 /* 03.png */; };
 		9473A8F014AC7E6500204008 /* 04.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8ED14AC7E6500204008 /* 04.png */; };
@@ -54,7 +53,6 @@
 		947793A5145FF1B400FA4F20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A4145FF1B400FA4F20 /* SystemConfiguration.framework */; };
 		947793A7145FF1BF00FA4F20 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */; };
 		947793A9145FF1CF00FA4F20 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 947793A8145FF1CF00FA4F20 /* libz.1.2.5.dylib */; };
-		9480A6FA140CDAAB00873A71 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9480A6F9140CDAAB00873A71 /* Entitlements.entitlements */; };
 		9485B5C31484DAE800CF1469 /* CompanyNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9485B5C11484DAE800CF1469 /* CompanyNewsController.m */; };
 		9485B5C41484DAE800CF1469 /* CompanyNewsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9485B5C21484DAE800CF1469 /* CompanyNewsController.xib */; };
 		9490F45D14AC2628005C7529 /* HelpImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490F45B14AC2628005C7529 /* HelpImageController.m */; };
@@ -79,9 +77,15 @@
 		94D5FFC2140CC5D4001152D8 /* ZzpSelectorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */; };
 		94D5FFC3140CC5D4001152D8 /* ZzpSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */; };
 		94D5FFD1140CC7B1001152D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */; };
+		94E32C6D1505E91200241A61 /* OfflineCacheImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E32C6C1505E91200241A61 /* OfflineCacheImageHelper.m */; };
+		94E32C6F1505FE3300241A61 /* newsloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 94E32C6E1505FE3300241A61 /* newsloader.gif */; };
 		94EFF50114E3B15500B4D236 /* FunctionHours.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94EFF50014E3B15500B4D236 /* FunctionHours.plist */; };
 		94EFF50414E400D600B4D236 /* FunctionAlias.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94EFF50314E400D600B4D236 /* FunctionAlias.plist */; };
 		94F2D11C14A1994F0068951A /* HelperSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F2D11A14A1994E0068951A /* HelperSheet.m */; };
+		94F41DB0150DFAAB00AC2896 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F41DAF150DFAAB00AC2896 /* MessageUI.framework */; };
+		94F41DB6150E01EA00AC2896 /* navigationBarBackgroud.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 94F41DB5150E01EA00AC2896 /* navigationBarBackgroud.jpg */; };
+		94F41DBE150E0F7700AC2896 /* CareCap.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 94F41DBD150E0F7700AC2896 /* CareCap.entitlements */; };
+		94F41DC0150E109700AC2896 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 94F41DBF150E109600AC2896 /* Entitlements.entitlements */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,7 +178,6 @@
 		947793A4145FF1B400FA4F20 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		947793A8145FF1CF00FA4F20 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		9480A6F9140CDAAB00873A71 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Entitlements.entitlements; path = ../Entitlements.entitlements; sourceTree = "<group>"; };
 		9485B5C01484DAE800CF1469 /* CompanyNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyNewsController.h; sourceTree = "<group>"; };
 		9485B5C11484DAE800CF1469 /* CompanyNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyNewsController.m; sourceTree = "<group>"; };
 		9485B5C21484DAE800CF1469 /* CompanyNewsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CompanyNewsController.xib; path = CareCap/CompanyNewsController.xib; sourceTree = "<group>"; };
@@ -206,10 +209,17 @@
 		94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZzpSelectorController.m; sourceTree = "<group>"; };
 		94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ZzpSelectorController.xib; path = CareCap/ZzpSelectorController.xib; sourceTree = "<group>"; };
 		94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		94E32C6B1505E91200241A61 /* OfflineCacheImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfflineCacheImageHelper.h; path = Tools/OfflineCacheImageHelper.h; sourceTree = "<group>"; };
+		94E32C6C1505E91200241A61 /* OfflineCacheImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfflineCacheImageHelper.m; path = Tools/OfflineCacheImageHelper.m; sourceTree = "<group>"; };
+		94E32C6E1505FE3300241A61 /* newsloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newsloader.gif; sourceTree = "<group>"; };
 		94EFF50014E3B15500B4D236 /* FunctionHours.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FunctionHours.plist; path = Resources/FunctionHours.plist; sourceTree = "<group>"; };
 		94EFF50314E400D600B4D236 /* FunctionAlias.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FunctionAlias.plist; path = Resources/FunctionAlias.plist; sourceTree = "<group>"; };
 		94F2D11A14A1994E0068951A /* HelperSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperSheet.m; sourceTree = "<group>"; };
 		94F2D11B14A1994E0068951A /* HelperSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperSheet.h; sourceTree = "<group>"; };
+		94F41DAF150DFAAB00AC2896 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		94F41DB5150E01EA00AC2896 /* navigationBarBackgroud.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = navigationBarBackgroud.jpg; sourceTree = "<group>"; };
+		94F41DBD150E0F7700AC2896 /* CareCap.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CareCap.entitlements; sourceTree = "<group>"; };
+		94F41DBF150E109600AC2896 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94F41DB0150DFAAB00AC2896 /* MessageUI.framework in Frameworks */,
 				947793A9145FF1CF00FA4F20 /* libz.1.2.5.dylib in Frameworks */,
 				947793A7145FF1BF00FA4F20 /* MobileCoreServices.framework in Frameworks */,
 				947793A5145FF1B400FA4F20 /* SystemConfiguration.framework in Frameworks */,
@@ -334,6 +345,7 @@
 		94D5FF6B140CC534001152D8 = {
 			isa = PBXGroup;
 			children = (
+				94E32C691505E8F100241A61 /* Tools */,
 				948F1D2E1463FD20003FB7DB /* Modle */,
 				E5070F78143B567200C8C078 /* Resources */,
 				94D5FF80140CC534001152D8 /* Classes */,
@@ -357,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				947793A8145FF1CF00FA4F20 /* libz.1.2.5.dylib */,
+				94F41DAF150DFAAB00AC2896 /* MessageUI.framework */,
 				947793A6145FF1BF00FA4F20 /* MobileCoreServices.framework */,
 				947793A4145FF1B400FA4F20 /* SystemConfiguration.framework */,
 				947793A2145FF16D00FA4F20 /* CFNetwork.framework */,
@@ -396,7 +409,8 @@
 		94D5FF81140CC534001152D8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9480A6F9140CDAAB00873A71 /* Entitlements.entitlements */,
+				94F41DBF150E109600AC2896 /* Entitlements.entitlements */,
+				94F41DBD150E0F7700AC2896 /* CareCap.entitlements */,
 				94D5FF82140CC534001152D8 /* CareCap-Info.plist */,
 				94D5FF83140CC534001152D8 /* InfoPlist.strings */,
 				9471D584147F94E300F1DDBD /* Localizable.strings */,
@@ -426,6 +440,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		94E32C691505E8F100241A61 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				94E32C6B1505E91200241A61 /* OfflineCacheImageHelper.h */,
+				94E32C6C1505E91200241A61 /* OfflineCacheImageHelper.m */,
+			);
+			name = Tools;
+			sourceTree = "<group>";
+		};
 		E5070F78143B567200C8C078 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,11 +473,13 @@
 		E5070F79143B568500C8C078 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9490F46014AC437B005C7529 /* 01.png */,
 				9473A8EB14AC7E6500204008 /* 02.png */,
 				9473A8EC14AC7E6500204008 /* 03.png */,
 				9473A8ED14AC7E6500204008 /* 04.png */,
-				9490F46014AC437B005C7529 /* 01.png */,
 				94343C6B148CC59C0011BF02 /* Default@2x.png */,
+				94F41DB5150E01EA00AC2896 /* navigationBarBackgroud.jpg */,
+				94E32C6E1505FE3300241A61 /* newsloader.gif */,
 				94343C69148CC58E0011BF02 /* Default.png */,
 				944BF7FF1484C7A300B3009E /* CalBarIcon.png */,
 				944BF8011484C7AE00B3009E /* icon.png */,
@@ -512,7 +537,7 @@
 		94D5FF6D140CC534001152D8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = 94D5FF70140CC534001152D8 /* Build configuration list for PBXProject "CareCap" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -542,9 +567,7 @@
 				94D5FF8E140CC534001152D8 /* MainWindow.xib in Resources */,
 				94D5FFC1140CC5D4001152D8 /* ZzpCalculationController.xib in Resources */,
 				94D5FFC3140CC5D4001152D8 /* ZzpSelectorController.xib in Resources */,
-				9480A6FA140CDAAB00873A71 /* Entitlements.entitlements in Resources */,
 				9471D586147F94E300F1DDBD /* Localizable.strings in Resources */,
-				9471D588147F94F900F1DDBD /* Localizable.strings in Resources */,
 				944BF7F91484C76300B3009E /* ZZPList.plist in Resources */,
 				944BF7FA1484C76300B3009E /* ZZPPackage.plist in Resources */,
 				944BF7FC1484C76B00B3009E /* FunctionRule.plist in Resources */,
@@ -567,6 +590,10 @@
 				9473A8F014AC7E6500204008 /* 04.png in Resources */,
 				94EFF50114E3B15500B4D236 /* FunctionHours.plist in Resources */,
 				94EFF50414E400D600B4D236 /* FunctionAlias.plist in Resources */,
+				94E32C6F1505FE3300241A61 /* newsloader.gif in Resources */,
+				94F41DB6150E01EA00AC2896 /* navigationBarBackgroud.jpg in Resources */,
+				94F41DBE150E0F7700AC2896 /* CareCap.entitlements in Resources */,
+				94F41DC0150E109700AC2896 /* Entitlements.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +660,7 @@
 				94F2D11C14A1994F0068951A /* HelperSheet.m in Sources */,
 				9490F45D14AC2628005C7529 /* HelpImageController.m in Sources */,
 				9400B31314AC61CD00D9592D /* HelpController.m in Sources */,
+				94E32C6D1505E91200241A61 /* OfflineCacheImageHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,13 +744,14 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PROVISIONING_PROFILE = "5F672B72-C3ED-49DF-B710-6C19201834BE";
-				"PROVISIONING_PROFILE[sdk=*]" = "5F672B72-C3ED-49DF-B710-6C19201834BE";
+				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
 				SDKROOT = iphoneos;
 			};
 			name = Adhoc;
@@ -730,10 +759,12 @@
 		9480A6FF140CDE8C00873A71 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CareCap/CareCap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
@@ -755,6 +786,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCapTests/CareCapTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -784,13 +816,14 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PROVISIONING_PROFILE = "5F672B72-C3ED-49DF-B710-6C19201834BE";
-				"PROVISIONING_PROFILE[sdk=*]" = "5F672B72-C3ED-49DF-B710-6C19201834BE";
+				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -809,14 +842,15 @@
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "5F672B72-C3ED-49DF-B710-6C19201834BE";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5F672B72-C3ED-49DF-B710-6C19201834BE";
+				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -825,10 +859,12 @@
 		94D5FFB5140CC534001152D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CareCap/CareCap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
@@ -843,10 +879,12 @@
 		94D5FFB6140CC534001152D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = CareCap/CareCap.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Beagle Armada BV";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
@@ -868,6 +906,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCapTests/CareCapTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -886,6 +925,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "CareCapTests/CareCapTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

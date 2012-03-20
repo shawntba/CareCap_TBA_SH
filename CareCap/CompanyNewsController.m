@@ -143,7 +143,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
+    //Change the backgroud
+//#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3
+//    
+//    if ([[self navigationController].navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
+//        [[self navigationController].navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBarBackgroud.jpg"] forBarMetrics:UIBarMetricsDefault];
+//    } else {
+//        [[self navigationController].navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBarBackgroud.jpg"]];
+//    }
+//    
+//#else
+//    
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBarBackgroud.jpg"]];
+//    
+//#endif
 //    if([listOfNews count] == 0)
 //    {
 //        [self loadData];
@@ -266,6 +280,20 @@
         }
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        [cell.textLabel setTextAlignment:UITextAlignmentCenter];
+        //cell.imageView.image = [UIImage imageNamed:@"newsloader.gif"];
+        UIActivityIndicatorView *activityIndicatorView =
+		[[[UIActivityIndicatorView alloc]
+          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]
+         autorelease];
+        [cell addSubview:activityIndicatorView];
+        activityIndicatorView.autoresizingMask =
+		UIViewAutoresizingFlexibleLeftMargin |
+		UIViewAutoresizingFlexibleRightMargin |
+		UIViewAutoresizingFlexibleTopMargin |
+		UIViewAutoresizingFlexibleBottomMargin;
+        [activityIndicatorView startAnimating];
     }
     
     return cell;

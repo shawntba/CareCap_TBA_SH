@@ -13,6 +13,41 @@
 #import "SBJsonParser.h"
 #import "Reachability.h"
 
+@implementation UINavigationBar (UINavigationBarCategory)
+
+-(void)setBackgroundImage:(UIImage*)image
+{    
+    UIImageView *backgroundView = (UIImageView *)[self viewWithTag:navbarImageTag];
+    
+    if(backgroundView)
+	{
+		[backgroundView removeFromSuperview];
+	}
+	else
+	{
+		backgroundView = [[UIImageView alloc] initWithImage:image];
+		backgroundView.frame = CGRectMake(0.f, 0.f, self.frame.size.width, self.frame.size.height);
+		backgroundView.autoresizingMask  = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		[self addSubview:backgroundView];
+		[self sendSubviewToBack:backgroundView];
+		[backgroundView release];
+	}
+}
+
+//for other views
+- (void)insertSubview:(UIView *)view atIndex:(NSInteger)index
+{    
+    UIImageView *backgroundView = (UIImageView *)[self viewWithTag:navbarImageTag];
+    
+    [super insertSubview:view atIndex:index];
+    
+    if(backgroundView)
+    {
+        [self sendSubviewToBack:backgroundView];
+    }
+}
+@end
+
 @implementation CareCapAppDelegate
 
 @synthesize window = _window;

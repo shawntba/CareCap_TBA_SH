@@ -6,8 +6,17 @@
 //  Copyright 2011 __The Beagle Armada__. All rights reserved.
 //
 
+#define navbarImageTag 6
+
 #import <UIKit/UIKit.h>
 #import "Reachability.h"
+
+@interface UINavigationBar (UINavigationBarCategory)
+
+-(void) setBackgroundImage:(UIImage *)image;
+-(void) insertSubview:(UIView *)view atIndex:(NSInteger)index;
+
+@end
 
 @interface CareCapAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
 {

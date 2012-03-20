@@ -11,3 +11,8 @@
 "Calculate_Button" = "Bereken";
 "Load_Lable" = "Is bezig met laden ... ... ...";
 "Next_Button" = "Volgende";
+"Contact_Info" = "The Beagle Armada is hét kenniscentrum in de AWBZ.\n\nWilt u weten wat The Beagle Armada u verder kan bieden op het vlak van advies en ICT? Neem contact met ons op.";
+"Company_PhoneNumber" = "0183650420";
+"Company_Email" = "info@thebeaglearmada.nl";
+"Email_Subject" = "Information request";
+"Email_Content" = "<html><body><table><tr><td colspan='2'>I would like to receive extra information about:</td></tr><tr><td><input type='checkbox'></td><td>Consultancy algemeen</td></tr><tr><td><input type='checkbox'></td><td>AZR op Orde</td></tr><tr><td><input type='checkbox'></td><td>Declareren op Orde</td></tr><tr><td><input type='checkbox'></td><td>EIditor/Powertools</td></tr><tr><td><input type='checkbox'></td><td>ZapLive!</td></tr><tr><td><input type='checkbox'></td><td>Overig</td></tr></table></body></html>";

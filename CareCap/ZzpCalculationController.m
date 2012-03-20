@@ -63,6 +63,8 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark Calculation
+
 // Calculate the FTE per specific functions in ZZP packages
 -(void) calculatePerRule:(NSDictionary *) aliasDict ruleDictionary:(NSDictionary *)dict hoursDictionary:(NSDictionary *)hoursDict
 {
@@ -76,7 +78,7 @@
     
     float result = 0.0;
     int count = [listContent count];
-
+    
     for(int i=0; i<count; i++){
         UITextField *textField = [textFields objectAtIndex:i];
         
@@ -143,6 +145,8 @@
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:popMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
     
+    [alert setTag:CalculationResultAlert];
+    
     [alert show];
     [alert release];
     
@@ -173,7 +177,7 @@
     [dict release];
     [hoursDict release];
     [aliasDict release];
-        
+    
     [self popupAlter:showTotalResult];
 }
 
@@ -184,6 +188,197 @@
     }
     
     [BackgroundButton setHidden:YES];
+}
+
+-(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    // the user clicked one of the OK/Cancel buttons
+    if (buttonIndex == 0 && alertView.tag == CalculationResultAlert)
+    {
+        NSLog(@"ok");
+        
+        UIAlertView *alertContactInformation = [[UIAlertView alloc] initWithTitle: nil
+                                                                          message: NSLocalizedString(@"Contact_Info", nil)
+                                                                         delegate: self
+                                                                cancelButtonTitle: @"Cancel"
+                                                                otherButtonTitles: [NSString stringWithFormat:@"Call us", NSLocalizedString(@"Company_PhoneNumber", nil)], 
+                                                [NSString stringWithFormat:@"Email us", NSLocalizedString(@"Company_Email", nil)], 
+                                                nil];
+        
+        [alertContactInformation setTag:ContactInformationAlert];
+        
+        [alertContactInformation show];
+        [alertContactInformation release];
+        
+        [alertContactInformation setContentMode:UIViewContentModeLeft];
+        
+        ((UILabel*)[[alertContactInformation subviews] objectAtIndex:0]).textAlignment = UITextAlignmentLeft;
+    }
+    else if (alertView.tag == ContactInformationAlert && buttonIndex == 1) {
+        NSString *dialingNumber = [NSString stringWithFormat:@"tel://%@", NSLocalizedString(@"Company_PhoneNumber", nil)];
+        
+        NSLog(@"%@", dialingNumber);
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dialingNumber]];
+        [dialingNumber release];
+    }else if (alertView.tag == ContactInformationAlert && buttonIndex == 2) {
+        //        NSString *emailAddress = [NSString stringWithFormat:@"email://%@", NSLocalizedString(@"Company_Email", nil)];
+        //        
+        //        NSLog(@"%@", emailAddress);
+        //        
+        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailAddress]];
+        //        [emailAddress release];
+        //[self sendEMail];
+        [self createSurveyForm:alertView];
+    }
+    else
+    {
+        NSLog(@"cancel");
+    }
+}
+
+#pragma mark - Create Email survey
+
+- (IBAction)toggleMusic:(UISwitch*)sender {
+	NSLog(@"togging music %s", sender.on ? "on" : "off");
+	
+    switch (sender.tag) {
+        case ConsultationOption:
+            if (sender.on) {
+                //TODO;
+            }
+            else {
+                //TODO;
+            }
+            break;
+        case AZROption:
+            break;
+        case DeclaretenOption:
+            break;
+        case EIditorOption:
+            break;
+        case ZAPliveOption:
+            break;
+        case OthersOption:
+            break;
+            
+        default:
+            break;
+    }
+}
+
+-(void) createSurveyForm:(UIAlertView *) sender {
+    UISwitch *consultationSwith = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
+    
+    [consultationSwith setTag:ConsultationOption];
+    
+    [sender addSubview:consultationSwith];
+}
+
+#pragma mark - Send Email
+
+//Send emails  
+-(void)sendEMail   
+{  
+    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));  
+    
+    if (mailClass != nil)  
+    {  
+        if ([mailClass canSendMail])  
+        {  
+            [self displayComposerSheet];  
+        }   
+        else   
+        {  
+            [self launchMailAppOnDevice];  
+        }  
+    }   
+    else   
+    {  
+        [self launchMailAppOnDevice];  
+    }      
+}  
+
+//If the email could be sent 
+-(void)displayComposerSheet   
+{  
+    MFMailComposeViewController *mailPicker = [[MFMailComposeViewController alloc] init];  
+    
+    mailPicker.mailComposeDelegate = self;  
+    
+    //Set up Mail Title  
+    [mailPicker setSubject: NSLocalizedString(@"Email_Subject", nil)];  
+    
+    //Add senders  
+    NSArray *toRecipients = [NSArray arrayWithObject: NSLocalizedString(@"Company_Email", nil)];  
+    //NSArray *ccRecipients = [NSArray arrayWithObjects: @"second@example.com", @"third@example.com", nil];  
+    //NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com", nil];  
+    [mailPicker setToRecipients: toRecipients];  
+    //[mailPicker setCcRecipients: ccRecipients];      
+    //[picker setBccRecipients:bccRecipients];  
+    
+    //Add pics as attachment 
+    //    UIImage *addPic = [UIImage imageNamed: @"3.jpg"];  
+    //    NSData *imageData = UIImagePNGRepresentation(addPic);            // png  
+    //    // NSData *imageData = UIImageJPEGRepresentation(addPic, 1);    // jpeg  
+    //    [mailPicker addAttachmentData: imageData mimeType: @"" fileName: @"3.jpg"];  
+    
+    NSString *emailBody = NSLocalizedString(@"Email_Content", nil);  
+    [mailPicker setMessageBody:emailBody isHTML:YES];  
+    
+    [self presentModalViewController: mailPicker animated:YES];  
+    [mailPicker release];  
+}  
+
+-(void) launchMailAppOnDevice  
+{  
+    NSString *recipients = [NSString stringWithFormat:@"mailto:%@&subject=my email!", NSLocalizedString(@"Company_Email", nil)];  
+    //@"mailto:first@example.com?cc=second@example.com,third@example.com&subject=my email!";  
+    NSString *body = @"&body=email body!";  
+    
+    NSString *email = [NSString stringWithFormat:@"%@%@", recipients, body];  
+    email = [email stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];  
+    
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:email]];  
+}
+
+-(void) alertWithTitle: (NSString *)_title_ msg: (NSString *)msg   
+{  
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_title_   
+                                                    message:msg   
+                                                   delegate:nil   
+                                          cancelButtonTitle:@"OK"   
+                                          otherButtonTitles:nil];  
+    [alert show];  
+    [alert release];  
+}
+
+-(void) mailComposeController:(MFMailComposeViewController *)controller   
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error   
+{  
+    NSString *msg;  
+    
+    switch (result)   
+    {  
+        case MFMailComposeResultCancelled:  
+            msg = @"Cancel the email;";  
+            break;  
+        case MFMailComposeResultSaved:  
+            msg = @"Saved draft;";  
+            [self alertWithTitle:nil msg:msg];  
+            break;  
+        case MFMailComposeResultSent:  
+            msg = @"Send successfully;";  
+            [self alertWithTitle:nil msg:msg];  
+            break;  
+        case MFMailComposeResultFailed:  
+            msg = @"Send failed;";  
+            [self alertWithTitle:nil msg:msg];  
+            break;  
+        default:  
+            break;  
+    }  
+    
+    [self dismissModalViewControllerAnimated:YES];  
 }
 
 #pragma mark - Table
@@ -211,7 +406,7 @@
     return YES;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [self.listContent count];
 }
@@ -245,7 +440,7 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
+-(void) viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -264,23 +459,23 @@
     tbl.scrollEnabled = YES;
 }
 
-- (void)viewDidUnload
+-(void) viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)viewDidDisappear:(BOOL)animated
+-(void) viewDidDisappear:(BOOL)animated
 {
     // save the state of the search UI so that it can be restored if the view is re-created
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+-(BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-//    return YES;
+    //    return YES;
 }
 
 @end

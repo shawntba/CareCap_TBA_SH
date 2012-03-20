@@ -11,3 +11,8 @@
 "Calculate_Button" = "Calculate";
 "Load_Lable" = "Loading ... ... ...";
 "Next_Button" = "Next";
+"Contact_Info" = "The Beagle Armada is the knowledge centre in the AWBZ (longterm healthcare).\n\nWould you like to know what The Beagle Armada can offer you in the fields of consultancy and ICT? Please contact us.";
+"Company_PhoneNumber" = "0183650420";
+"Company_Email" = "info@thebeaglearmada.nl";
+"Email_Subject" = "Informatie aanvraag";
+"Email_Content" = "<html><body><table><tr><td colspan='2'>I would like to receive extra information about:</td></tr><tr><td><input type='checkbox'></td><td>Consultancy algemeen</td></tr><tr><td><input type='checkbox'></td><td>AZR op Orde</td></tr><tr><td><input type='checkbox'></td><td>Declareren op Orde</td></tr><tr><td><input type='checkbox'></td><td>EIditor/Powertools</td></tr><tr><td><input type='checkbox'></td><td>ZapLive!</td></tr><tr><td><input type='checkbox'></td><td>Overig</td></tr></table></body></html>";

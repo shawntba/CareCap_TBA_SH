@@ -13,6 +13,6 @@
 		<string>$(AppIdentifierPrefix)com.TBA.CareCap</string>
 	</array>
 	<key>get-task-allow</key>
-	<true/>
+	<false/>
 </dict>
 </plist>
