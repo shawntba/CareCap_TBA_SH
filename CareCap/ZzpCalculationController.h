@@ -17,9 +17,8 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import <MessageUI/MessageUI.h>
 
-@interface ZzpCalculationController : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
+@interface ZzpCalculationController : UIViewController<UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UIAlertViewDelegate> {
     NSString *zzp;
     NSMutableArray *textFields;
     NSArray *listContent;
@@ -30,12 +29,6 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withZZP:(NSString *) zzp;
 - (IBAction) backgroundClick;
-
--(void)sendEMail;
--(void)displayComposerSheet;
--(void)launchMailAppOnDevice;
-
--(void) createSurveyForm:(UIAlertView *) sender;
 
 @property (nonatomic, retain) NSString *zzp;
 @property (nonatomic, retain) NSMutableArray *textFields;

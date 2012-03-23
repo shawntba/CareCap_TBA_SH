@@ -7,8 +7,11 @@
 //
 
 #import "ZzpCalculationController.h"
+#import "BGAlertViewWithSwitch.h"
+#import "SurveyController.h"
 
 @implementation ZzpCalculationController
+
 @synthesize zzp;
 @synthesize tbl;
 @synthesize textFields;
@@ -221,164 +224,21 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dialingNumber]];
         [dialingNumber release];
     }else if (alertView.tag == ContactInformationAlert && buttonIndex == 2) {
-        //        NSString *emailAddress = [NSString stringWithFormat:@"email://%@", NSLocalizedString(@"Company_Email", nil)];
-        //        
-        //        NSLog(@"%@", emailAddress);
-        //        
-        //        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:emailAddress]];
-        //        [emailAddress release];
-        //[self sendEMail];
-        [self createSurveyForm:alertView];
+//        BGAlertViewWithSwitch *alertWithSwitch = [[BGAlertViewWithSwitch alloc] initWithTitle:@"Recevie" message:@"I would like to receive:" switchMessage:@"Test switch" delegate:self cancelButtonTitle:@"Canel" okButtonTitle:@"OK"];
+//        
+//        
+//        [alertWithSwitch show];
+//        [alertWithSwitch release];
+        SurveyController *controller = [[SurveyController alloc] initWithNibName:@"SurveyController" bundle:nil];
+        
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        [controller release];
     }
     else
     {
         NSLog(@"cancel");
     }
-}
-
-#pragma mark - Create Email survey
-
-- (IBAction)toggleMusic:(UISwitch*)sender {
-	NSLog(@"togging music %s", sender.on ? "on" : "off");
-	
-    switch (sender.tag) {
-        case ConsultationOption:
-            if (sender.on) {
-                //TODO;
-            }
-            else {
-                //TODO;
-            }
-            break;
-        case AZROption:
-            break;
-        case DeclaretenOption:
-            break;
-        case EIditorOption:
-            break;
-        case ZAPliveOption:
-            break;
-        case OthersOption:
-            break;
-            
-        default:
-            break;
-    }
-}
-
--(void) createSurveyForm:(UIAlertView *) sender {
-    UISwitch *consultationSwith = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 20, 10)];
-    
-    [consultationSwith setTag:ConsultationOption];
-    
-    [sender addSubview:consultationSwith];
-}
-
-#pragma mark - Send Email
-
-//Send emails  
--(void)sendEMail   
-{  
-    Class mailClass = (NSClassFromString(@"MFMailComposeViewController"));  
-    
-    if (mailClass != nil)  
-    {  
-        if ([mailClass canSendMail])  
-        {  
-            [self displayComposerSheet];  
-        }   
-        else   
-        {  
-            [self launchMailAppOnDevice];  
-        }  
-    }   
-    else   
-    {  
-        [self launchMailAppOnDevice];  
-    }      
-}  
-
-//If the email could be sent 
--(void)displayComposerSheet   
-{  
-    MFMailComposeViewController *mailPicker = [[MFMailComposeViewController alloc] init];  
-    
-    mailPicker.mailComposeDelegate = self;  
-    
-    //Set up Mail Title  
-    [mailPicker setSubject: NSLocalizedString(@"Email_Subject", nil)];  
-    
-    //Add senders  
-    NSArray *toRecipients = [NSArray arrayWithObject: NSLocalizedString(@"Company_Email", nil)];  
-    //NSArray *ccRecipients = [NSArray arrayWithObjects: @"second@example.com", @"third@example.com", nil];  
-    //NSArray *bccRecipients = [NSArray arrayWithObject:@"fourth@example.com", nil];  
-    [mailPicker setToRecipients: toRecipients];  
-    //[mailPicker setCcRecipients: ccRecipients];      
-    //[picker setBccRecipients:bccRecipients];  
-    
-    //Add pics as attachment 
-    //    UIImage *addPic = [UIImage imageNamed: @"3.jpg"];  
-    //    NSData *imageData = UIImagePNGRepresentation(addPic);            // png  
-    //    // NSData *imageData = UIImageJPEGRepresentation(addPic, 1);    // jpeg  
-    //    [mailPicker addAttachmentData: imageData mimeType: @"" fileName: @"3.jpg"];  
-    
-    NSString *emailBody = NSLocalizedString(@"Email_Content", nil);  
-    [mailPicker setMessageBody:emailBody isHTML:YES];  
-    
-    [self presentModalViewController: mailPicker animated:YES];  
-    [mailPicker release];  
-}  
-
--(void) launchMailAppOnDevice  
-{  
-    NSString *recipients = [NSString stringWithFormat:@"mailto:%@&subject=my email!", NSLocalizedString(@"Company_Email", nil)];  
-    //@"mailto:first@example.com?cc=second@example.com,third@example.com&subject=my email!";  
-    NSString *body = @"&body=email body!";  
-    
-    NSString *email = [NSString stringWithFormat:@"%@%@", recipients, body];  
-    email = [email stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];  
-    
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:email]];  
-}
-
--(void) alertWithTitle: (NSString *)_title_ msg: (NSString *)msg   
-{  
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:_title_   
-                                                    message:msg   
-                                                   delegate:nil   
-                                          cancelButtonTitle:@"OK"   
-                                          otherButtonTitles:nil];  
-    [alert show];  
-    [alert release];  
-}
-
--(void) mailComposeController:(MFMailComposeViewController *)controller   
-          didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error   
-{  
-    NSString *msg;  
-    
-    switch (result)   
-    {  
-        case MFMailComposeResultCancelled:  
-            msg = @"Cancel the email;";  
-            break;  
-        case MFMailComposeResultSaved:  
-            msg = @"Saved draft;";  
-            [self alertWithTitle:nil msg:msg];  
-            break;  
-        case MFMailComposeResultSent:  
-            msg = @"Send successfully;";  
-            [self alertWithTitle:nil msg:msg];  
-            break;  
-        case MFMailComposeResultFailed:  
-            msg = @"Send failed;";  
-            [self alertWithTitle:nil msg:msg];  
-            break;  
-        default:  
-            break;  
-    }  
-    
-    [self dismissModalViewControllerAnimated:YES];  
 }
 
 #pragma mark - Table

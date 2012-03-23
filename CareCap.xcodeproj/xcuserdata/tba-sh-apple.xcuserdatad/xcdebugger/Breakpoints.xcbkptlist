@@ -4,31 +4,31 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "CareCap/ZzpCalculationController.m"
-         timestampString = "353906997.469005"
+         filePath = "CareCap/BGAlertViewWithSwitch.m"
+         timestampString = "354119517.446674"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "270"
-         endingLineNumber = "270"
-         landmarkName = "-createSurveyForm:"
+         startingLineNumber = "47"
+         endingLineNumber = "47"
+         landmarkName = "-InitialSwitches"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          isPathRelative = "1"
-         filePath = "CareCap/ZzpCalculationController.m"
-         timestampString = "353907018.667792"
+         filePath = "CareCap/BGAlertViewWithSwitch.m"
+         timestampString = "354119760.127965"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "274"
-         endingLineNumber = "274"
-         landmarkName = "-createSurveyForm:"
+         startingLineNumber = "80"
+         endingLineNumber = "80"
+         landmarkName = "-InitialSwitchesLabel"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

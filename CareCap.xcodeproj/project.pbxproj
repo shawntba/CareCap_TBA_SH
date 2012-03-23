@@ -11,6 +11,9 @@
 		9400B31414AC61CD00D9592D /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9400B31214AC61CD00D9592D /* HelpController.xib */; };
 		94343C6A148CC58E0011BF02 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C69148CC58E0011BF02 /* Default.png */; };
 		94343C6C148CC59C0011BF02 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C6B148CC59C0011BF02 /* Default@2x.png */; };
+		943F9212151B59670018AB64 /* BGAlertViewWithSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F9211151B59670018AB64 /* BGAlertViewWithSwitch.m */; };
+		943F9222151C35A40018AB64 /* SurveyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F9220151C35A40018AB64 /* SurveyController.m */; };
+		943F9223151C35A40018AB64 /* SurveyController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 943F9221151C35A40018AB64 /* SurveyController.xib */; };
 		944BF7F31484C72A00B3009E /* NewsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 944BF7F21484C72A00B3009E /* NewsDetailController.m */; };
 		944BF7F91484C76300B3009E /* ZZPList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 944BF7F71484C76300B3009E /* ZZPList.plist */; };
 		944BF7FA1484C76300B3009E /* ZZPPackage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 944BF7F81484C76300B3009E /* ZZPPackage.plist */; };
@@ -104,6 +107,11 @@
 		9400B31214AC61CD00D9592D /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelpController.xib; path = CareCap/HelpController.xib; sourceTree = "<group>"; };
 		94343C69148CC58E0011BF02 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		94343C6B148CC59C0011BF02 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		943F9210151B59670018AB64 /* BGAlertViewWithSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGAlertViewWithSwitch.h; sourceTree = "<group>"; };
+		943F9211151B59670018AB64 /* BGAlertViewWithSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGAlertViewWithSwitch.m; sourceTree = "<group>"; };
+		943F921F151C35A40018AB64 /* SurveyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyController.h; sourceTree = "<group>"; };
+		943F9220151C35A40018AB64 /* SurveyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyController.m; sourceTree = "<group>"; };
+		943F9221151C35A40018AB64 /* SurveyController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SurveyController.xib; path = CareCap/SurveyController.xib; sourceTree = "<group>"; };
 		944BF7F11484C72A00B3009E /* NewsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailController.h; sourceTree = "<group>"; };
 		944BF7F21484C72A00B3009E /* NewsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailController.m; sourceTree = "<group>"; };
 		944BF7F71484C76300B3009E /* ZZPList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = ZZPList.plist; path = Resources/ZZPList.plist; sourceTree = "<group>"; };
@@ -387,6 +395,8 @@
 			children = (
 				94D5FFBA140CC5D4001152D8 /* ZzpCalculationController.h */,
 				94D5FFBB140CC5D4001152D8 /* ZzpCalculationController.m */,
+				943F921F151C35A40018AB64 /* SurveyController.h */,
+				943F9220151C35A40018AB64 /* SurveyController.m */,
 				94D5FFBD140CC5D4001152D8 /* ZzpSelectorController.h */,
 				94D5FFBE140CC5D4001152D8 /* ZzpSelectorController.m */,
 				94D5FF89140CC534001152D8 /* CareCapAppDelegate.h */,
@@ -401,6 +411,8 @@
 				9490F45B14AC2628005C7529 /* HelpImageController.m */,
 				9400B31014AC61CD00D9592D /* HelpController.h */,
 				9400B31114AC61CD00D9592D /* HelpController.m */,
+				943F9210151B59670018AB64 /* BGAlertViewWithSwitch.h */,
+				943F9211151B59670018AB64 /* BGAlertViewWithSwitch.m */,
 			);
 			name = Classes;
 			path = CareCap;
@@ -460,6 +472,7 @@
 				944BF8571484D10000B3009E /* NewsDetailController.xib */,
 				9400B31214AC61CD00D9592D /* HelpController.xib */,
 				9490F45C14AC2628005C7529 /* HelpImageController.xib */,
+				943F9221151C35A40018AB64 /* SurveyController.xib */,
 				944BF7F71484C76300B3009E /* ZZPList.plist */,
 				944BF7F81484C76300B3009E /* ZZPPackage.plist */,
 				94EFF50314E400D600B4D236 /* FunctionAlias.plist */,
@@ -594,6 +607,7 @@
 				94F41DB6150E01EA00AC2896 /* navigationBarBackgroud.jpg in Resources */,
 				94F41DBE150E0F7700AC2896 /* CareCap.entitlements in Resources */,
 				94F41DC0150E109700AC2896 /* Entitlements.entitlements in Resources */,
+				943F9223151C35A40018AB64 /* SurveyController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +675,8 @@
 				9490F45D14AC2628005C7529 /* HelpImageController.m in Sources */,
 				9400B31314AC61CD00D9592D /* HelpController.m in Sources */,
 				94E32C6D1505E91200241A61 /* OfflineCacheImageHelper.m in Sources */,
+				943F9212151B59670018AB64 /* BGAlertViewWithSwitch.m in Sources */,
+				943F9222151C35A40018AB64 /* SurveyController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
