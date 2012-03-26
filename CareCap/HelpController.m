@@ -9,7 +9,7 @@
 #import "HelpController.h"
 #import "HelpImageController.h"
 
-static NSUInteger kNumberOfPages = 4;
+static NSUInteger kNumberOfPages = 6;
 
 @implementation HelpController
 @synthesize scrollView, pageControl, viewControllers;

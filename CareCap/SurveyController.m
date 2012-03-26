@@ -73,7 +73,7 @@
     [othersSwitchLabel sizeToFit];
     [othersSwitchLabel setFont:[UIFont boldSystemFontOfSize:13]];
     
-
+    [createButton setTitle:NSLocalizedString(@"CreateEmail_Label", nil) forState:UIBarButtonItemStylePlain];
 }
 
 - (void)viewDidUnload

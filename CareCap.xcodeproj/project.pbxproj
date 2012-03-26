@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9400B31314AC61CD00D9592D /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9400B31114AC61CD00D9592D /* HelpController.m */; };
 		9400B31414AC61CD00D9592D /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9400B31214AC61CD00D9592D /* HelpController.xib */; };
+		942E1AF115202AD90028B38C /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 942E1AEF15202AD90028B38C /* 05.png */; };
+		942E1AF215202AD90028B38C /* 06.png in Resources */ = {isa = PBXBuildFile; fileRef = 942E1AF015202AD90028B38C /* 06.png */; };
 		94343C6A148CC58E0011BF02 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C69148CC58E0011BF02 /* Default.png */; };
 		94343C6C148CC59C0011BF02 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C6B148CC59C0011BF02 /* Default@2x.png */; };
 		943F9212151B59670018AB64 /* BGAlertViewWithSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F9211151B59670018AB64 /* BGAlertViewWithSwitch.m */; };
@@ -81,7 +83,6 @@
 		94D5FFC3140CC5D4001152D8 /* ZzpSelectorController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94D5FFBF140CC5D4001152D8 /* ZzpSelectorController.xib */; };
 		94D5FFD1140CC7B1001152D8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */; };
 		94E32C6D1505E91200241A61 /* OfflineCacheImageHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E32C6C1505E91200241A61 /* OfflineCacheImageHelper.m */; };
-		94E32C6F1505FE3300241A61 /* newsloader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 94E32C6E1505FE3300241A61 /* newsloader.gif */; };
 		94EFF50114E3B15500B4D236 /* FunctionHours.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94EFF50014E3B15500B4D236 /* FunctionHours.plist */; };
 		94EFF50414E400D600B4D236 /* FunctionAlias.plist in Resources */ = {isa = PBXBuildFile; fileRef = 94EFF50314E400D600B4D236 /* FunctionAlias.plist */; };
 		94F2D11C14A1994F0068951A /* HelperSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F2D11A14A1994E0068951A /* HelperSheet.m */; };
@@ -105,6 +106,8 @@
 		9400B31014AC61CD00D9592D /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
 		9400B31114AC61CD00D9592D /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
 		9400B31214AC61CD00D9592D /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelpController.xib; path = CareCap/HelpController.xib; sourceTree = "<group>"; };
+		942E1AEF15202AD90028B38C /* 05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 05.png; path = Resources/05.png; sourceTree = "<group>"; };
+		942E1AF015202AD90028B38C /* 06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 06.png; path = Resources/06.png; sourceTree = "<group>"; };
 		94343C69148CC58E0011BF02 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		94343C6B148CC59C0011BF02 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		943F9210151B59670018AB64 /* BGAlertViewWithSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGAlertViewWithSwitch.h; sourceTree = "<group>"; };
@@ -219,7 +222,6 @@
 		94D5FFD0140CC7B1001152D8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		94E32C6B1505E91200241A61 /* OfflineCacheImageHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OfflineCacheImageHelper.h; path = Tools/OfflineCacheImageHelper.h; sourceTree = "<group>"; };
 		94E32C6C1505E91200241A61 /* OfflineCacheImageHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OfflineCacheImageHelper.m; path = Tools/OfflineCacheImageHelper.m; sourceTree = "<group>"; };
-		94E32C6E1505FE3300241A61 /* newsloader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = newsloader.gif; sourceTree = "<group>"; };
 		94EFF50014E3B15500B4D236 /* FunctionHours.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FunctionHours.plist; path = Resources/FunctionHours.plist; sourceTree = "<group>"; };
 		94EFF50314E400D600B4D236 /* FunctionAlias.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = FunctionAlias.plist; path = Resources/FunctionAlias.plist; sourceTree = "<group>"; };
 		94F2D11A14A1994E0068951A /* HelperSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelperSheet.m; sourceTree = "<group>"; };
@@ -490,9 +492,10 @@
 				9473A8EB14AC7E6500204008 /* 02.png */,
 				9473A8EC14AC7E6500204008 /* 03.png */,
 				9473A8ED14AC7E6500204008 /* 04.png */,
+				942E1AEF15202AD90028B38C /* 05.png */,
+				942E1AF015202AD90028B38C /* 06.png */,
 				94343C6B148CC59C0011BF02 /* Default@2x.png */,
 				94F41DB5150E01EA00AC2896 /* navigationBarBackgroud.jpg */,
-				94E32C6E1505FE3300241A61 /* newsloader.gif */,
 				94343C69148CC58E0011BF02 /* Default.png */,
 				944BF7FF1484C7A300B3009E /* CalBarIcon.png */,
 				944BF8011484C7AE00B3009E /* icon.png */,
@@ -603,11 +606,12 @@
 				9473A8F014AC7E6500204008 /* 04.png in Resources */,
 				94EFF50114E3B15500B4D236 /* FunctionHours.plist in Resources */,
 				94EFF50414E400D600B4D236 /* FunctionAlias.plist in Resources */,
-				94E32C6F1505FE3300241A61 /* newsloader.gif in Resources */,
 				94F41DB6150E01EA00AC2896 /* navigationBarBackgroud.jpg in Resources */,
 				94F41DBE150E0F7700AC2896 /* CareCap.entitlements in Resources */,
 				94F41DC0150E109700AC2896 /* Entitlements.entitlements in Resources */,
 				943F9223151C35A40018AB64 /* SurveyController.xib in Resources */,
+				942E1AF115202AD90028B38C /* 05.png in Resources */,
+				942E1AF215202AD90028B38C /* 06.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,8 +752,8 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
 				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -766,8 +770,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
-				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				PROVISIONING_PROFILE = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
+				"PROVISIONING_PROFILE[sdk=*]" = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
 				SDKROOT = iphoneos;
 			};
 			name = Adhoc;
@@ -776,8 +780,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = CareCap/CareCap.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -785,8 +789,8 @@
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
-				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				PROVISIONING_PROFILE = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
+				"PROVISIONING_PROFILE[sdk=*]" = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -820,8 +824,8 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -838,8 +842,8 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
-				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				PROVISIONING_PROFILE = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
+				"PROVISIONING_PROFILE[sdk=*]" = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -853,8 +857,8 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 				);
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Beagle Armada BV";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -865,8 +869,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				PROVISIONING_PROFILE = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -875,9 +879,9 @@
 		94D5FFB5140CC534001152D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = CareCap/CareCap.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -885,8 +889,8 @@
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
-				"PROVISIONING_PROFILE[sdk=*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				PROVISIONING_PROFILE = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
+				"PROVISIONING_PROFILE[sdk=*]" = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -895,9 +899,9 @@
 		94D5FFB6140CC534001152D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = CareCap/CareCap.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: The Beagle Armada BV";
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Esther de Grooth (Y2LL2FZZ7H)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CareCap/CareCap-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -905,8 +909,8 @@
 				INFOPLIST_FILE = "CareCap/CareCap-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7391C4E7-F035-436A-AD46-46D7C2064E5E";
+				PROVISIONING_PROFILE = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5078C0AA-62B7-4A23-8599-BEDAEE179934";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

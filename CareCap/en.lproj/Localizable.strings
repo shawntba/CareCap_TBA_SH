@@ -13,6 +13,7 @@
 "Next_Button" = "Next";
 "Email_Label" = "Email us";
 "Call_Label" = "Call us";
+"CreateEmail_Label" = "Generate email";
 "Contact_Info" = "The Beagle Armada is the knowledge centre in the AWBZ (longterm healthcare).\n\nWould you like to know what The Beagle Armada can offer you in the fields of consultancy and ICT? Please contact us.";
 "Company_PhoneNumber" = "0183650420";
 "Company_Email" = "info@thebeaglearmada.nl";

@@ -13,12 +13,13 @@
 "Next_Button" = "Volgende";
 "Email_Label" = "Email ons";
 "Call_Label" = "Bel ons";
+"CreateEmail_Label" = "Genereer email";
 "Contact_Info" = "The Beagle Armada is hét kenniscentrum in de AWBZ.\n\nWilt u weten wat The Beagle Armada u verder kan bieden op het vlak van advies en ICT? Neem contact met ons op.";
 "Company_PhoneNumber" = "0183650420";
 "Company_Email" = "info@thebeaglearmada.nl";
 "Email_Subject" = "Informatie aanvraag";
-"Email_Content" = "<html><body><table><tr><td colspan='2'>I would like to receive extra information about:</td></tr><tr><td><input type='checkbox' %@></td><td>Consultancy algemeen</td></tr><tr><td><input type='checkbox' %@></td><td>AZR op Orde</td></tr><tr><td><input type='checkbox' %@></td><td>Declareren op Orde</td></tr><tr><td><input type='checkbox' %@></td><td>EIditor/Powertools</td></tr><tr><td><input type='checkbox' %@></td><td>ZapLive!</td></tr><tr><td><input type='checkbox' %@></td><td>Overig</td></tr></table></body></html>";
-"Survey_Content" = "I would like to receive extra\ninformation about:";
+"Email_Content" = "<html><body><table><tr><td colspan='2'>Ik zou graag meer informatie ontvangen over:</td></tr><tr><td><input type='checkbox' %@></td><td>Consultancy algemeen</td></tr><tr><td><input type='checkbox' %@></td><td>AZR op Orde</td></tr><tr><td><input type='checkbox' %@></td><td>Declareren op Orde</td></tr><tr><td><input type='checkbox' %@></td><td>EIditor/Powertools</td></tr><tr><td><input type='checkbox' %@></td><td>ZapLive!</td></tr><tr><td><input type='checkbox' %@></td><td>Overig</td></tr></table></body></html>";
+"Survey_Content" = "Ik zou graag meer informatie\nontvangen over:";
 "Switch_Consultancy" = "Consultancy algemeen";
 "Switch_AZR" = "AZR op Orde";
 "Switch_Declareren" = "Declareren op Orde";

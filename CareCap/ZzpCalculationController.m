@@ -203,8 +203,8 @@
                                                                           message: NSLocalizedString(@"Contact_Info", nil)
                                                                          delegate: self
                                                                 cancelButtonTitle: @"Cancel"
-                                                                otherButtonTitles: [NSString stringWithFormat:@"Call us", NSLocalizedString(@"Company_PhoneNumber", nil)], 
-                                                [NSString stringWithFormat:@"Email us", NSLocalizedString(@"Company_Email", nil)], 
+                                                                otherButtonTitles: [NSString stringWithFormat:NSLocalizedString(@"Call_Label", nil), NSLocalizedString(@"Company_PhoneNumber", nil)], 
+                                                [NSString stringWithFormat:NSLocalizedString(@"Email_Label", nil), NSLocalizedString(@"Company_Email", nil)], 
                                                 nil];
         
         [alertContactInformation setTag:ContactInformationAlert];

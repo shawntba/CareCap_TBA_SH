@@ -280,19 +280,16 @@
         }
         
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
+        [cell.textLabel setTextAlignment:UITextAlignmentLeft];
+    } else if([listOfNews count] == 0) {
         [cell.textLabel setTextAlignment:UITextAlignmentCenter];
         //cell.imageView.image = [UIImage imageNamed:@"newsloader.gif"];
-        UIActivityIndicatorView *activityIndicatorView =
-		[[[UIActivityIndicatorView alloc]
-          initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]
-         autorelease];
+        UIActivityIndicatorView *activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+        
         [cell addSubview:activityIndicatorView];
-        activityIndicatorView.autoresizingMask =
-		UIViewAutoresizingFlexibleLeftMargin |
-		UIViewAutoresizingFlexibleRightMargin |
-		UIViewAutoresizingFlexibleTopMargin |
-		UIViewAutoresizingFlexibleBottomMargin;
+        
+        activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        
         [activityIndicatorView startAnimating];
     }
     

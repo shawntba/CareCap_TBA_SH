@@ -20,9 +20,11 @@ static NSArray *__pageControlImageList = nil;
 	UIImage *image2 = [UIImage imageNamed:@"02.png"];
 	UIImage *image3 = [UIImage imageNamed:@"03.png"];
     UIImage *image4 = [UIImage imageNamed:@"04.png"];
+    UIImage *image5 = [UIImage imageNamed:@"05.png"];
+    UIImage *image6 = [UIImage imageNamed:@"06.png"];
     
 	if (__pageControlImageList==nil) {
-		__pageControlImageList = [[NSArray alloc] initWithObjects:image1,image2,image3,image4, nil];
+		__pageControlImageList = [[NSArray alloc] initWithObjects:image1,image2,image3,image4,image5,image6, nil];
 	}
 	return [__pageControlImageList objectAtIndex:index %[__pageControlImageList count]];
 }
