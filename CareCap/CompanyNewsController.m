@@ -9,22 +9,31 @@
 #import "CompanyNewsController.h"
 #import "NewsDetailController.h"
 #import "News.h"
+#import "LoadingView.h"
 
 @implementation CompanyNewsController
 
 @synthesize listOfNews;
 @synthesize queue;
-@synthesize minuteTimer;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-//        NSLog(@"Load data while Intial!");
-//        NSLog(@"%d", [listOfNews count]);
-//        [listOfNews removeAllObjects];
-//        [self loadData];
+        NSLog(@"Start init News controller:");
+        
+        [self setTitle:NSLocalizedString(@"News_Title", nil)];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        
+        if([listOfNews count] == 0)
+        {
+            NSLog(@"Load data while init News controller.");
+            
+            [self loadData];
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        }
     }
     return self;
 }
@@ -40,19 +49,8 @@
 - (void)dealloc
 {
     queue = nil;
-    [minuteTimer invalidate];
     [listOfNews release];
     [super dealloc];
-}
-#pragma mark -
-#pragma mark Timer set accessor methods
-
-- (void)setMinuteTimer:(NSTimer *)newTimer {
-	
-	if (minuteTimer != newTimer) {
-		[minuteTimer invalidate];
-		minuteTimer = newTimer;
-	}
 }
 
 #pragma mark - View lifecycle
@@ -67,26 +65,20 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self setTitle:NSLocalizedString(@"News_Title", nil)];
+    self.navigationItem.leftBarButtonItem = nil;
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    //[self setTitle:NSLocalizedString(@"News_Title", nil)];
+    
+    //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
 //    NSLog(@"Load Data while View Did load;");
-//    NSLog(@"%d", [listOfNews count]); 
-//    [listOfNews removeAllObjects];
-//    [self loadData];
-}
-
-- (void) loadData {
-    queue = [[NSOperationQueue alloc] init];
-	
-	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self 
-																			selector:@selector(loadDataWithOperation) 
-																			  object:nil];
-	[queue addOperation:operation];
-    
-    [operation release];
-    //[self selector:@selector(loadWithOperation)];
+//    NSLog(@"%d", [listOfNews count]);
+//    if([listOfNews count] == 0)
+//    {
+//        [self loadData];
+//        
+//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+//    }
 }
 
 - (void) loadDataWithOperation {
@@ -101,22 +93,21 @@
         
         if([cachedNews count] > 0 && [cachedNews count] >= [listOfNews count])
         {
-//            [listOfNews removeAllObjects];
             NSLog(@"Temp list Count: %d", [listOfNews count]);
-//            for(NSData *data in cachedNews){
-//                News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-//                
-//                NSPredicate *idPredicate = [NSPredicate predicateWithFormat:@"ID == %d", news.ID];
-//                
-//                NSArray *test = [listOfNews filteredArrayUsingPredicate:idPredicate];
-//                
-//                NSLog (@"%@", [test valueForKey:@"ID"]);
-//                
-//                if ([listOfNews filteredArrayUsingPredicate:idPredicate])
-//                {
-//                    [listOfNews addObject:news];
-//                }
-//            }
+            //            for(NSData *data in cachedNews){
+            //                News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+            //
+            //                NSPredicate *idPredicate = [NSPredicate predicateWithFormat:@"ID == %d", news.ID];
+            //
+            //                NSArray *test = [listOfNews filteredArrayUsingPredicate:idPredicate];
+            //
+            //                NSLog (@"%@", [test valueForKey:@"ID"]);
+            //
+            //                if ([listOfNews filteredArrayUsingPredicate:idPredicate])
+            //                {
+            //                    [listOfNews addObject:news];
+            //                }
+            //            }
             
             for(NSData *data in cachedNews){
                 News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -130,7 +121,24 @@
         [cachedNews release];
     }
 	
-	[self.tableView reloadData];
+	//[self.tableView reloadData];
+    
+    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
+    
+    //End Animation
+    //UIActivityIndicatorView *tmpimg = (UIActivityIndicatorView *)[self.view viewWithTag:1];
+    //[tmpimg removeFromSuperview];
+}
+
+- (void) loadData {
+    queue = [[NSOperationQueue alloc] init];
+	
+	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self 
+																			selector:@selector(loadDataWithOperation) 
+																			  object:nil];
+	[queue addOperation:operation];
+    
+    [operation release];
 }
 
 - (void)viewDidUnload
@@ -143,64 +151,27 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
-    //Change the backgroud
-//#if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_4_3
-//    
-//    if ([[self navigationController].navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-//        [[self navigationController].navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBarBackgroud.jpg"] forBarMetrics:UIBarMetricsDefault];
-//    } else {
-//        [[self navigationController].navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBarBackgroud.jpg"]];
-//    }
-//    
-//#else
-//    
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBarBackgroud.jpg"]];
-//    
-//#endif
-//    if([listOfNews count] == 0)
-//    {
-//        [self loadData];
-//    }
     
-    /*
-	 Set up two timers, one that fires every minute, the other every fifteen minutes.
-     
-	 1/ The time displayed for each time zone must be updated every minute on the minute.
-	 2/ Time zone data is cached. Some time zones are based on 15 minute differences from GMT, so update the cache every 15 minutes, on the "quarter".
-     */
-	
-	NSTimer *timer;
-    NSDate *date = [NSDate date];
+    //Start Animation
+    //UIActivityIndicatorView *av = [[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+    //av.frame = CGRectMake(0, 0, 320, 160);
+    //av.tag  = 1;
     
-    /*
-	 Set up a timer to update the table view every minute on the minute so that it shows the current time.
-	 */
-	timer = [[NSTimer alloc] initWithFireDate:date interval:2 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
-	[[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-	self.minuteTimer = timer;
-	[timer release];
-}
-
-- (void) updateTime:(NSTimer *)timer {
-    if([listOfNews count] == 0)
-    {
-        [self loadData];
-        self.minuteTimer = nil;
-        
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    }
+    //[self.view addSubview:av];
+    //[av startAnimating];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    //End Animation
+    //UIActivityIndicatorView *tmpimg = (UIActivityIndicatorView *)[self.view viewWithTag:1];
+    //[tmpimg removeFromSuperview];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    self.minuteTimer = nil;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -284,13 +255,13 @@
     } else if([listOfNews count] == 0) {
         [cell.textLabel setTextAlignment:UITextAlignmentCenter];
         //cell.imageView.image = [UIImage imageNamed:@"newsloader.gif"];
-        UIActivityIndicatorView *activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
+        //UIActivityIndicatorView *activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
         
-        [cell addSubview:activityIndicatorView];
+        //[cell addSubview:activityIndicatorView];
         
-        activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+        //activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         
-        [activityIndicatorView startAnimating];
+        //[activityIndicatorView startAnimating];
     }
     
     return cell;
@@ -390,12 +361,14 @@
             restoreNews.Content = news.Content;
             restoreNews.IsRead = news.IsRead;
             restoreNews.PublishDate = news.PublishDate;
+            restoreNews.FullContent = news.FullContent;
         } else {
             restoreNews.ID = storedNews.ID;
             restoreNews.Title = storedNews.Title;
             restoreNews.Content = storedNews.Content;
             restoreNews.IsRead = storedNews.IsRead;
-            restoreNews.PublishDate = storedNews.PublishDate; 
+            restoreNews.PublishDate = storedNews.PublishDate;
+            restoreNews.FullContent = storedNews.FullContent;
         }
         
         [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:restoreNews]];

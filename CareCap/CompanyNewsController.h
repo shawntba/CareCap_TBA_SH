@@ -12,16 +12,10 @@
 {
     NSMutableArray *listOfNews;
     NSOperationQueue *queue;
-    
-    NSTimer *minuteTimer;
 }
 
 @property (nonatomic, retain) NSMutableArray *listOfNews;
 @property (nonatomic, retain) NSOperationQueue *queue;
-
-@property (nonatomic, assign) NSTimer *minuteTimer;
-
-- (void)updateTime:(NSTimer *)timer;
 
 - (void) loadData;
 

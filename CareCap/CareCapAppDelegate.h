@@ -34,6 +34,7 @@
 @property (nonatomic, retain) NSString *unreadCountString;
 
 - (void) updateInterfaceWithReachability: (Reachability*)curReach;
+- (void) FetchNewsByDeviceToken: (NSData *)deviceToken;
 - (void) intialNewsandDevice: (NSURL *)url;
 - (void) getNewsList: (NSURL *)url;
 

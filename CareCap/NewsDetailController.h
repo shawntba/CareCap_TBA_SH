@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "News.h"
 
-@interface NewsDetailController : UIViewController {
+@interface NewsDetailController : UIViewController<UIWebViewDelegate> {
     News *news;
     UIActivityIndicatorView *loadingIndicator;
 }

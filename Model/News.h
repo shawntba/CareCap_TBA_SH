@@ -15,6 +15,7 @@
     NSNumber *IsRead;
     NSDate *PublishDate;
     NSString *URL;
+    NSString *FullContent;
 }
 
 @property (nonatomic, retain) NSNumber *ID;
@@ -23,5 +24,6 @@
 @property (nonatomic, retain) NSNumber *IsRead;
 @property (nonatomic, retain) NSDate *PublishDate;
 @property (nonatomic, retain) NSString *URL;
+@property (nonatomic, retain) NSString *FullContent;
 
 @end

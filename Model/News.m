@@ -16,6 +16,7 @@
 @synthesize IsRead;
 @synthesize PublishDate;
 @synthesize URL;
+@synthesize FullContent;
 
 -(id) initWithCoder:(NSCoder *)aDecoder
 {
@@ -26,6 +27,7 @@
         self.IsRead = [aDecoder decodeObjectForKey:@"IsRead"];
         self.PublishDate = [aDecoder decodeObjectForKey:@"PublishDate"];
         self.URL = [aDecoder decodeObjectForKey:@"URL"];
+        self.FullContent = [aDecoder decodeObjectForKey:@"FullContent"];
     }
     return self;
 }
@@ -38,6 +40,7 @@
     [aCoder encodeObject:self.IsRead forKey:@"IsRead"];
     [aCoder encodeObject:self.PublishDate forKey:@"PublishDate"];
     [aCoder encodeObject:self.URL forKey:@"URL"];
+    [aCoder encodeObject:self.FullContent forKey:@"FullContent"];
 }
 
 - (void) dealloc {
@@ -47,6 +50,7 @@
     [IsRead release];
     [PublishDate release];
     [URL release];
+    [FullContent release];
     [super dealloc];
 }
 

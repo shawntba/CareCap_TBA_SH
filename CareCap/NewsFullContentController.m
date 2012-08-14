@@ -1,15 +1,18 @@
 //
-//  NewsDetailController.m
+//  NewsFullContentController.m
 //  CareCap
 //
-//  Created by Ray Shawn on 10/6/11.
-//  Copyright 2011 __The Beagle Armada__. All rights reserved.
+//  Created by Tba-Sh-Apple on 8/10/12.
+//
 //
 
-#import "NewsDetailController.h"
 #import "NewsFullContentController.h"
 
-@implementation NewsDetailController
+@interface NewsFullContentController ()
+
+@end
+
+@implementation NewsFullContentController
 
 @synthesize news;
 
@@ -32,21 +35,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [super dealloc];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-#pragma mark - View lifecycle
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -54,15 +42,15 @@
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
-    [self setTitle:NSLocalizedString(@"News_Detail", nil)];
+    [self setTitle:NSLocalizedString(@"News_Content", nil)];
     
     UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 93)];
     
     [webview setDelegate: self];
     
-    NSLog(@"<html><head><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"></head><body>%@</body></html>",self.news.Content);
+    NSLog(@"<html><head><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"></head><body>%@</body></html>",self.news.FullContent);
     
-    [webview loadHTMLString:[NSString stringWithFormat:@"<html><head><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"></head><body>%@</body></html>",self.news.Content] baseURL:nil];
+    [webview loadHTMLString:[NSString stringWithFormat:@"<html><head><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"></head><body>%@</body></html>",self.news.FullContent] baseURL:nil];
     
     [self.view addSubview:webview];
     
@@ -80,27 +68,21 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-    //return YES;
 }
 
 #pragma mark - WebView lifecycle
 
-- (BOOL) webView: (UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    if(navigationType == UIWebViewNavigationTypeLinkClicked) {
-        NSLog(@"Clicked and invoked!");
-        
-        NewsFullContentController *controller = [[NewsFullContentController alloc] initWithNibName:@"NewsFullContentController" bundle:nil withNews:self.news];
-        
-        [self.navigationController pushViewController:controller animated:YES];
-        
-        [controller release];
+-(BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {
+    if ([[[inRequest URL] scheme] isEqual:@"mailto"]) {
+        [[UIApplication sharedApplication] openURL:[inRequest URL]];
         return NO;
     }
     
-    NSLog(@"Without click, but invoked!");
+    if ( inType == UIWebViewNavigationTypeLinkClicked ) {
+        [[UIApplication sharedApplication] openURL:[inRequest URL]];
+        return NO;
+    }
     
     return YES;
 }

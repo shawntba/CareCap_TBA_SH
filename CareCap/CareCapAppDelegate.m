@@ -12,6 +12,7 @@
 #import "News.h"
 #import "SBJsonParser.h"
 #import "Reachability.h"
+#import "CompanyNewsController.h"
 
 @implementation UINavigationBar (UINavigationBarCategory)
 
@@ -53,9 +54,20 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize unreadCountString;
-//@synthesize listOfNews;
 
--(void)alertNotice:(NSString *)title withMSG:(NSString *)msg cancleButtonTitle:(NSString *)cancleTitle otherButtonTitle:(NSString *)otherTitle{
+- (void)dealloc
+{
+    [_window release];
+    [_tabBarController release];
+    [unreadCountString release];
+    //[listOfNews release];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super dealloc];
+}
+
+-(void)alertNotice:(NSString *)title withMSG:(NSString *)msg cancleButtonTitle:(NSString *)cancleTitle otherButtonTitle:(NSString *)otherTitle
+{
     UIAlertView *alert;
     
     if([otherTitle isEqualToString:@""])
@@ -80,11 +92,14 @@
     
     [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound)];
     
+    //Test fetch news content
+    //[self FetchNewsByDeviceToken:nil];
+    
     NSLog(@"%d", [UIApplication sharedApplication].applicationIconBadgeNumber);
     
-//    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]) {
-//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
-//    }
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"cachedNews"]) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"cachedNews"];
+    }
     
     if(appConnectionRequired)
     {
@@ -112,14 +127,19 @@
 	[_window addSubview:_tabBarController.view];
     [self.window makeKeyAndVisible];
     
+    [self.tabBarController setDelegate:self];
+    
     return YES;
 }
+
+#pragma mark - Check reachablity
 
 - (void) configureNotice: (Reachability*) curReach
 {
     NetworkStatus netStatus = [curReach currentReachabilityStatus];
     appConnectionRequired = [curReach connectionRequired];
     NSString* statusString= @"";
+    
     switch (netStatus)
     {
         case NotReachable:
@@ -143,6 +163,7 @@
             break;
         }
     }
+    
     if(appConnectionRequired)
     {
         statusString= [NSString stringWithFormat: @"%@, Connection Required", statusString];
@@ -176,6 +197,7 @@
             [self alertNotice:@"" withMSG:baseLabel cancleButtonTitle:@"OK" otherButtonTitle:@""];
         }
     }
+    
 	if(curReach == internetReach)
 	{	
         [self configureNotice: curReach];
@@ -195,35 +217,44 @@
 	[self updateInterfaceWithReachability: curReach];
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+#pragma mark - Fetch News
+
+- (void) FetchNewsByDeviceToken: (NSData *)deviceToken
+{
+    NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
+    deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+    //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+    //NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
+    
+    NSLog(@"url=%@",urlString);
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    
+    // Store the device Token
+    NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];
+    [cachedDeviceToken setObject:deviceString forKey:@"cachedDeviceToken"];
+    [cachedDeviceToken synchronize];
+    
+    NSLog(@"Data saved");
+    
+    // Intial the news list
+    [self getNewsList:url];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
     NSLog(@"devToken=%@",deviceToken);
     
     if(appConnectionRequired)
     {
-        NSString *deviceString = [NSString stringWithFormat:@"%@",deviceToken];
-        deviceString = [[[deviceString stringByReplacingOccurrencesOfString:@"<" withString:@""] stringByReplacingOccurrencesOfString:@">" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""];
-        
-        //NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
-        NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
-        //NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/NewsDevice/SummaryOfNewsDevice/%@", deviceString];
-        
-        NSLog(@"url=%@",urlString);
-        
-        NSURL *url = [NSURL URLWithString:urlString];
-        
-        // Store the device Token
-        NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];
-        [cachedDeviceToken setObject:deviceString forKey:@"cachedDeviceToken"];
-        [cachedDeviceToken synchronize];
-        
-        NSLog(@"Data saved");
-        
-        // Intial the news list
-        [self getNewsList:url];
+        [self FetchNewsByDeviceToken:deviceToken];
     }
 }
 
-- (void) getNewsList: (NSURL *)url {
+- (void) getNewsList: (NSURL *)url
+{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
     // Wi-Fi requests are not affected
@@ -252,7 +283,8 @@
     [request startAsynchronous];
 }
 
-- (void) sucessGetList:(ASIHTTPRequest *) request {
+- (void) sucessGetList:(ASIHTTPRequest *) request
+{
     NSString *responseString = [request responseString];
     NSLog(@"%@",responseString);
     // Use when fetching binary data
@@ -278,8 +310,8 @@
         NSUserDefaults *cachedDeviceToken = [NSUserDefaults standardUserDefaults];        
         NSString *currentDeviceToken = [cachedDeviceToken stringForKey:@"cachedDeviceToken"];
         
-        //NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", currentDeviceToken];
-        NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", currentDeviceToken];
+        NSString *urlString = [NSString stringWithFormat:@"http://192.168.166.16:6060/api/news/Device/%@", currentDeviceToken];
+        //NSString *urlString = [NSString stringWithFormat:@"http://nfs.azrlive.nl/api/news/Device/%@", currentDeviceToken];
         //NSString *urlString = [NSString stringWithFormat:@"http://apn.azrlive.nl/api/news/Device/%@", currentDeviceToken];
         
         NSLog(@"url=%@",urlString);
@@ -294,7 +326,8 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-- (void) failedGetList:(ASIHTTPRequest *) request {
+- (void) failedGetList:(ASIHTTPRequest *) request
+{
     NSError *error = [request error];
         
     if (error) {
@@ -304,7 +337,8 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
-- (void) intialNewsandDevice: (NSURL *)url {
+- (void) intialNewsandDevice: (NSURL *)url
+{
     // Will limit bandwidth to the predefined default for mobile applications when WWAN is active.
     // Wi-Fi requests are not affected
     // This method is only available on iOS
@@ -367,6 +401,8 @@
         news.PublishDate = [formater dateFromString:[dict objectForKey:@"PublishTime"]];
         [formater release];
         
+        news.FullContent = [dict objectForKey:@"NewsFullContent"];
+        
         [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:news]];
 //        [listOfNews addObject:news];
         
@@ -408,8 +444,22 @@
     }
 }
 
-- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err {
-    NSLog(@"Error in registration. Error: %@", err);
+#pragma mark - Tab bar life cycle
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    NSLog(@"Swithed tabs.");
+    CompanyNewsController *newsViewController = [[CompanyNewsController alloc] initWithStyle:UITableViewStylePlain];
+    
+    [[self.tabBarController.viewControllers objectAtIndex:1] pushViewController: newsViewController animated:YES];
+    [newsViewController release];
+}
+
+#pragma mark - Additional auto-generated application methods
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
+{
+    NSLog(@"Error in SHIT apple APN registration. Error: %@", err);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -449,17 +499,6 @@
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
-}
-
-- (void)dealloc
-{
-    [_window release];
-    [_tabBarController release];
-    [unreadCountString release];
-//    [listOfNews release];
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [super dealloc];
 }
 
 /*
