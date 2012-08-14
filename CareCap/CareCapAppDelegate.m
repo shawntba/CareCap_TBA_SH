@@ -127,7 +127,7 @@
 	[_window addSubview:_tabBarController.view];
     [self.window makeKeyAndVisible];
     
-    [self.tabBarController setDelegate:self];
+//    [self.tabBarController setDelegate:self];
     
     return YES;
 }
@@ -446,14 +446,14 @@
 
 #pragma mark - Tab bar life cycle
 
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-    NSLog(@"Swithed tabs.");
-    CompanyNewsController *newsViewController = [[CompanyNewsController alloc] initWithStyle:UITableViewStylePlain];
-    
-    [[self.tabBarController.viewControllers objectAtIndex:1] pushViewController: newsViewController animated:YES];
-    [newsViewController release];
-}
+//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+//{
+//    NSLog(@"Swithed tabs.");
+//    CompanyNewsController *newsViewController = [[CompanyNewsController alloc] initWithStyle:UITableViewStylePlain];
+//    
+//    [[self.tabBarController.viewControllers objectAtIndex:1] pushViewController: newsViewController animated:YES];
+//    [newsViewController release];
+//}
 
 #pragma mark - Additional auto-generated application methods
 

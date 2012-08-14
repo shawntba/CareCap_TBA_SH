@@ -13,7 +13,6 @@
 		940846C715D8F5740068FAF6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F41DAF150DFAAB00AC2896 /* MessageUI.framework */; };
 		942E1AF115202AD90028B38C /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 942E1AEF15202AD90028B38C /* 05.png */; };
 		942E1AF215202AD90028B38C /* 06.png in Resources */ = {isa = PBXBuildFile; fileRef = 942E1AF015202AD90028B38C /* 06.png */; };
-		9432AF4C15D9130E00BA37B9 /* Entitlements.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 9432AF4B15D9130E00BA37B9 /* Entitlements.entitlements */; };
 		94343C6A148CC58E0011BF02 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C69148CC58E0011BF02 /* Default.png */; };
 		94343C6C148CC59C0011BF02 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C6B148CC59C0011BF02 /* Default@2x.png */; };
 		943F9212151B59670018AB64 /* BGAlertViewWithSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 943F9211151B59670018AB64 /* BGAlertViewWithSwitch.m */; };
@@ -53,6 +52,7 @@
 		944BF8511484C80300B3009E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 944BF8451484C80300B3009E /* SBJsonWriter.m */; };
 		944BF8581484D10000B3009E /* NewsDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 944BF8571484D10000B3009E /* NewsDetailController.xib */; };
 		9459C1EA15D907DF00F1CABB /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 9459C1E915D907DF00F1CABB /* News.m */; };
+		946338E515DA4B0C00CAA2BA /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 946338E415DA4B0C00CAA2BA /* ODRefreshControl.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		9471D586147F94E300F1DDBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9471D584147F94E300F1DDBD /* Localizable.strings */; };
 		9473A8EE14AC7E6500204008 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8EB14AC7E6500204008 /* 02.png */; };
 		9473A8EF14AC7E6500204008 /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = 9473A8EC14AC7E6500204008 /* 03.png */; };
@@ -121,7 +121,6 @@
 		940588B915D8CE0B00566C44 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Resources/LoadingView/LoadingView.m; sourceTree = "<group>"; };
 		942E1AEF15202AD90028B38C /* 05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 05.png; path = Resources/05.png; sourceTree = "<group>"; };
 		942E1AF015202AD90028B38C /* 06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 06.png; path = Resources/06.png; sourceTree = "<group>"; };
-		9432AF4B15D9130E00BA37B9 /* Entitlements.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Entitlements.entitlements; sourceTree = "<group>"; };
 		94343C69148CC58E0011BF02 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		94343C6B148CC59C0011BF02 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		943F9210151B59670018AB64 /* BGAlertViewWithSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGAlertViewWithSwitch.h; sourceTree = "<group>"; };
@@ -192,6 +191,8 @@
 		944BF8571484D10000B3009E /* NewsDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NewsDetailController.xib; path = CareCap/NewsDetailController.xib; sourceTree = "<group>"; };
 		9459C1E815D907DF00F1CABB /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = News.h; path = Model/News.h; sourceTree = "<group>"; };
 		9459C1E915D907DF00F1CABB /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = News.m; path = Model/News.m; sourceTree = "<group>"; };
+		946338E315DA4B0C00CAA2BA /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ODRefreshControl.h; path = Resources/ODRefreshControl/ODRefreshControl.h; sourceTree = "<group>"; };
+		946338E415DA4B0C00CAA2BA /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ODRefreshControl.m; path = Resources/ODRefreshControl/ODRefreshControl.m; sourceTree = "<group>"; };
 		9471D575147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCapTests/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		9471D577147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/MainWindow.xib"; sourceTree = "<absolute>"; };
 		9471D578147F83F500F1DDBD /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = "/Users/tba-sh-apple/github/CareCap_TBA_SH/CareCap/nl.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
@@ -369,9 +370,19 @@
 			path = Resources/SBJson;
 			sourceTree = "<group>";
 		};
+		946338E115DA4AE200CAA2BA /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				946338E315DA4B0C00CAA2BA /* ODRefreshControl.h */,
+				946338E415DA4B0C00CAA2BA /* ODRefreshControl.m */,
+			);
+			name = ODRefreshControl;
+			sourceTree = "<group>";
+		};
 		9477937E145FF0C500FA4F20 /* OtherResources */ = {
 			isa = PBXGroup;
 			children = (
+				946338E115DA4AE200CAA2BA /* ODRefreshControl */,
 				940588BB15D8CE1F00566C44 /* LoadingView */,
 				94A016DC15D4B963009E163B /* EGOTableViewPullRefresh */,
 				944BF82C1484C80300B3009E /* SBJson */,
@@ -472,7 +483,6 @@
 		94D5FF81140CC534001152D8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9432AF4B15D9130E00BA37B9 /* Entitlements.entitlements */,
 				94D5FF82140CC534001152D8 /* CareCap-Info.plist */,
 				94D5FF83140CC534001152D8 /* InfoPlist.strings */,
 				9471D584147F94E300F1DDBD /* Localizable.strings */,
@@ -677,7 +687,6 @@
 				94A016ED15D4BA4E009E163B /* grayArrow@2x.png in Resources */,
 				94A016EE15D4BA4E009E163B /* whiteArrow.png in Resources */,
 				94A016EF15D4BA4E009E163B /* whiteArrow@2x.png in Resources */,
-				9432AF4C15D9130E00BA37B9 /* Entitlements.entitlements in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -750,6 +759,7 @@
 				9440532515D521BF002F4FBF /* Reachability.m in Sources */,
 				940588BA15D8CE0B00566C44 /* LoadingView.m in Sources */,
 				9459C1EA15D907DF00F1CABB /* News.m in Sources */,
+				946338E515DA4B0C00CAA2BA /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,7 +857,7 @@
 		9480A6FF140CDE8C00873A71 /* Adhoc */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Entitlements.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: The Beagle Armada BV";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: The Beagle Armada BV";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -9,31 +9,32 @@
 #import "CompanyNewsController.h"
 #import "NewsDetailController.h"
 #import "News.h"
-#import "LoadingView.h"
+#import "ODRefreshControl.h"
 
 @implementation CompanyNewsController
 
 @synthesize listOfNews;
 @synthesize queue;
 
+- (void)PrepareDataAndView
+{
+    // Custom initialization
+    NSLog(@"Start init News controller:");
+    
+    [self setTitle:NSLocalizedString(@"News_Title", nil)];
+    
+    if([listOfNews count] == 0)
+    {
+        NSLog(@"Load data while init News controller.");
+        
+        [self loadData];
+    }
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
-        NSLog(@"Start init News controller:");
-        
-        [self setTitle:NSLocalizedString(@"News_Title", nil)];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        
-        if([listOfNews count] == 0)
-        {
-            NSLog(@"Load data while init News controller.");
-            
-            [self loadData];
-            
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        }
     }
     return self;
 }
@@ -65,20 +66,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.navigationItem.leftBarButtonItem = nil;
+    [self PrepareDataAndView];
     
-    //[self setTitle:NSLocalizedString(@"News_Title", nil)];
-    
-    //[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    
-//    NSLog(@"Load Data while View Did load;");
-//    NSLog(@"%d", [listOfNews count]);
-//    if([listOfNews count] == 0)
-//    {
-//        [self loadData];
-//        
-//        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-//    }
+    ODRefreshControl *refreshControl = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+    [refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void) loadDataWithOperation {
@@ -94,20 +85,6 @@
         if([cachedNews count] > 0 && [cachedNews count] >= [listOfNews count])
         {
             NSLog(@"Temp list Count: %d", [listOfNews count]);
-            //            for(NSData *data in cachedNews){
-            //                News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-            //
-            //                NSPredicate *idPredicate = [NSPredicate predicateWithFormat:@"ID == %d", news.ID];
-            //
-            //                NSArray *test = [listOfNews filteredArrayUsingPredicate:idPredicate];
-            //
-            //                NSLog (@"%@", [test valueForKey:@"ID"]);
-            //
-            //                if ([listOfNews filteredArrayUsingPredicate:idPredicate])
-            //                {
-            //                    [listOfNews addObject:news];
-            //                }
-            //            }
             
             for(NSData *data in cachedNews){
                 News *news = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -120,17 +97,12 @@
         
         [cachedNews release];
     }
-	
-	//[self.tableView reloadData];
     
     [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:YES];
-    
-    //End Animation
-    //UIActivityIndicatorView *tmpimg = (UIActivityIndicatorView *)[self.view viewWithTag:1];
-    //[tmpimg removeFromSuperview];
 }
 
 - (void) loadData {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     queue = [[NSOperationQueue alloc] init];
 	
 	NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self 
@@ -139,6 +111,7 @@
 	[queue addOperation:operation];
     
     [operation release];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 - (void)viewDidUnload
@@ -151,22 +124,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    //Start Animation
-    //UIActivityIndicatorView *av = [[[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    //av.frame = CGRectMake(0, 0, 320, 160);
-    //av.tag  = 1;
-    
-    //[self.view addSubview:av];
-    //[av startAnimating];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //End Animation
-    //UIActivityIndicatorView *tmpimg = (UIActivityIndicatorView *)[self.view viewWithTag:1];
-    //[tmpimg removeFromSuperview];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -183,6 +145,30 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - Drop view life cycle
+
+- (void)dropViewDidBeginRefreshing:(ODRefreshControl *)refreshControl
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
+    double delayInSeconds = 5.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    
+    [self PrepareDataAndView];
+    
+    if([self.tableView numberOfRowsInSection:0] > 0)
+    {
+        NSLog(@"Table count larger than 0");
+        [refreshControl endRefreshing];
+    }
+    
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [refreshControl endRefreshing];
+    });
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 #pragma mark - Table view data source
@@ -254,14 +240,6 @@
         [cell.textLabel setTextAlignment:UITextAlignmentLeft];
     } else if([listOfNews count] == 0) {
         [cell.textLabel setTextAlignment:UITextAlignmentCenter];
-        //cell.imageView.image = [UIImage imageNamed:@"newsloader.gif"];
-        //UIActivityIndicatorView *activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] autorelease];
-        
-        //[cell addSubview:activityIndicatorView];
-        
-        //activityIndicatorView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-        
-        //[activityIndicatorView startAnimating];
     }
     
     return cell;
@@ -382,12 +360,10 @@
     [cachedNews release];
     [self.tableView reloadData];
     
-    //[newStatus autorelease];
     NewsDetailController *controller = [[NewsDetailController alloc] initWithNibName:@"NewsDetailController" bundle:nil withNews:news];
     
     [self.navigationController pushViewController:controller animated:YES];
     [controller release];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 @end

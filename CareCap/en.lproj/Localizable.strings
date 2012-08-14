@@ -10,7 +10,7 @@
 "News_Detail" = "News Detail";
 "News_Content" = "Content";
 "Calculate_Button" = "Calculate";
-"Load_Lable" = "Loading ... ... ...";
+"Load_Lable" = "Pull to refresh. Loading...";
 "Next_Button" = "Next";
 "Email_Label" = "Email us";
 "Call_Label" = "Call us";
