@@ -11,6 +11,7 @@
 		9400B31414AC61CD00D9592D /* HelpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9400B31214AC61CD00D9592D /* HelpController.xib */; };
 		940588BA15D8CE0B00566C44 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 940588B915D8CE0B00566C44 /* LoadingView.m */; };
 		940846C715D8F5740068FAF6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94F41DAF150DFAAB00AC2896 /* MessageUI.framework */; };
+		9422485B15DC905300AF7FE2 /* Appirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 9422485A15DC905300AF7FE2 /* Appirater.m */; };
 		942E1AF115202AD90028B38C /* 05.png in Resources */ = {isa = PBXBuildFile; fileRef = 942E1AEF15202AD90028B38C /* 05.png */; };
 		942E1AF215202AD90028B38C /* 06.png in Resources */ = {isa = PBXBuildFile; fileRef = 942E1AF015202AD90028B38C /* 06.png */; };
 		94343C6A148CC58E0011BF02 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 94343C69148CC58E0011BF02 /* Default.png */; };
@@ -119,6 +120,8 @@
 		9400B31214AC61CD00D9592D /* HelpController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HelpController.xib; path = CareCap/HelpController.xib; sourceTree = "<group>"; };
 		940588B815D8CE0B00566C44 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Resources/LoadingView/LoadingView.h; sourceTree = "<group>"; };
 		940588B915D8CE0B00566C44 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Resources/LoadingView/LoadingView.m; sourceTree = "<group>"; };
+		9422485915DC905300AF7FE2 /* Appirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Appirater.h; path = Resources/Appirater/Appirater.h; sourceTree = "<group>"; };
+		9422485A15DC905300AF7FE2 /* Appirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Appirater.m; path = Resources/Appirater/Appirater.m; sourceTree = "<group>"; };
 		942E1AEF15202AD90028B38C /* 05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 05.png; path = Resources/05.png; sourceTree = "<group>"; };
 		942E1AF015202AD90028B38C /* 06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 06.png; path = Resources/06.png; sourceTree = "<group>"; };
 		94343C69148CC58E0011BF02 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -299,6 +302,15 @@
 			name = LoadingView;
 			sourceTree = "<group>";
 		};
+		9422485715DC903700AF7FE2 /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				9422485915DC905300AF7FE2 /* Appirater.h */,
+				9422485A15DC905300AF7FE2 /* Appirater.m */,
+			);
+			name = Appirater;
+			sourceTree = "<group>";
+		};
 		9440532215D521BF002F4FBF /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +394,7 @@
 		9477937E145FF0C500FA4F20 /* OtherResources */ = {
 			isa = PBXGroup;
 			children = (
+				9422485715DC903700AF7FE2 /* Appirater */,
 				946338E115DA4AE200CAA2BA /* ODRefreshControl */,
 				940588BB15D8CE1F00566C44 /* LoadingView */,
 				94A016DC15D4B963009E163B /* EGOTableViewPullRefresh */,
@@ -760,6 +773,7 @@
 				940588BA15D8CE0B00566C44 /* LoadingView.m in Sources */,
 				9459C1EA15D907DF00F1CABB /* News.m in Sources */,
 				946338E515DA4B0C00CAA2BA /* ODRefreshControl.m in Sources */,
+				9422485B15DC905300AF7FE2 /* Appirater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
