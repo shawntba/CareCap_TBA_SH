@@ -7,13 +7,20 @@
 //
 
 #import "CareCapAppDelegate.h"
+#import "CompanyNewsController.h"
+#import "News.h"
+
+#import "SBJsonParser.h"
+
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
-#import "News.h"
-#import "SBJsonParser.h"
 #import "Reachability.h"
-#import "CompanyNewsController.h"
+
 #import "Appirater.h"
+
+#import "SHK.h"
+#import "SHKConfiguration.h"
+#import "ShareKitCareCapConfigurator.h"
 
 @implementation UINavigationBar (UINavigationBarCategory)
 
@@ -80,8 +87,17 @@
     [alert release];
 }
 
+- (void)shareOffline
+{
+	[SHK flushOfflineQueue];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    DefaultSHKConfigurator *configurator = [[ShareKitCareCapConfigurator alloc] init];
+    [SHKConfiguration sharedInstanceWithConfigurator:configurator];
+    [configurator release];
+    
     // Observe the kNetworkReachabilityChangedNotification. When that notification is posted, the
     // method "reachabilityChanged" will be called. 
     [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
@@ -129,6 +145,7 @@
     [self.window makeKeyAndVisible];
     
 //    [self.tabBarController setDelegate:self];
+    [self performSelector:@selector(shareOffline) withObject:nil afterDelay:0.5];
     
     [Appirater appLaunched: YES];
     
@@ -404,6 +421,7 @@
         news.PublishDate = [formater dateFromString:[dict objectForKey:@"PublishTime"]];
         [formater release];
         
+        news.URL = [dict objectForKey:@"NewsLink"];
         news.FullContent = [dict objectForKey:@"NewsFullContent"];
         
         [cachedNews addObject:[NSKeyedArchiver archivedDataWithRootObject:news]];
@@ -486,7 +504,6 @@
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-    [Appirater appEnteredForeground: YES];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

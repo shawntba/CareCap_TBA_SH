@@ -339,6 +339,7 @@
             restoreNews.Content = news.Content;
             restoreNews.IsRead = news.IsRead;
             restoreNews.PublishDate = news.PublishDate;
+            restoreNews.URL = news.URL;
             restoreNews.FullContent = news.FullContent;
         } else {
             restoreNews.ID = storedNews.ID;
@@ -346,6 +347,7 @@
             restoreNews.Content = storedNews.Content;
             restoreNews.IsRead = storedNews.IsRead;
             restoreNews.PublishDate = storedNews.PublishDate;
+            restoreNews.URL = news.URL;
             restoreNews.FullContent = storedNews.FullContent;
         }
         

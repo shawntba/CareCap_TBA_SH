@@ -7,6 +7,7 @@
 //
 
 #import "NewsFullContentController.h"
+#import "SHK.h"
 
 @interface NewsFullContentController ()
 
@@ -35,6 +36,25 @@
     return self;
 }
 
+#pragma mark -- View life cycle
+
+- (void)share
+{
+    NSURL *url = [NSURL URLWithString:self.news.URL];
+    NSString *tweet = [NSString stringWithFormat:@"@TBAlive News:%@", self.news.Title];
+    
+	SHKItem *item = [SHKItem URL:url title:tweet contentType:(SHKURLContentTypeUndefined)];
+    //SHKItem *item = [SHKItem URL:[NSURL URLWithString:@"http://www.youtube.com/watch?v=3t8MeE8Ik4Y"] title:@"Big bang" contentType:SHKURLContentTypeVideo];
+    //item.facebookURLSharePictureURI = @"http://www.state.gov/cms_images/india_tajmahal_2003_06_252.jpg";
+    //item.facebookURLShareDescription = @"description text";
+    //item.mailToRecipients = [NSArray arrayWithObjects:NSLocalizedString(@"Company_Email", nil), nil];
+    //item.shareType = SHKShareTypeURL;
+    
+	SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    [SHK setRootViewController:self];
+	[actionSheet showFromToolbar:self.navigationController.toolbar];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +77,11 @@
     [webview release];
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    
+    //Add Share Button
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(share)];
+    self.navigationItem.rightBarButtonItem = shareButton;
+    [shareButton release];
 }
 
 - (void)viewDidUnload
