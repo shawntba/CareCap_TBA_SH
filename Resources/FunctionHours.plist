@@ -212,36 +212,6 @@
 		<key>BH</key>
 		<real>2</real>
 	</dict>
-	<key>9a VV</key>
-	<dict>
-		<key>OB</key>
-		<real>5.08</real>
-		<key>PV</key>
-		<real>7.87</real>
-		<key>VP</key>
-		<real>2.75</real>
-		<key>AB</key>
-		<real>0</real>
-		<key>DB</key>
-		<real>0.4</real>
-		<key>BH</key>
-		<real>0.12</real>
-	</dict>
-	<key>9a VV + BH</key>
-	<dict>
-		<key>OB</key>
-		<real>5.08</real>
-		<key>PV</key>
-		<real>7.87</real>
-		<key>VP</key>
-		<real>2.75</real>
-		<key>AB</key>
-		<real>0</real>
-		<key>DB</key>
-		<real>0.4</real>
-		<key>BH</key>
-		<real>4</real>
-	</dict>
 	<key>9b VV</key>
 	<dict>
 		<key>OB</key>
